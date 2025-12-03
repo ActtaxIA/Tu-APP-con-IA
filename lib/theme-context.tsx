@@ -14,7 +14,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-// Paletas de colores COMPLETAS - Cambios muy notorios
+// Paletas de colores COMPLETAS - Con buen contraste
 const colorSchemes = [
   {
     name: 'Original',
@@ -28,8 +28,8 @@ const colorSchemes = [
   {
     name: 'Noche',
     background: '#0f0f0f',    // Negro
-    surface: '#1a1a1a',
-    text: '#ffffff',
+    surface: '#1f1f1f',
+    text: '#ffffff',          // Blanco para buen contraste
     primary: '#00ff85',       // Verde neón
     secondary: '#ff00ff',     // Magenta
     accent: '#00d4ff',        // Cian
@@ -38,16 +38,16 @@ const colorSchemes = [
     name: 'Océano',
     background: '#0a192f',    // Azul oscuro
     surface: '#172a45',
-    text: '#ccd6f6',
+    text: '#ffffff',          // Blanco para buen contraste
     primary: '#64ffda',       // Turquesa
-    secondary: '#f06449',     // Coral
+    secondary: '#ff6b6b',     // Coral
     accent: '#ffd93d',        // Amarillo
   },
   {
     name: 'Atardecer',
     background: '#2d1b4e',    // Púrpura oscuro
-    surface: '#1a0f2e',
-    text: '#ffffff',
+    surface: '#3d2b5e',
+    text: '#ffffff',          // Blanco
     primary: '#ff6b6b',       // Rojo coral
     secondary: '#feca57',     // Amarillo dorado
     accent: '#ff9ff3',        // Rosa pastel
@@ -55,17 +55,17 @@ const colorSchemes = [
   {
     name: 'Matrix',
     background: '#000000',    // Negro puro
-    surface: '#0d0d0d',
+    surface: '#001a00',       // Verde muy oscuro
     text: '#00ff00',          // Verde matrix
-    primary: '#00ff00',       // Verde
-    secondary: '#003300',     // Verde oscuro
-    accent: '#00ff00',        // Verde
+    primary: '#00ff00',       // Verde brillante
+    secondary: '#00ff00',     // Verde
+    accent: '#39ff14',        // Verde neón
   },
   {
     name: 'Candy',
     background: '#fff0f5',    // Rosa muy claro
     surface: '#ffffff',
-    text: '#4a154b',          // Púrpura oscuro
+    text: '#1a1a1a',          // Negro para contraste
     primary: '#ff1493',       // Rosa fuerte
     secondary: '#00ced1',     // Turquesa
     accent: '#ffd700',        // Dorado
@@ -74,7 +74,7 @@ const colorSchemes = [
     name: 'Retro',
     background: '#000080',    // Azul navy
     surface: '#c0c0c0',
-    text: '#ffffff',
+    text: '#ffffff',          // Blanco
     primary: '#ff00ff',       // Magenta
     secondary: '#ffff00',     // Amarillo
     accent: '#00ffff',        // Cian
@@ -82,8 +82,8 @@ const colorSchemes = [
   {
     name: 'Fuego',
     background: '#1a0000',    // Rojo muy oscuro
-    surface: '#2d0000',
-    text: '#ffffff',
+    surface: '#3d0000',
+    text: '#ffffff',          // Blanco
     primary: '#ff4500',       // Naranja rojo
     secondary: '#ffd700',     // Dorado
     accent: '#ff6347',        // Tomate

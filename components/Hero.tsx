@@ -69,6 +69,7 @@ export default function Hero() {
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(3rem, 10vw, 7rem)',
             lineHeight: 1,
+            color: 'var(--color-text)',
           }}
         >
           <motion.span
@@ -76,7 +77,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="block"
-            style={{ transform: 'rotate(-2deg)' }}
+            style={{ 
+              transform: 'rotate(-2deg)',
+              color: 'var(--color-text)',
+            }}
           >
             HACEMOS
           </motion.span>
@@ -87,6 +91,7 @@ export default function Hero() {
             className="inline-block px-6 my-2"
             style={{
               background: 'var(--color-secondary)',
+              color: 'var(--color-text)',
               border: '3px solid var(--color-text)',
               boxShadow: '5px 5px 0 var(--color-text)',
               transform: 'rotate(1deg)',
