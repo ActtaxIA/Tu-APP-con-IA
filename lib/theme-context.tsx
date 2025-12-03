@@ -9,29 +9,104 @@ interface ThemeContextType {
   cycleTheme: () => void
   cycleColor: () => void
   themeIndex: number
+  colorScheme: number
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+
+// Paletas de colores COMPLETAS - Cambios muy notorios
+const colorSchemes = [
+  {
+    name: 'Original',
+    background: '#f5f0e1',    // Papel
+    surface: '#ffffff',
+    text: '#1a1a1a',
+    primary: '#e41e31',       // Rojo
+    secondary: '#ffd93d',     // Amarillo
+    accent: '#ff69b4',        // Rosa
+  },
+  {
+    name: 'Noche',
+    background: '#0f0f0f',    // Negro
+    surface: '#1a1a1a',
+    text: '#ffffff',
+    primary: '#00ff85',       // Verde neón
+    secondary: '#ff00ff',     // Magenta
+    accent: '#00d4ff',        // Cian
+  },
+  {
+    name: 'Océano',
+    background: '#0a192f',    // Azul oscuro
+    surface: '#172a45',
+    text: '#ccd6f6',
+    primary: '#64ffda',       // Turquesa
+    secondary: '#f06449',     // Coral
+    accent: '#ffd93d',        // Amarillo
+  },
+  {
+    name: 'Atardecer',
+    background: '#2d1b4e',    // Púrpura oscuro
+    surface: '#1a0f2e',
+    text: '#ffffff',
+    primary: '#ff6b6b',       // Rojo coral
+    secondary: '#feca57',     // Amarillo dorado
+    accent: '#ff9ff3',        // Rosa pastel
+  },
+  {
+    name: 'Matrix',
+    background: '#000000',    // Negro puro
+    surface: '#0d0d0d',
+    text: '#00ff00',          // Verde matrix
+    primary: '#00ff00',       // Verde
+    secondary: '#003300',     // Verde oscuro
+    accent: '#00ff00',        // Verde
+  },
+  {
+    name: 'Candy',
+    background: '#fff0f5',    // Rosa muy claro
+    surface: '#ffffff',
+    text: '#4a154b',          // Púrpura oscuro
+    primary: '#ff1493',       // Rosa fuerte
+    secondary: '#00ced1',     // Turquesa
+    accent: '#ffd700',        // Dorado
+  },
+  {
+    name: 'Retro',
+    background: '#000080',    // Azul navy
+    surface: '#c0c0c0',
+    text: '#ffffff',
+    primary: '#ff00ff',       // Magenta
+    secondary: '#ffff00',     // Amarillo
+    accent: '#00ffff',        // Cian
+  },
+  {
+    name: 'Fuego',
+    background: '#1a0000',    // Rojo muy oscuro
+    surface: '#2d0000',
+    text: '#ffffff',
+    primary: '#ff4500',       // Naranja rojo
+    secondary: '#ffd700',     // Dorado
+    accent: '#ff6347',        // Tomate
+  },
+]
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeName>('punk')
   const [colorIndex, setColorIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
-  
-  // Paleta de colores para ciclar
-  const colorPalettes = [
-    { primary: '#e41e31', secondary: '#ffd93d', accent: '#ff69b4' }, // Rojo/Amarillo/Rosa
-    { primary: '#4169e1', secondary: '#32cd32', accent: '#ff1493' }, // Azul/Verde/Magenta
-    { primary: '#9400d3', secondary: '#ff8c00', accent: '#00ced1' }, // Púrpura/Naranja/Cian
-    { primary: '#00ff85', secondary: '#ff4d8d', accent: '#0057ff' }, // Verde/Rosa/Azul
-    { primary: '#ff1493', secondary: '#00d4ff', accent: '#32cd32' }, // Magenta/Cian/Lima
-  ]
 
   useEffect(() => {
     setMounted(true)
     const saved = localStorage.getItem('theme') as ThemeName
+    const savedColor = localStorage.getItem('colorScheme')
+    
     if (saved && themes.find(t => t.name === saved)) {
       setThemeState(saved)
+    }
+    if (savedColor) {
+      const idx = parseInt(savedColor)
+      setColorIndex(idx)
+      applyColorScheme(idx)
     }
   }, [])
 
@@ -41,6 +116,22 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       document.documentElement.setAttribute('data-theme', theme)
     }
   }, [theme, mounted])
+
+  const applyColorScheme = (index: number) => {
+    const scheme = colorSchemes[index]
+    const root = document.documentElement
+    
+    root.style.setProperty('--color-background', scheme.background)
+    root.style.setProperty('--color-surface', scheme.surface)
+    root.style.setProperty('--color-text', scheme.text)
+    root.style.setProperty('--color-primary', scheme.primary)
+    root.style.setProperty('--color-secondary', scheme.secondary)
+    root.style.setProperty('--color-accent', scheme.accent)
+    
+    // Cambiar también el fondo del body directamente para efecto inmediato
+    document.body.style.backgroundColor = scheme.background
+    document.body.style.color = scheme.text
+  }
 
   const setTheme = (newTheme: ThemeName) => {
     setThemeState(newTheme)
@@ -53,14 +144,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
   
   const cycleColor = () => {
-    const nextColorIndex = (colorIndex + 1) % colorPalettes.length
+    const nextColorIndex = (colorIndex + 1) % colorSchemes.length
     setColorIndex(nextColorIndex)
-    
-    // Aplicar los nuevos colores al documento
-    const colors = colorPalettes[nextColorIndex]
-    document.documentElement.style.setProperty('--color-primary', colors.primary)
-    document.documentElement.style.setProperty('--color-secondary', colors.secondary)
-    document.documentElement.style.setProperty('--color-accent', colors.accent)
+    localStorage.setItem('colorScheme', nextColorIndex.toString())
+    applyColorScheme(nextColorIndex)
   }
 
   const themeIndex = themes.findIndex(t => t.name === theme)
@@ -70,7 +157,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, cycleTheme, cycleColor, themeIndex }}>
+    <ThemeContext.Provider value={{ theme, setTheme, cycleTheme, cycleColor, themeIndex, colorScheme: colorIndex }}>
       {children}
     </ThemeContext.Provider>
   )
@@ -83,3 +170,5 @@ export function useTheme() {
   }
   return context
 }
+
+export { colorSchemes }

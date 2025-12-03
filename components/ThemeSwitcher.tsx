@@ -1,18 +1,19 @@
 'use client'
 
-import { useTheme } from '@/lib/theme-context'
+import { useTheme, colorSchemes } from '@/lib/theme-context'
 import { themes } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
 export default function ThemeSwitcher() {
-  const { theme, setTheme, cycleTheme, cycleColor, themeIndex } = useTheme()
+  const { theme, setTheme, cycleColor, themeIndex, colorScheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
   const currentTheme = themes[themeIndex]
+  const currentColor = colorSchemes[colorScheme]
 
   return (
-    <div className="fixed bottom-6 right-4 z-40">
-      {/* Botón principal */}
+    <div className="fixed bottom-6 right-4 z-50">
+      {/* Botón principal de tema */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className="theme-switcher flex items-center gap-2"
@@ -74,21 +75,49 @@ export default function ThemeSwitcher() {
         )}
       </AnimatePresence>
 
-      {/* Botón rápido para ciclar colores */}
+      {/* Botón de cambio de colores - MÁS GRANDE Y VISIBLE */}
       <motion.button
         onClick={cycleColor}
-        className="absolute -left-12 top-0 w-10 h-10 flex items-center justify-center text-xl"
+        className="absolute -left-16 top-0 flex items-center gap-1 px-3 py-2"
         style={{
           background: 'var(--color-primary)',
-          border: 'var(--border-width) solid var(--color-text)',
-          boxShadow: 'var(--shadow-default)',
+          border: '3px solid var(--color-text)',
+          boxShadow: '4px 4px 0 var(--color-text)',
+          color: 'white',
+          fontFamily: 'var(--font-heading)',
+          fontSize: '0.8rem',
         }}
-        whileHover={{ scale: 1.1, rotate: 180 }}
+        whileHover={{ 
+          scale: 1.1,
+          boxShadow: '2px 2px 0 var(--color-text)',
+        }}
         whileTap={{ scale: 0.9 }}
-        title="Cambiar colores"
+        title={`Paleta: ${currentColor.name}`}
       >
-        🎨
+        <motion.span 
+          className="text-xl"
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        >
+          🎨
+        </motion.span>
       </motion.button>
+
+      {/* Indicador de paleta actual */}
+      <motion.div
+        className="absolute -left-16 -top-8 text-xs px-2 py-1 whitespace-nowrap"
+        style={{
+          background: 'var(--color-secondary)',
+          border: '2px solid var(--color-text)',
+          fontFamily: 'var(--font-body)',
+          color: 'var(--color-text)',
+        }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        key={colorScheme}
+      >
+        {currentColor.name}
+      </motion.div>
     </div>
   )
 }
