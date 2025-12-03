@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu APP con IA | Punk Zine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Bebas+Neue&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #f5f0e1;
+            --black: #1a1a1a;
+            --red: #e41e31;
+            --yellow: #ffd93d;
+            --blue: #4169e1;
+            --pink: #ff69b4;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Special Elite', monospace;
+            background: var(--paper);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        /* Paper Texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        /* Navigation - Taped Note Style */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--yellow);
+            border: 3px solid var(--black);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: rotate(-0.5deg);
+            box-shadow: 5px 5px 0 var(--black);
+        }
+        nav::before, nav::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            width: 60px;
+            height: 25px;
+            background: rgba(200, 200, 200, 0.7);
+            border: 1px solid #999;
+        }
+        nav::before { left: 30px; transform: rotate(-3deg); }
+        nav::after { right: 30px; transform: rotate(2deg); }
+        .logo {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            transform: rotate(-2deg);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: 'Special Elite', monospace;
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .nav-links a:hover { 
+            text-decoration: line-through;
+            color: var(--red);
+        }
+        
+        /* Hero - Collage Style */
+        .hero {
+            min-height: 100vh;
+            padding: 150px 40px 80px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero-sticker {
+            position: absolute;
+            background: var(--red);
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            transform: rotate(12deg);
+            top: 150px;
+            right: 100px;
+            border: 2px solid var(--black);
+            box-shadow: 3px 3px 0 var(--black);
+        }
+        .hero-arrow {
+            position: absolute;
+            font-size: 4rem;
+            top: 200px;
+            right: 50px;
+            transform: rotate(-30deg);
+        }
+        .hero-cut {
+            display: inline-block;
+            background: var(--black);
+            color: var(--paper);
+            padding: 5px 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            transform: rotate(-1deg);
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 1;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+        .hero-title .word-1 {
+            display: inline-block;
+            transform: rotate(-2deg);
+        }
+        .hero-title .word-2 {
+            display: inline-block;
+            background: var(--yellow);
+            padding: 0 20px;
+            border: 3px solid var(--black);
+            transform: rotate(1deg);
+            box-shadow: 5px 5px 0 var(--black);
+        }
+        .hero-title .word-3 {
+            display: inline-block;
+            color: var(--red);
+            transform: rotate(-1deg);
+        }
+        .hero-subtitle {
+            font-family: 'Covered By Your Grace', cursive;
+            font-size: 1.8rem;
+            max-width: 500px;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            transform: rotate(0.5deg);
+        }
+        .hero-note {
+            display: inline-block;
+            background: white;
+            border: 2px solid var(--black);
+            padding: 15px 25px;
+            font-family: 'Special Elite', monospace;
+            font-size: 0.9rem;
+            transform: rotate(-2deg);
+            box-shadow: 4px 4px 0 var(--black);
+            margin-bottom: 30px;
+        }
+        .btn-punk {
+            display: inline-block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            padding: 20px 50px;
+            background: var(--red);
+            color: white;
+            border: 4px solid var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+            cursor: pointer;
+            transform: rotate(1deg);
+            transition: all 0.1s;
+        }
+        .btn-punk:hover {
+            transform: rotate(-1deg) translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--black);
+        }
+        
+        /* Services - Cut & Paste */
+        .services {
+            padding: 100px 40px;
+            background: repeating-linear-gradient(
+                0deg,
+                var(--paper),
+                var(--paper) 30px,
+                #e8e3d4 30px,
+                #e8e3d4 31px
+            );
+        }
+        .section-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            transform: rotate(-1deg);
+        }
+        .section-title span {
+            background: var(--pink);
+            padding: 0 15px;
+            border: 3px solid var(--black);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: white;
+            border: 3px solid var(--black);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 5px 5px 0 var(--black);
+            transition: all 0.1s;
+        }
+        .service-card:nth-child(1) { transform: rotate(-2deg); }
+        .service-card:nth-child(2) { transform: rotate(1deg); background: var(--yellow); }
+        .service-card:nth-child(3) { transform: rotate(-1deg); }
+        .service-card:nth-child(4) { transform: rotate(2deg); background: var(--blue); color: white; }
+        .service-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 10;
+        }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .service-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+        }
+        .service-desc {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Stats - Stamps */
+        .stats {
+            padding: 80px 40px;
+            background: var(--black);
+            color: var(--paper);
+            position: relative;
+        }
+        .stats::before {
+            content: '★ ★ ★ STATS ★ ★ ★';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            color: var(--red);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+        .stat {
+            text-align: center;
+            padding: 30px;
+            border: 3px dashed var(--paper);
+            transform: rotate(1deg);
+        }
+        .stat:nth-child(2) { transform: rotate(-2deg); }
+        .stat:nth-child(3) { transform: rotate(1.5deg); }
+        .stat:nth-child(4) { transform: rotate(-1deg); }
+        .stat-number {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 3rem;
+            color: var(--yellow);
+        }
+        .stat-label {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Contact - Note Paper */
+        .contact {
+            padding: 100px 40px;
+            background: var(--paper);
+        }
+        .contact-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border: 3px solid var(--black);
+            padding: 50px 40px;
+            box-shadow: 8px 8px 0 var(--black);
+            transform: rotate(-1deg);
+            position: relative;
+        }
+        .contact-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 30px;
+            background: rgba(200, 200, 200, 0.8);
+            border: 1px solid #999;
+        }
+        .contact-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            transform: rotate(1deg);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .punk-input {
+            font-family: 'Special Elite', monospace;
+            font-size: 1rem;
+            padding: 15px;
+            background: var(--paper);
+            border: 2px solid var(--black);
+            box-shadow: 3px 3px 0 var(--black);
+        }
+        .punk-input:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 3px 3px 0 var(--red);
+        }
+        
+        /* Footer - Ripped Paper */
+        footer {
+            padding: 60px 40px;
+            background: var(--red);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(135deg, var(--paper) 25%, transparent 25%),
+                        linear-gradient(225deg, var(--paper) 25%, transparent 25%);
+            background-size: 20px 20px;
+        }
+        .footer-logo {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.9rem;
+        }
+        .footer-diy {
+            font-family: 'Covered By Your Grace', cursive;
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        
+        /* Random Decorations */
+        .deco-x {
+            position: fixed;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 4rem;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        .deco-1 { top: 30%; left: 5%; transform: rotate(15deg); }
+        .deco-2 { top: 60%; right: 8%; transform: rotate(-20deg); }
+        .deco-3 { bottom: 20%; left: 15%; transform: rotate(10deg); }
+        
+        @media (max-width: 968px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+            .hero-sticker { display: none; }
+            .hero-arrow { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="deco-x deco-1">X</div>
+    <div class="deco-x deco-2">X</div>
+    <div class="deco-x deco-3">★</div>
+
+    <nav>
+        <div class="logo">Tu APP con IA</div>
+        <ul class="nav-links">
+            <li><a href="#servicios">SERVICIOS</a></li>
+            <li><a href="#stats">STATS</a></li>
+            <li><a href="#contacto">CONTACTO</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-sticker">¡MURCIA!</div>
+        <div class="hero-arrow">↙</div>
+        <span class="hero-cut">AGENCIA DIGITAL</span>
+        <h1 class="hero-title">
+            <span class="word-1">HACEMOS</span><br>
+            <span class="word-2">WEBS</span><br>
+            <span class="word-3">CON IA</span>
+        </h1>
+        <p class="hero-subtitle">Marketing digital sin filtros. Páginas web y apps que rompen moldes. Inteligencia artificial de verdad.</p>
+        <div class="hero-note">* no somos como los demás *</div>
+        <button class="btn-punk">HABLEMOS →</button>
+    </section>
+
+    <section class="services" id="servicios">
+        <h2 class="section-title">QUÉ <span>HACEMOS</span></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3 class="service-title">WEBS</h3>
+                <p class="service-desc">Páginas web que no aburren. Diseño con actitud.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3 class="service-title">APPS</h3>
+                <p class="service-desc">Aplicaciones que la gente quiere usar.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3 class="service-title">IA</h3>
+                <p class="service-desc">Inteligencia artificial sin el hype vacío.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📢</div>
+                <h3 class="service-title">MARKETING</h3>
+                <p class="service-desc">Estrategia que funciona, no solo bonitas palabras.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats" id="stats">
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">150+</div><div class="stat-label">Proyectos</div></div>
+            <div class="stat"><div class="stat-number">98%</div><div class="stat-label">Contentos</div></div>
+            <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Clientes</div></div>
+            <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años</div></div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="contact-container">
+            <h2 class="contact-title">¿Hablamos?</h2>
+            <form class="contact-form">
+                <input type="text" class="punk-input" placeholder="Tu nombre">
+                <input type="email" class="punk-input" placeholder="Tu email">
+                <textarea class="punk-input" rows="4" placeholder="¿Qué necesitas?"></textarea>
+                <button type="submit" class="btn-punk">ENVIAR</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Tu APP con IA</div>
+        <p class="footer-text">MURCIA • 2024</p>
+        <p class="footer-diy">hecho con las manos</p>
+    </footer>
+</body>
+</html>

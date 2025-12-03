@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts imports */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Bebas+Neue&family=Covered+By+Your+Grace&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&family=Press+Start+2P&family=VT323&family=Space+Grotesk:wght@400;500;700&family=Darker+Grotesque:wght@400;600;800;900&family=Silkscreen:wght@400;700&display=swap');
+
+/* Importar archivos de temas separados */
+@import './themes/punk.css';
+@import './themes/neubrutalism.css';
+@import './themes/y2k.css';
+@import './themes/pixel.css';
+@import './themes/retro90s.css';
+
+/* ============================================
+   ESTILOS BASE COMUNES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  transition: background 0.5s ease, color 0.3s ease;
+}
+
+/* Transiciones suaves para el cambio de tema */
+.theme-transition {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estilos base del botón de tema */
+.theme-switcher {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background, #f5f0e1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary, #e41e31);
+  border: 2px solid var(--color-text, #1a1a1a);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary, #e41e31);
+  color: var(--color-background, #f5f0e1);
+}

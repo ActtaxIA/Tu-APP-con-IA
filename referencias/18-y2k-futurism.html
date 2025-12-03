@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu APP con IA | Y2K Futurism</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --chrome: linear-gradient(180deg, #e8e8e8 0%, #b8b8b8 25%, #e8e8e8 50%, #a0a0a0 75%, #d0d0d0 100%);
+            --silver: #c0c0c0;
+            --cyber-blue: #00d4ff;
+            --hot-pink: #ff1493;
+            --lime: #32cd32;
+            --purple: #9400d3;
+            --dark: #1a1a2e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        /* Starfield */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, white, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, white, transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 230px 80px, white, transparent),
+                radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent);
+            background-size: 350px 200px;
+            animation: twinkle 5s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: var(--chrome);
+            border: 3px solid #888;
+            border-radius: 30px;
+            padding: 12px 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 
+                inset 0 2px 0 rgba(255,255,255,0.8),
+                inset 0 -2px 0 rgba(0,0,0,0.2),
+                0 5px 15px rgba(0,0,0,0.5);
+        }
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, var(--cyber-blue), var(--hot-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .nav-links a:hover { color: var(--hot-pink); }
+        .nav-btn {
+            padding: 8px 20px;
+            background: linear-gradient(180deg, var(--hot-pink), #c71585);
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 150px 40px 100px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0,212,255,0.3), rgba(255,20,147,0.3));
+            filter: blur(40px);
+            animation: float 6s ease-in-out infinite;
+        }
+        .bubble-1 { width: 300px; height: 300px; top: 20%; left: 10%; }
+        .bubble-2 { width: 200px; height: 200px; bottom: 20%; right: 15%; animation-delay: -2s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 30px;
+            background: var(--chrome);
+            border: 2px solid #888;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 30px;
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.8);
+        }
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .hero-title .chrome-text {
+            background: var(--chrome);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 4px 0 rgba(0,0,0,0.3));
+        }
+        .hero-title .glow-text {
+            color: var(--cyber-blue);
+            text-shadow: 
+                0 0 10px var(--cyber-blue),
+                0 0 20px var(--cyber-blue),
+                0 0 40px var(--cyber-blue);
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 500px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.8);
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        .btn-y2k {
+            padding: 18px 45px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(180deg, var(--cyber-blue), #0099cc);
+            color: #fff;
+            border: 3px solid #fff;
+            box-shadow: 
+                0 0 20px rgba(0, 212, 255, 0.5),
+                inset 0 2px 0 rgba(255,255,255,0.3);
+        }
+        .btn-primary:hover {
+            box-shadow: 
+                0 0 40px rgba(0, 212, 255, 0.8),
+                inset 0 2px 0 rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: var(--chrome);
+            color: #333;
+            border: 3px solid #888;
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.8);
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(180deg, #fff, #ddd);
+        }
+        
+        /* Services */
+        .services {
+            padding: 100px 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 60px;
+            background: var(--chrome);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            padding: 40px 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .service-card:hover {
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            transform: translateY(-10px);
+        }
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: var(--chrome);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.8);
+        }
+        .service-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--cyber-blue);
+        }
+        .service-desc {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Stats */
+        .stats {
+            padding: 80px 40px;
+            background: var(--chrome);
+            position: relative;
+            z-index: 1;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .stat {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(180deg, #fff, #e0e0e0);
+            border-radius: 20px;
+            border: 2px solid #999;
+            box-shadow: 
+                inset 0 2px 0 rgba(255,255,255,1),
+                5px 5px 0 rgba(0,0,0,0.2);
+        }
+        .stat-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, var(--hot-pink), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 100px 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            padding: 50px 40px;
+            backdrop-filter: blur(10px);
+        }
+        .contact-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--cyber-blue);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .y2k-input {
+            padding: 18px 25px;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            color: #fff;
+        }
+        .y2k-input:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+        .y2k-input::placeholder { color: rgba(255,255,255,0.5); }
+        
+        /* Footer */
+        footer {
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--cyber-blue);
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        @media (max-width: 968px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="hero-bubble bubble-1"></div>
+    <div class="hero-bubble bubble-2"></div>
+
+    <nav>
+        <div class="logo">Tu APP con IA</div>
+        <ul class="nav-links">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <button class="nav-btn">ENTER →</button>
+    </nav>
+
+    <section class="hero">
+        <span class="hero-badge">⚡ MURCIA DIGITAL AGENCY ⚡</span>
+        <h1 class="hero-title">
+            <span class="chrome-text">WELCOME</span><br>
+            <span class="glow-text">2 THE FUTURE</span>
+        </h1>
+        <p class="hero-subtitle">Agencia de marketing digital especializada en webs y apps con inteligencia artificial. El futuro es ahora.</p>
+        <div class="hero-buttons">
+            <button class="btn-y2k btn-primary">EXPLORAR</button>
+            <button class="btn-y2k btn-secondary">CONTACTO</button>
+        </div>
+    </section>
+
+    <section class="services" id="servicios">
+        <h2 class="section-title">:: SERVICIOS ::</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3 class="service-title">WEB DESIGN</h3>
+                <p class="service-desc">Páginas web del futuro con diseño revolucionario</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3 class="service-title">MOBILE APPS</h3>
+                <p class="service-desc">Aplicaciones móviles de última generación</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3 class="service-title">A.I. TECH</h3>
+                <p class="service-desc">Inteligencia artificial integrada en todo</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3 class="service-title">MARKETING</h3>
+                <p class="service-desc">Estrategias digitales que funcionan</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">150+</div><div class="stat-label">Proyectos</div></div>
+            <div class="stat"><div class="stat-number">98%</div><div class="stat-label">Satisfacción</div></div>
+            <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Clientes</div></div>
+            <div class="stat"><div class="stat-number">2024</div><div class="stat-label">Ready</div></div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="contact-container">
+            <h2 class="contact-title">:: CONTACTO ::</h2>
+            <form class="contact-form">
+                <input type="text" class="y2k-input" placeholder="Tu nombre">
+                <input type="email" class="y2k-input" placeholder="Tu email">
+                <textarea class="y2k-input" rows="4" placeholder="Tu mensaje"></textarea>
+                <button type="submit" class="btn-y2k btn-primary">ENVIAR →</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Tu APP con IA</div>
+        <p class="footer-text">📍 Murcia, España • 2024</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu APP con IA | Pixel Arcade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pixel-black: #0f0f0f;
+            --pixel-green: #00ff00;
+            --pixel-blue: #00aaff;
+            --pixel-red: #ff0055;
+            --pixel-yellow: #ffff00;
+            --pixel-purple: #aa00ff;
+            --pixel-white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'VT323', monospace;
+            background: var(--pixel-black);
+            color: var(--pixel-green);
+            font-size: 20px;
+            image-rendering: pixelated;
+        }
+        
+        /* Scanlines */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        /* CRT Effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
+            z-index: 999;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: var(--pixel-black);
+            border-bottom: 4px solid var(--pixel-green);
+        }
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--pixel-yellow);
+            text-shadow: 4px 4px 0 var(--pixel-red);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--pixel-green);
+            text-decoration: none;
+            font-size: 0.6rem;
+        }
+        .nav-links a:hover { color: var(--pixel-yellow); }
+        .nav-score {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--pixel-blue);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 30px 80px;
+            position: relative;
+        }
+        .hero-coin {
+            font-size: 3rem;
+            animation: bounce 0.5s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .hero-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .hero-title .line1 {
+            color: var(--pixel-yellow);
+            display: block;
+            text-shadow: 4px 4px 0 var(--pixel-red);
+        }
+        .hero-title .line2 {
+            color: var(--pixel-green);
+            display: block;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 600px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: var(--pixel-white);
+        }
+        .hero-insert {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--pixel-blue);
+            animation: blink 1.5s step-end infinite;
+            margin-bottom: 30px;
+        }
+        .btn-pixel {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            padding: 20px 40px;
+            background: var(--pixel-green);
+            color: var(--pixel-black);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.1s;
+            box-shadow: 
+                0 6px 0 #009900,
+                0 8px 0 rgba(0,0,0,0.5);
+        }
+        .btn-pixel:hover {
+            transform: translateY(2px);
+            box-shadow: 
+                0 4px 0 #009900,
+                0 6px 0 rgba(0,0,0,0.5);
+        }
+        .btn-pixel:active {
+            transform: translateY(6px);
+            box-shadow: none;
+        }
+        
+        /* Health Bar */
+        .health-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+        .health-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--pixel-red);
+        }
+        .health-container {
+            width: 200px;
+            height: 25px;
+            background: #333;
+            border: 3px solid var(--pixel-white);
+            position: relative;
+        }
+        .health-fill {
+            width: 98%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--pixel-green), #009900);
+            animation: healthPulse 2s ease-in-out infinite;
+        }
+        @keyframes healthPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* Services */
+        .services {
+            padding: 80px 30px;
+            border-top: 4px solid var(--pixel-green);
+        }
+        .section-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--pixel-yellow);
+        }
+        .section-title::before { content: '>> '; color: var(--pixel-green); }
+        .section-title::after { content: ' <<'; color: var(--pixel-green); }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: #1a1a1a;
+            border: 4px solid var(--pixel-green);
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.1s;
+        }
+        .service-card:hover {
+            border-color: var(--pixel-yellow);
+            transform: scale(1.05);
+        }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: float 2s ease-in-out infinite;
+        }
+        .service-card:nth-child(2) .service-icon { animation-delay: -0.5s; }
+        .service-card:nth-child(3) .service-icon { animation-delay: -1s; }
+        .service-card:nth-child(4) .service-icon { animation-delay: -1.5s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .service-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            margin-bottom: 15px;
+            color: var(--pixel-blue);
+        }
+        .service-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--pixel-white);
+        }
+        
+        /* Stats - Score Board */
+        .stats {
+            padding: 60px 30px;
+            background: #111;
+            border-top: 4px solid var(--pixel-yellow);
+            border-bottom: 4px solid var(--pixel-yellow);
+        }
+        .stats-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--pixel-red);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .stat {
+            text-align: center;
+            padding: 25px;
+            background: var(--pixel-black);
+            border: 3px solid var(--pixel-purple);
+        }
+        .stat-number {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: var(--pixel-yellow);
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--pixel-green);
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 80px 30px;
+            border-top: 4px solid var(--pixel-green);
+        }
+        .contact-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border: 4px solid var(--pixel-blue);
+            padding: 40px 30px;
+        }
+        .contact-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--pixel-yellow);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .pixel-input {
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            padding: 15px;
+            background: var(--pixel-black);
+            border: 3px solid var(--pixel-green);
+            color: var(--pixel-green);
+        }
+        .pixel-input:focus {
+            outline: none;
+            border-color: var(--pixel-yellow);
+            box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.3);
+        }
+        .pixel-input::placeholder { color: #666; }
+        
+        /* Footer */
+        footer {
+            padding: 30px;
+            text-align: center;
+            border-top: 4px solid var(--pixel-green);
+        }
+        .footer-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--pixel-green);
+            line-height: 2;
+        }
+        .footer-credits {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 15px;
+        }
+        
+        /* Game Over Animation */
+        .game-element {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: gameFloat 10s linear infinite;
+            z-index: 0;
+        }
+        .game-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .game-2 { top: 60%; right: 15%; animation-delay: -3s; }
+        .game-3 { bottom: 30%; left: 20%; animation-delay: -6s; }
+        @keyframes gameFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        @media (max-width: 968px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+            .nav-score { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-element game-1">👾</div>
+    <div class="game-element game-2">🎮</div>
+    <div class="game-element game-3">⭐</div>
+
+    <nav>
+        <div class="logo">Tu APP con IA</div>
+        <ul class="nav-links">
+            <li><a href="#servicios">SERVICIOS</a></li>
+            <li><a href="#stats">STATS</a></li>
+            <li><a href="#contacto">CONTACTO</a></li>
+        </ul>
+        <div class="nav-score">SCORE: 999999</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-coin">🪙</div>
+        <h1 class="hero-title">
+            <span class="line1">PLAYER 1</span>
+            <span class="line2">READY_</span>
+        </h1>
+        <p class="hero-subtitle">Agencia de marketing digital en Murcia. Creamos webs y apps con IA. Level up your business!</p>
+        <p class="hero-insert">>>> INSERT COIN TO CONTINUE <<<</p>
+        <button class="btn-pixel">START GAME</button>
+        <div class="health-bar">
+            <span class="health-label">HP</span>
+            <div class="health-container">
+                <div class="health-fill"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="servicios">
+        <h2 class="section-title">SELECT YOUR WEAPON</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3 class="service-title">WEB DEV</h3>
+                <p class="service-desc">Webs que molan. +100 DMG</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3 class="service-title">APPS</h3>
+                <p class="service-desc">Apps nivel boss. +150 DMG</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3 class="service-title">A.I.</h3>
+                <p class="service-desc">IA power-up. +200 DMG</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3 class="service-title">MARKETING</h3>
+                <p class="service-desc">Strategy boost. +250 DMG</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats" id="stats">
+        <h2 class="stats-title">HIGH SCORES</h2>
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">150+</div><div class="stat-label">QUESTS</div></div>
+            <div class="stat"><div class="stat-number">98%</div><div class="stat-label">WIN RATE</div></div>
+            <div class="stat"><div class="stat-number">50+</div><div class="stat-label">ALLIES</div></div>
+            <div class="stat"><div class="stat-number">LVL 5</div><div class="stat-label">YEARS</div></div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="contact-container">
+            <h2 class="contact-title">JOIN PARTY?</h2>
+            <form class="contact-form">
+                <input type="text" class="pixel-input" placeholder="> ENTER NAME_">
+                <input type="email" class="pixel-input" placeholder="> ENTER EMAIL_">
+                <textarea class="pixel-input" rows="4" placeholder="> ENTER MESSAGE_"></textarea>
+                <button type="submit" class="btn-pixel">SEND MESSAGE</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">
+            (C) 2024 Tu APP con IA<br>
+            MURCIA, SPAIN
+        </p>
+        <p class="footer-credits">GAME OVER? NEVER.</p>
+    </footer>
+</body>
+</html>

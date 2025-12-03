@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu APP con IA | Neubrutalism</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Darker+Grotesque:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000;
+            --white: #fff;
+            --yellow: #fff500;
+            --blue: #0057ff;
+            --pink: #ff4d8d;
+            --green: #00ff85;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--white);
+            color: var(--black);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--yellow);
+            border: 3px solid var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .nav-links a:hover { text-decoration: underline; text-decoration-thickness: 3px; }
+        .nav-btn {
+            padding: 12px 25px;
+            background: var(--black);
+            color: var(--white);
+            border: 3px solid var(--black);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+        .nav-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            padding: 150px 40px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--blue);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            border: 3px solid var(--black);
+            box-shadow: 4px 4px 0 var(--black);
+            margin-bottom: 30px;
+        }
+        .hero-title {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: clamp(4rem, 12vw, 12rem);
+            font-weight: 900;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        .hero-title .highlight {
+            display: inline-block;
+            background: var(--pink);
+            padding: 0 20px;
+            border: 3px solid var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        .btn-neu {
+            padding: 20px 45px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 3px solid var(--black);
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+        .btn-primary {
+            background: var(--green);
+            color: var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+        .btn-primary:hover {
+            box-shadow: 2px 2px 0 var(--black);
+            transform: translate(4px, 4px);
+        }
+        .btn-secondary {
+            background: var(--white);
+            color: var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+        .btn-secondary:hover {
+            background: var(--yellow);
+        }
+        
+        /* Services */
+        .services {
+            padding: 100px 40px;
+            background: var(--black);
+            color: var(--white);
+        }
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+        .section-title {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: var(--white);
+            color: var(--black);
+            border: 3px solid var(--black);
+            padding: 40px 30px;
+            transition: all 0.1s;
+        }
+        .service-card:nth-child(1) { box-shadow: 8px 8px 0 var(--yellow); }
+        .service-card:nth-child(2) { box-shadow: 8px 8px 0 var(--pink); }
+        .service-card:nth-child(3) { box-shadow: 8px 8px 0 var(--green); }
+        .service-card:nth-child(4) { box-shadow: 8px 8px 0 var(--blue); }
+        .service-card:hover { transform: translate(4px, 4px); }
+        .service-card:nth-child(1):hover { box-shadow: 4px 4px 0 var(--yellow); }
+        .service-card:nth-child(2):hover { box-shadow: 4px 4px 0 var(--pink); }
+        .service-card:nth-child(3):hover { box-shadow: 4px 4px 0 var(--green); }
+        .service-card:nth-child(4):hover { box-shadow: 4px 4px 0 var(--blue); }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .service-title {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .service-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Stats */
+        .stats {
+            padding: 80px 40px;
+            background: var(--yellow);
+            border-top: 3px solid var(--black);
+            border-bottom: 3px solid var(--black);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .stat {
+            text-align: center;
+            padding: 30px;
+            background: var(--white);
+            border: 3px solid var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+        .stat-number {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 100px 40px;
+        }
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-title {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .neu-input {
+            padding: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            border: 3px solid var(--black);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+        .neu-input:focus {
+            outline: none;
+            box-shadow: 2px 2px 0 var(--black);
+            transform: translate(2px, 2px);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px;
+            background: var(--blue);
+            color: var(--white);
+            border-top: 3px solid var(--black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+        }
+        .footer-text {
+            font-weight: 700;
+        }
+        
+        @media (max-width: 968px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+            .hero-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Tu APP con IA</div>
+        <ul class="nav-links">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <button class="nav-btn">EMPEZAR</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-label">📍 Murcia, España</span>
+            <h1 class="hero-title">
+                HACEMOS<br>
+                <span class="highlight">WEBS</span><br>
+                CON IA
+            </h1>
+            <p class="hero-subtitle">Somos una agencia de marketing digital que crea páginas web y aplicaciones con inteligencia artificial. Sin rodeos.</p>
+            <div class="hero-buttons">
+                <button class="btn-neu btn-primary">VER PROYECTOS</button>
+                <button class="btn-neu btn-secondary">CONTACTAR</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="servicios">
+        <div class="section-header">
+            <h2 class="section-title">SERVICIOS</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3 class="service-title">WEBS</h3>
+                <p class="service-desc">Páginas web que funcionan y se ven increíbles. Punto.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3 class="service-title">APPS</h3>
+                <p class="service-desc">Aplicaciones móviles que la gente quiere usar de verdad.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3 class="service-title">IA</h3>
+                <p class="service-desc">Inteligencia artificial integrada donde tiene sentido.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3 class="service-title">MARKETING</h3>
+                <p class="service-desc">Estrategias que traen resultados, no excusas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">150+</div><div class="stat-label">Proyectos</div></div>
+            <div class="stat"><div class="stat-number">98%</div><div class="stat-label">Contentos</div></div>
+            <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Clientes</div></div>
+            <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años</div></div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="contact-container">
+            <h2 class="contact-title">HABLEMOS</h2>
+            <form class="contact-form">
+                <input type="text" class="neu-input" placeholder="Nombre">
+                <input type="email" class="neu-input" placeholder="Email">
+                <textarea class="neu-input" rows="5" placeholder="¿Qué necesitas?"></textarea>
+                <button type="submit" class="btn-neu btn-primary">ENVIAR →</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Tu APP con IA</div>
+        <p class="footer-text">MURCIA • 2024</p>
+    </footer>
+</body>
+</html>
