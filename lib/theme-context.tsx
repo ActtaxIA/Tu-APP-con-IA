@@ -121,6 +121,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const scheme = colorSchemes[index]
     const root = document.documentElement
     
+    // Aplicar variables CSS
     root.style.setProperty('--color-background', scheme.background)
     root.style.setProperty('--color-surface', scheme.surface)
     root.style.setProperty('--color-text', scheme.text)
@@ -128,9 +129,37 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.style.setProperty('--color-secondary', scheme.secondary)
     root.style.setProperty('--color-accent', scheme.accent)
     
-    // Cambiar también el fondo del body directamente para efecto inmediato
+    // Aplicar estilos directamente para que sobrescriba los temas
     document.body.style.backgroundColor = scheme.background
     document.body.style.color = scheme.text
+    
+    // Aplicar a todas las secciones
+    const sections = document.querySelectorAll('section')
+    sections.forEach(section => {
+      section.style.backgroundColor = scheme.background
+      section.style.color = scheme.text
+    })
+    
+    // Aplicar a nav
+    const nav = document.querySelector('nav')
+    if (nav) {
+      (nav as HTMLElement).style.backgroundColor = scheme.secondary
+      ;(nav as HTMLElement).style.color = scheme.text
+    }
+    
+    // Aplicar a footer
+    const footer = document.querySelector('footer')
+    if (footer) {
+      (footer as HTMLElement).style.backgroundColor = scheme.primary
+      (footer as HTMLElement).style.color = scheme.text === '#ffffff' ? '#ffffff' : '#000000'
+    }
+    
+    // Aplicar a botones
+    const buttons = document.querySelectorAll('button:not(.theme-switcher)')
+    buttons.forEach(btn => {
+      (btn as HTMLElement).style.backgroundColor = scheme.primary
+      ;(btn as HTMLElement).style.color = scheme.text === '#000000' || scheme.text === '#1a1a1a' ? '#ffffff' : scheme.text
+    })
   }
 
   const setTheme = (newTheme: ThemeName) => {

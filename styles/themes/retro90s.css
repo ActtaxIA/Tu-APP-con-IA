@@ -40,12 +40,12 @@
 }
 
 /* ============================================
-   BODY
+   BODY - Usa variables para que el cambio de colores funcione
    ============================================ */
 [data-theme="retro90s"] body {
   font-family: 'VT323', monospace !important;
-  background: #000080 !important;
-  color: #fff !important;
+  background: var(--color-background, #000080) !important;
+  color: var(--color-text, #fff) !important;
   font-size: 20px !important;
   overflow-x: hidden !important;
 }
@@ -101,7 +101,7 @@
 }
 
 /* ============================================
-   HERO / HEADER - Estilo 90s
+   HERO / HEADER - Estilo 90s con variables
    ============================================ */
 [data-theme="retro90s"] section:first-of-type,
 [data-theme="retro90s"] [class*="hero"] {
@@ -109,7 +109,7 @@
   padding: 40px 20px !important;
   min-height: auto !important;
   border-bottom: 5px groove silver !important;
-  background: linear-gradient(180deg, #000080, #000040) !important;
+  background: var(--color-background, #000080) !important;
 }
 
 /* ============================================
