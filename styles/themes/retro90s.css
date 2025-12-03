@@ -84,11 +84,14 @@
   color: #fff !important;
 }
 
-/* HERO / HEADER */
+/* HERO / HEADER - Compacto estilo 90s */
 [data-theme="retro90s"] header,
-[data-theme="retro90s"] [class*="hero"] {
+[data-theme="retro90s"] [class*="hero"],
+[data-theme="retro90s"] section:first-of-type {
   text-align: center !important;
-  padding: 40px 20px !important;
+  padding: 80px 20px 30px !important;
+  padding-top: 80px !important;
+  min-height: auto !important;
   border-bottom: 5px groove silver !important;
   background: linear-gradient(180deg, #000080, #000040) !important;
 }
@@ -115,13 +118,29 @@
   margin-top: 20px !important;
 }
 
-/* SECCIONES */
+/* SECCIONES - Compactas sin tanto espacio */
 [data-theme="retro90s"] section,
 [data-theme="retro90s"] main {
   background: #000080 !important;
   max-width: 900px !important;
-  margin: 40px auto !important;
+  margin: 10px auto !important;
   padding: 20px !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  min-height: auto !important;
+}
+
+/* Quitar padding excesivo de Tailwind */
+[data-theme="retro90s"] .py-24,
+[data-theme="retro90s"] .py-20,
+[data-theme="retro90s"] .pt-32,
+[data-theme="retro90s"] .pb-20 {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+[data-theme="retro90s"] .min-h-screen {
+  min-height: auto !important;
 }
 
 /* TÍTULOS DE SECCIÓN */
