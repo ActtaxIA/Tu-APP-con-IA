@@ -75,10 +75,10 @@ export default function ThemeSwitcher() {
         )}
       </AnimatePresence>
 
-      {/* Botón de cambio de colores - MÁS GRANDE Y VISIBLE */}
+      {/* Botón de cambio de colores - SEPARADO ARRIBA */}
       <motion.button
         onClick={cycleColor}
-        className="absolute -left-16 top-0 flex items-center gap-1 px-3 py-2"
+        className="absolute -top-14 right-0 flex items-center gap-2 px-3 py-2"
         style={{
           background: 'var(--color-primary)',
           border: '3px solid var(--color-text)',
@@ -101,23 +101,8 @@ export default function ThemeSwitcher() {
         >
           🎨
         </motion.span>
+        <span className="hidden sm:inline text-xs">{currentColor.name}</span>
       </motion.button>
-
-      {/* Indicador de paleta actual */}
-      <motion.div
-        className="absolute -left-16 -top-8 text-xs px-2 py-1 whitespace-nowrap"
-        style={{
-          background: 'var(--color-secondary)',
-          border: '2px solid var(--color-text)',
-          fontFamily: 'var(--font-body)',
-          color: 'var(--color-text)',
-        }}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        key={colorScheme}
-      >
-        {currentColor.name}
-      </motion.div>
     </div>
   )
 }
