@@ -1,6 +1,6 @@
 /* ============================================
    TEMA: RETRO 90s - Windows 95/98 Style
-   Estilos EXACTOS de la referencia 04-retro-90s.html
+   IDÉNTICO a la referencia 04-retro-90s.html
    ============================================ */
 
 [data-theme="retro90s"] {
@@ -12,7 +12,36 @@
   --silver: #c0c0c0;
 }
 
-/* BODY */
+/* ============================================
+   ANIMACIONES - Todas las de la referencia
+   ============================================ */
+@keyframes retroBlink { 
+  50% { opacity: 0; } 
+}
+
+@keyframes retroRainbow { 
+  0% { background-position: 0% 50%; } 
+  100% { background-position: 400% 50%; } 
+}
+
+@keyframes retroWobble { 
+  0% { transform: rotate(-5deg); } 
+  100% { transform: rotate(5deg); } 
+}
+
+@keyframes retroMarquee { 
+  0% { transform: translateX(100vw); } 
+  100% { transform: translateX(-100%); } 
+}
+
+@keyframes retroDance { 
+  0% { transform: translateY(0) rotate(-10deg); } 
+  100% { transform: translateY(-10px) rotate(10deg); } 
+}
+
+/* ============================================
+   BODY
+   ============================================ */
 [data-theme="retro90s"] body {
   font-family: 'VT323', monospace !important;
   background: #000080 !important;
@@ -21,36 +50,29 @@
   overflow-x: hidden !important;
 }
 
-/* ANIMACIONES */
-@keyframes retroBlink { 50% { opacity: 0; } }
-@keyframes retroRainbow { 
-  0% { background-position: 0% 50%; } 
-  100% { background-position: 400% 50%; } 
-}
-@keyframes retroWobble { 
-  0% { transform: rotate(-5deg); } 
-  100% { transform: rotate(5deg); } 
-}
-@keyframes retroMarquee { 
-  0% { transform: translateX(100vw); } 
-  100% { transform: translateX(-100%); } 
-}
-@keyframes retroDance { 
-  0% { transform: translateY(0) rotate(-10deg); } 
-  100% { transform: translateY(-10px) rotate(10deg); } 
-}
-
-/* NAVIGATION - Barra estilo Windows 95 */
+/* ============================================
+   NAVIGATION - Barra estilo Windows 95
+   ============================================ */
 [data-theme="retro90s"] nav {
   background: linear-gradient(180deg, #c0c0c0, #808080) !important;
   border: 4px outset #c0c0c0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   padding: 10px !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
+  position: static !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+[data-theme="retro90s"] nav::before,
+[data-theme="retro90s"] nav::after {
+  display: none !important;
 }
 
 [data-theme="retro90s"] nav * {
@@ -58,13 +80,192 @@
   color: #000 !important;
 }
 
-[data-theme="retro90s"] nav a {
+[data-theme="retro90s"] nav a,
+[data-theme="retro90s"] nav button {
   font-family: 'VT323', monospace !important;
+  font-size: 1.3rem !important;
+  padding: 10px 25px !important;
+  background: linear-gradient(180deg, #dfdfdf, #ababab) !important;
+  border: 3px outset #c0c0c0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   color: #000 !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+}
+
+[data-theme="retro90s"] nav a:hover,
+[data-theme="retro90s"] nav button:hover {
+  background: #ff00ff !important;
+  color: #fff !important;
+}
+
+/* ============================================
+   HERO / HEADER - Estilo 90s
+   ============================================ */
+[data-theme="retro90s"] section:first-of-type,
+[data-theme="retro90s"] [class*="hero"] {
+  text-align: center !important;
+  padding: 40px 20px !important;
+  min-height: auto !important;
+  border-bottom: 5px groove silver !important;
+  background: linear-gradient(180deg, #000080, #000040) !important;
+}
+
+/* ============================================
+   TÍTULO PRINCIPAL - Logo estilo 90s
+   ============================================ */
+[data-theme="retro90s"] h1 {
+  font-family: 'Silkscreen', cursive !important;
+  font-size: 3rem !important;
+  color: #ff00ff !important;
+  text-shadow: 3px 3px 0 #00ffff, -3px -3px 0 #00ff00 !important;
+  text-align: center !important;
+  background: linear-gradient(180deg, #c0c0c0, #808080) !important;
+  border: 4px outset #c0c0c0 !important;
+  padding: 20px 40px !important;
+  display: inline-block !important;
+  margin: 20px auto !important;
+  line-height: 1.2 !important;
+}
+
+[data-theme="retro90s"] h1 span {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  display: block !important;
+  transform: none !important;
+}
+
+/* ============================================
+   TAGLINE con estrellas parpadeantes
+   ============================================ */
+[data-theme="retro90s"] [class*="subtitle"],
+[data-theme="retro90s"] [class*="tagline"] {
+  font-size: 1.8rem !important;
+  color: #ffff00 !important;
+  margin-top: 20px !important;
+  font-family: 'VT323', monospace !important;
+}
+
+/* Efecto parpadeo */
+[data-theme="retro90s"] .blink,
+[data-theme="retro90s"] [class*="blink"] {
+  animation: retroBlink 1s step-start infinite !important;
+}
+
+/* ============================================
+   SECCIONES - Compactas
+   ============================================ */
+[data-theme="retro90s"] section,
+[data-theme="retro90s"] main {
+  background: #000080 !important;
+  max-width: 900px !important;
+  margin: 20px auto !important;
+  padding: 20px !important;
+}
+
+/* ============================================
+   TÍTULOS DE SECCIÓN
+   ============================================ */
+[data-theme="retro90s"] h2 {
+  font-family: 'VT323', monospace !important;
+  color: #ffff00 !important;
+  font-size: 1.5rem !important;
+}
+
+[data-theme="retro90s"] h2::before,
+[data-theme="retro90s"] h2::after {
+  content: none !important;
+}
+
+[data-theme="retro90s"] h2 span {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* ============================================
+   CAJAS VENTANA WINDOWS 95
+   ============================================ */
+[data-theme="retro90s"] .grid > div,
+[data-theme="retro90s"] [class*="card"] {
+  background: linear-gradient(180deg, #c0c0c0, #a0a0a0) !important;
+  border: 4px outset #c0c0c0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  transform: none !important;
+  margin-bottom: 20px !important;
+}
+
+[data-theme="retro90s"] .grid > div:hover,
+[data-theme="retro90s"] [class*="card"]:hover { 
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Barra de título azul Windows 95 */
+[data-theme="retro90s"] .grid > div::before {
+  content: '📂 Ventana' !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: linear-gradient(90deg, #000080, #0000ff) !important;
+  color: #fff !important;
+  padding: 8px 15px !important;
+  font-family: 'VT323', monospace !important;
   font-size: 1.3rem !important;
 }
 
-/* BOTONES - Estilo Windows 95 */
+[data-theme="retro90s"] .grid > div:nth-child(1)::before { content: '🌐 Diseño Web' !important; }
+[data-theme="retro90s"] .grid > div:nth-child(2)::before { content: '📱 Apps Móviles' !important; }
+[data-theme="retro90s"] .grid > div:nth-child(3)::before { content: '🤖 Chatbots IA' !important; }
+[data-theme="retro90s"] .grid > div:nth-child(4)::before { content: '📊 Marketing' !important; }
+
+[data-theme="retro90s"] .grid > div h3 {
+  background: #000080 !important;
+  color: #ffff00 !important;
+  font-family: 'VT323', monospace !important;
+  border: 2px ridge #c0c0c0 !important;
+  margin: 0 !important;
+  padding: 15px !important;
+  font-size: 1.3rem !important;
+  text-decoration: none !important;
+}
+
+[data-theme="retro90s"] .grid > div h3::before,
+[data-theme="retro90s"] .grid > div h3::after { 
+  content: none !important; 
+}
+
+[data-theme="retro90s"] .grid > div p {
+  background: #fff !important;
+  color: #000 !important;
+  border: 2px ridge #c0c0c0 !important;
+  font-family: 'VT323', monospace !important;
+  padding: 15px !important;
+  font-size: 1.2rem !important;
+  line-height: 1.8 !important;
+}
+
+[data-theme="retro90s"] .grid > div p:hover { 
+  background: #00ffff !important; 
+}
+
+/* Iconos de servicio */
+[data-theme="retro90s"] [class*="icon"] {
+  font-size: 2rem !important;
+  text-align: center !important;
+  animation: retroDance 0.5s ease-in-out infinite alternate !important;
+}
+
+/* ============================================
+   BOTONES - Estilo Windows 95
+   ============================================ */
 [data-theme="retro90s"] button,
 [data-theme="retro90s"] .theme-switcher {
   font-family: 'VT323', monospace !important;
@@ -76,173 +277,33 @@
   box-shadow: none !important;
   color: #000 !important;
   cursor: pointer !important;
+  transform: none !important;
 }
 
 [data-theme="retro90s"] button:hover,
 [data-theme="retro90s"] .theme-switcher:hover {
   background: #ff00ff !important;
   color: #fff !important;
-}
-
-/* HERO / HEADER - Compacto estilo 90s */
-[data-theme="retro90s"] header,
-[data-theme="retro90s"] [class*="hero"],
-[data-theme="retro90s"] section:first-of-type {
-  text-align: center !important;
-  padding: 80px 20px 30px !important;
-  padding-top: 80px !important;
-  min-height: auto !important;
-  border-bottom: 5px groove silver !important;
-  background: linear-gradient(180deg, #000080, #000040) !important;
-}
-
-/* TÍTULO PRINCIPAL - Logo estilo 90s */
-[data-theme="retro90s"] h1 {
-  font-family: 'Silkscreen', cursive !important;
-  font-size: 4rem !important;
-  color: #ff00ff !important;
-  text-shadow: 3px 3px 0 #00ffff, -3px -3px 0 #00ff00 !important;
-  text-align: center !important;
-  background: linear-gradient(180deg, #c0c0c0, #808080) !important;
-  border: 4px outset #c0c0c0 !important;
-  padding: 20px 40px !important;
-  display: inline-block !important;
-  margin: 20px auto !important;
-}
-
-/* TAGLINE */
-[data-theme="retro90s"] [class*="tagline"],
-[data-theme="retro90s"] [class*="subtitle"] {
-  font-size: 1.8rem !important;
-  color: #ffff00 !important;
-  margin-top: 20px !important;
-}
-
-/* SECCIONES - Compactas sin tanto espacio */
-[data-theme="retro90s"] section,
-[data-theme="retro90s"] main {
-  background: #000080 !important;
-  max-width: 900px !important;
-  margin: 10px auto !important;
-  padding: 20px !important;
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
-  min-height: auto !important;
-}
-
-/* Quitar padding excesivo de Tailwind */
-[data-theme="retro90s"] .py-24,
-[data-theme="retro90s"] .py-20,
-[data-theme="retro90s"] .pt-32,
-[data-theme="retro90s"] .pb-20 {
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
-}
-
-[data-theme="retro90s"] .min-h-screen {
-  min-height: auto !important;
-}
-
-/* TÍTULOS DE SECCIÓN */
-[data-theme="retro90s"] h2 {
-  font-family: 'VT323', monospace !important;
-  color: #ffff00 !important;
-  font-size: 1.5rem !important;
-}
-
-/* CAJAS VENTANA WINDOWS 95 */
-[data-theme="retro90s"] .grid,
-[data-theme="retro90s"] [class*="grid"] {
-  display: grid !important;
-  gap: 30px !important;
-}
-
-[data-theme="retro90s"] .grid > div,
-[data-theme="retro90s"] [class*="card"],
-[data-theme="retro90s"] [class*="service"] {
-  background: linear-gradient(180deg, #c0c0c0, #a0a0a0) !important;
-  border: 4px outset #c0c0c0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  color: #000 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
   transform: none !important;
-  margin-bottom: 20px !important;
-  position: relative !important;
 }
 
-[data-theme="retro90s"] .grid > div:hover,
-[data-theme="retro90s"] [class*="card"]:hover { 
-  transform: none !important; 
-}
-
-/* Barra de título azul Windows 95 */
-[data-theme="retro90s"] .grid > div::before,
-[data-theme="retro90s"] [class*="card"]::before {
-  content: '📂 Ventana';
-  display: block !important;
-  background: linear-gradient(90deg, #000080, #0000ff) !important;
-  color: #fff !important;
-  padding: 8px 15px !important;
-  font-family: 'VT323', monospace !important;
-  font-size: 1.3rem !important;
-}
-
-[data-theme="retro90s"] .grid > div:nth-child(1)::before { content: '🌐 Diseño Web'; }
-[data-theme="retro90s"] .grid > div:nth-child(2)::before { content: '📱 Apps Móviles'; }
-[data-theme="retro90s"] .grid > div:nth-child(3)::before { content: '🤖 Chatbots IA'; }
-[data-theme="retro90s"] .grid > div:nth-child(4)::before { content: '📊 Marketing'; }
-
-[data-theme="retro90s"] .grid > div > *,
-[data-theme="retro90s"] [class*="card"] > * { 
-  padding: 10px 15px !important; 
-}
-
-[data-theme="retro90s"] .grid > div h3,
-[data-theme="retro90s"] [class*="card"] h3 {
-  background: #000080 !important;
-  color: #ffff00 !important;
-  font-family: 'VT323', monospace !important;
-  border: 2px ridge #c0c0c0 !important;
-  margin: 0 !important;
-  padding: 15px !important;
-}
-
-[data-theme="retro90s"] .grid > div h3::before,
-[data-theme="retro90s"] .grid > div h3::after { content: none !important; }
-
-[data-theme="retro90s"] .grid > div p,
-[data-theme="retro90s"] [class*="card"] p {
-  background: #fff !important;
-  color: #000 !important;
-  border: 2px ridge #c0c0c0 !important;
-  font-family: 'VT323', monospace !important;
-  padding: 15px !important;
-}
-
-[data-theme="retro90s"] .grid > div p:hover { 
-  background: #00ffff !important; 
-}
-
-/* Iconos de servicio - estilo tabla */
-[data-theme="retro90s"] [class*="icon"] {
-  font-size: 2rem !important;
+/* ============================================
+   STATS - Contador de visitas estilo 90s
+   ============================================ */
+[data-theme="retro90s"] [class*="stats"] {
   text-align: center !important;
-}
-
-/* STATS - Contador de visitas estilo 90s */
-[data-theme="retro90s"] [class*="stats"],
-[data-theme="retro90s"] [class*="stat-"] {
+  margin: 30px 0 !important;
+  padding: 20px !important;
   background: #000 !important;
   border: 4px inset #c0c0c0 !important;
-  text-align: center !important;
-  padding: 20px !important;
 }
 
-[data-theme="retro90s"] .stat { 
-  background: transparent !important; 
-  border: none !important; 
+[data-theme="retro90s"] .stat {
+  display: inline-block !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 10px !important;
 }
 
 [data-theme="retro90s"] .stat-number {
@@ -258,23 +319,26 @@
 [data-theme="retro90s"] .stat-label {
   color: #00ff00 !important;
   font-family: 'VT323', monospace !important;
-  font-size: 1.5rem !important;
+  font-size: 1.2rem !important;
   margin-top: 10px !important;
+  display: block !important;
 }
 
-/* FORMULARIO - Libro de Visitas estilo 90s */
-[data-theme="retro90s"] form,
-[data-theme="retro90s"] [class*="contact-form"] {
+/* ============================================
+   FORMULARIO - Libro de Visitas
+   ============================================ */
+[data-theme="retro90s"] form {
   background: linear-gradient(180deg, #c0c0c0, #a0a0a0) !important;
   border: 4px outset #c0c0c0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   padding: 0 !important;
   overflow: hidden !important;
+  transform: none !important;
 }
 
 [data-theme="retro90s"] form::before {
-  content: '📖 Libro de Visitas';
+  content: '📖 Libro de Visitas' !important;
   display: block !important;
   background: linear-gradient(90deg, #000080, #0000ff) !important;
   color: #fff !important;
@@ -283,8 +347,8 @@
   font-size: 1.3rem !important;
 }
 
-[data-theme="retro90s"] form > * { 
-  padding: 10px 20px !important; 
+[data-theme="retro90s"] form > div {
+  padding: 10px 20px !important;
 }
 
 [data-theme="retro90s"] label {
@@ -295,7 +359,7 @@
   margin-bottom: 5px !important;
 }
 
-[data-theme="retro90s"] input, 
+[data-theme="retro90s"] input,
 [data-theme="retro90s"] textarea {
   font-family: 'VT323', monospace !important;
   font-size: 1.2rem !important;
@@ -308,11 +372,6 @@
   width: 100% !important;
 }
 
-[data-theme="retro90s"] input::placeholder,
-[data-theme="retro90s"] textarea::placeholder {
-  color: #666 !important;
-}
-
 [data-theme="retro90s"] form button {
   background: linear-gradient(180deg, #dfdfdf, #ababab) !important;
   border: 4px outset #c0c0c0 !important;
@@ -321,11 +380,14 @@
   padding: 15px 40px !important;
 }
 
-[data-theme="retro90s"] form button:hover { 
-  background: #00ff00 !important; 
+[data-theme="retro90s"] form button:hover {
+  background: #00ff00 !important;
+  color: #000 !important;
 }
 
-/* FOOTER - Badges estilo 90s */
+/* ============================================
+   FOOTER - Badges estilo 90s
+   ============================================ */
 [data-theme="retro90s"] footer {
   background: #000 !important;
   border-top: 5px groove silver !important;
@@ -338,7 +400,7 @@
   color: #00ffff !important;
 }
 
-[data-theme="retro90s"] footer [class*="badge"],
+[data-theme="retro90s"] footer a,
 [data-theme="retro90s"] footer span {
   padding: 8px 15px !important;
   font-size: 0.9rem !important;
@@ -349,13 +411,11 @@
   margin: 5px !important;
 }
 
-/* Efecto parpadeo para elementos especiales */
-[data-theme="retro90s"] .blink,
-[data-theme="retro90s"] [class*="highlight"] {
-  animation: retroBlink 1s step-start infinite !important;
-}
+/* ============================================
+   EFECTOS ESPECIALES
+   ============================================ */
 
-/* Efecto arcoíris para texto especial */
+/* Efecto arcoíris para texto */
 [data-theme="retro90s"] .rainbow {
   background: linear-gradient(90deg, red, orange, yellow, green, blue, purple) !important;
   background-size: 400% 100% !important;
@@ -365,13 +425,21 @@
   animation: retroRainbow 3s linear infinite !important;
 }
 
-/* Iconos bailarines */
+/* Iconos que bailan */
 [data-theme="retro90s"] [class*="dancing"],
-[data-theme="retro90s"] [class*="wobble"] {
+[data-theme="retro90s"] [class*="icon"]:not(nav *) {
+  animation: retroDance 0.5s ease-in-out infinite alternate !important;
+}
+
+/* Iconos que tambalean */
+[data-theme="retro90s"] [class*="wobble"],
+[data-theme="retro90s"] [class*="construction"] {
   animation: retroWobble 0.5s ease-in-out infinite alternate !important;
 }
 
-/* Links */
+/* ============================================
+   LINKS
+   ============================================ */
 [data-theme="retro90s"] a {
   color: #00ffff !important;
 }
@@ -380,7 +448,9 @@
   color: #ff00ff !important;
 }
 
-/* Scrollbar estilo 90s */
+/* ============================================
+   SCROLLBAR estilo 90s
+   ============================================ */
 [data-theme="retro90s"] ::-webkit-scrollbar {
   width: 16px !important;
 }
@@ -393,4 +463,39 @@
 [data-theme="retro90s"] ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #dfdfdf, #ababab) !important;
   border: 2px outset #c0c0c0 !important;
+}
+
+/* ============================================
+   RESPONSIVE MÓVIL
+   ============================================ */
+@media (max-width: 768px) {
+  [data-theme="retro90s"] h1 {
+    font-size: 2rem !important;
+    padding: 15px 20px !important;
+  }
+  
+  [data-theme="retro90s"] nav {
+    padding: 5px !important;
+    gap: 5px !important;
+  }
+  
+  [data-theme="retro90s"] nav a,
+  [data-theme="retro90s"] nav button {
+    font-size: 1rem !important;
+    padding: 8px 15px !important;
+  }
+  
+  [data-theme="retro90s"] section {
+    padding: 10px !important;
+    margin: 10px auto !important;
+  }
+  
+  [data-theme="retro90s"] .grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  [data-theme="retro90s"] .stat-number {
+    font-size: 1.5rem !important;
+    padding: 8px 10px !important;
+  }
 }

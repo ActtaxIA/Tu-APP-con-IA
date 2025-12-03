@@ -1,6 +1,6 @@
 /* ============================================
    TEMA: NEUBRUTALISM
-   Estilos EXACTOS de la referencia 16-neubrutalism.html
+   IDÉNTICO a la referencia 16-neubrutalism.html
    ============================================ */
 
 [data-theme="neubrutalism"] {
@@ -12,14 +12,18 @@
   --green: #00ff85;
 }
 
-/* BODY */
+/* ============================================
+   BODY
+   ============================================ */
 [data-theme="neubrutalism"] body {
   font-family: 'Space Grotesk', sans-serif !important;
   background: var(--white) !important;
   color: var(--black) !important;
 }
 
-/* NAVIGATION */
+/* ============================================
+   NAVIGATION - Fijo arriba con sombra
+   ============================================ */
 [data-theme="neubrutalism"] nav {
   position: fixed !important;
   top: 20px !important;
@@ -30,10 +34,16 @@
   border: 3px solid var(--black) !important;
   box-shadow: 6px 6px 0 var(--black) !important;
   padding: 15px 30px !important;
-  border-radius: 0 !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+  border-radius: 0 !important;
+  transform: none !important;
+}
+
+[data-theme="neubrutalism"] nav::before,
+[data-theme="neubrutalism"] nav::after {
+  display: none !important;
 }
 
 [data-theme="neubrutalism"] nav .logo,
@@ -44,34 +54,36 @@
   color: var(--black) !important;
 }
 
-[data-theme="neubrutalism"] nav a { 
-  color: var(--black) !important; 
+[data-theme="neubrutalism"] nav a {
+  color: var(--black) !important;
+  text-decoration: none !important;
   font-weight: 700 !important;
   font-size: 0.9rem !important;
   text-transform: uppercase !important;
-  text-decoration: none !important;
 }
 
-[data-theme="neubrutalism"] nav a:hover { 
-  text-decoration: underline !important; 
-  text-decoration-thickness: 3px !important; 
+[data-theme="neubrutalism"] nav a:hover {
+  text-decoration: underline !important;
+  text-decoration-thickness: 3px !important;
 }
 
-/* BOTONES - Neubrutalism style */
+/* ============================================
+   BOTONES
+   ============================================ */
 [data-theme="neubrutalism"] button,
 [data-theme="neubrutalism"] .theme-switcher {
-  font-family: 'Space Grotesk', sans-serif !important;
-  font-weight: 700 !important;
-  font-size: 1rem !important;
-  text-transform: uppercase !important;
   padding: 20px 45px !important;
-  background: var(--green) !important;
-  color: var(--black) !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
   border: 3px solid var(--black) !important;
-  box-shadow: 6px 6px 0 var(--black) !important;
-  border-radius: 0 !important;
   cursor: pointer !important;
   transition: all 0.1s !important;
+  background: var(--green) !important;
+  color: var(--black) !important;
+  box-shadow: 6px 6px 0 var(--black) !important;
+  border-radius: 0 !important;
 }
 
 [data-theme="neubrutalism"] button:hover,
@@ -80,21 +92,22 @@
   transform: translate(4px, 4px) !important;
 }
 
-[data-theme="neubrutalism"] nav button,
-[data-theme="neubrutalism"] nav .theme-switcher {
+[data-theme="neubrutalism"] nav button {
   padding: 12px 25px !important;
   background: var(--black) !important;
   color: var(--white) !important;
 }
 
-[data-theme="neubrutalism"] nav button:hover,
-[data-theme="neubrutalism"] nav .theme-switcher:hover {
+[data-theme="neubrutalism"] nav button:hover {
   background: var(--white) !important;
   color: var(--black) !important;
 }
 
-/* HERO - Solo para la página principal */
-[data-theme="neubrutalism"] .hero-section {
+/* ============================================
+   HERO
+   ============================================ */
+[data-theme="neubrutalism"] section:first-of-type,
+[data-theme="neubrutalism"] [class*="hero"] {
   min-height: 100vh !important;
   padding: 150px 40px 80px !important;
   display: flex !important;
@@ -103,7 +116,9 @@
   background: var(--white) !important;
 }
 
-[data-theme="neubrutalism"] .hero-label {
+/* Label azul */
+[data-theme="neubrutalism"] [class*="label"],
+[data-theme="neubrutalism"] [class*="badge"]:not(footer *) {
   display: inline-block !important;
   padding: 10px 20px !important;
   background: var(--blue) !important;
@@ -116,7 +131,9 @@
   margin-bottom: 30px !important;
 }
 
-/* TÍTULO PRINCIPAL */
+/* ============================================
+   TÍTULO PRINCIPAL
+   ============================================ */
 [data-theme="neubrutalism"] h1 {
   font-family: 'Darker Grotesque', sans-serif !important;
   font-size: clamp(4rem, 12vw, 12rem) !important;
@@ -125,40 +142,69 @@
   text-transform: uppercase !important;
   margin-bottom: 40px !important;
   color: var(--black) !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  text-shadow: none !important;
+  text-align: left !important;
 }
 
-[data-theme="neubrutalism"] h1 .highlight {
+[data-theme="neubrutalism"] h1 span {
   display: inline-block !important;
   background: var(--pink) !important;
   padding: 0 20px !important;
   border: 3px solid var(--black) !important;
   box-shadow: 6px 6px 0 var(--black) !important;
+  color: var(--black) !important;
+  transform: none !important;
 }
 
-[data-theme="neubrutalism"] .hero-subtitle {
+[data-theme="neubrutalism"] [class*="subtitle"] {
   font-size: 1.3rem !important;
   max-width: 600px !important;
   line-height: 1.7 !important;
   margin-bottom: 40px !important;
   color: var(--black) !important;
+  font-family: 'Space Grotesk', sans-serif !important;
 }
 
-/* SECCIONES - No forzar fondo negro en todas las secciones */
-[data-theme="neubrutalism"] section.dark-section {
+/* ============================================
+   SECCIÓN SERVICIOS - Fondo negro
+   ============================================ */
+[data-theme="neubrutalism"] section:nth-of-type(2),
+[data-theme="neubrutalism"] [class*="services"] {
   padding: 100px 40px !important;
   background: var(--black) !important;
   color: var(--white) !important;
 }
 
-/* TÍTULOS DE SECCIÓN */
+/* ============================================
+   TÍTULOS DE SECCIÓN
+   ============================================ */
 [data-theme="neubrutalism"] h2 {
   font-family: 'Darker Grotesque', sans-serif !important;
+  font-size: 5rem !important;
   font-weight: 900 !important;
   text-transform: uppercase !important;
+  margin-bottom: 60px !important;
 }
 
-/* GRID DE SERVICIOS - No forzar columnas, respetar Tailwind */
-[data-theme="neubrutalism"] .services-grid {
+[data-theme="neubrutalism"] h2::before,
+[data-theme="neubrutalism"] h2::after {
+  content: none !important;
+}
+
+[data-theme="neubrutalism"] h2 span {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ============================================
+   GRID Y TARJETAS
+   ============================================ */
+[data-theme="neubrutalism"] .grid {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 20px !important;
@@ -166,49 +212,87 @@
   margin: 0 auto !important;
 }
 
-/* TARJETAS DE SERVICIO - Estilos base sin forzar sombras específicas */
-[data-theme="neubrutalism"] .service-card,
-[data-theme="neubrutalism"] .card {
+[data-theme="neubrutalism"] .grid > div {
   background: var(--white) !important;
   color: var(--black) !important;
   border: 3px solid var(--black) !important;
-  border-radius: 0 !important;
+  padding: 40px 30px !important;
   transition: all 0.1s !important;
-}
-
-/* Tarjetas en páginas que ya tienen estilos inline - mejorar */
-[data-theme="neubrutalism"] .grid > div {
   border-radius: 0 !important;
+  transform: none !important;
 }
 
-[data-theme="neubrutalism"] .grid > div::before { content: none !important; }
+[data-theme="neubrutalism"] .grid > div::before {
+  content: none !important;
+}
 
-/* Título de tarjeta - Solo quitar decoradores */
-[data-theme="neubrutalism"] h3::before,
-[data-theme="neubrutalism"] h3::after { content: none !important; }
+[data-theme="neubrutalism"] .grid > div:nth-child(1) { box-shadow: 8px 8px 0 var(--yellow) !important; }
+[data-theme="neubrutalism"] .grid > div:nth-child(2) { box-shadow: 8px 8px 0 var(--pink) !important; }
+[data-theme="neubrutalism"] .grid > div:nth-child(3) { box-shadow: 8px 8px 0 var(--green) !important; }
+[data-theme="neubrutalism"] .grid > div:nth-child(4) { box-shadow: 8px 8px 0 var(--blue) !important; }
 
-/* STATS - Fondo amarillo */
-[data-theme="neubrutalism"] section.stats-section,
-[data-theme="neubrutalism"] .stats-container {
+[data-theme="neubrutalism"] .grid > div:hover { transform: translate(4px, 4px) !important; }
+[data-theme="neubrutalism"] .grid > div:nth-child(1):hover { box-shadow: 4px 4px 0 var(--yellow) !important; }
+[data-theme="neubrutalism"] .grid > div:nth-child(2):hover { box-shadow: 4px 4px 0 var(--pink) !important; }
+[data-theme="neubrutalism"] .grid > div:nth-child(3):hover { box-shadow: 4px 4px 0 var(--green) !important; }
+[data-theme="neubrutalism"] .grid > div:nth-child(4):hover { box-shadow: 4px 4px 0 var(--blue) !important; }
+
+[data-theme="neubrutalism"] .grid > div [class*="icon"] {
+  font-size: 3rem !important;
+  margin-bottom: 20px !important;
+  animation: none !important;
+}
+
+[data-theme="neubrutalism"] .grid > div h3 {
+  font-family: 'Darker Grotesque', sans-serif !important;
+  font-size: 1.8rem !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  margin-bottom: 15px !important;
+  color: var(--black) !important;
+  text-decoration: none !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+[data-theme="neubrutalism"] .grid > div h3::before,
+[data-theme="neubrutalism"] .grid > div h3::after {
+  content: none !important;
+}
+
+[data-theme="neubrutalism"] .grid > div p {
+  font-size: 0.95rem !important;
+  line-height: 1.7 !important;
+  color: var(--black) !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* ============================================
+   STATS - Fondo amarillo
+   ============================================ */
+[data-theme="neubrutalism"] [class*="stats"] {
   padding: 80px 40px !important;
   background: var(--yellow) !important;
   border-top: 3px solid var(--black) !important;
   border-bottom: 3px solid var(--black) !important;
 }
 
-[data-theme="neubrutalism"] .stat { 
+[data-theme="neubrutalism"] .stat {
   text-align: center !important;
   padding: 30px !important;
-  background: var(--white) !important; 
-  border: 3px solid var(--black) !important; 
-  box-shadow: 6px 6px 0 var(--black) !important; 
+  background: var(--white) !important;
+  border: 3px solid var(--black) !important;
+  box-shadow: 6px 6px 0 var(--black) !important;
 }
 
-[data-theme="neubrutalism"] .stat-number { 
-  font-family: 'Darker Grotesque', sans-serif !important; 
+[data-theme="neubrutalism"] .stat-number {
+  font-family: 'Darker Grotesque', sans-serif !important;
   font-size: 4rem !important;
-  font-weight: 900 !important; 
-  color: var(--black) !important; 
+  font-weight: 900 !important;
+  color: var(--black) !important;
 }
 
 [data-theme="neubrutalism"] .stat-label {
@@ -218,26 +302,35 @@
   color: var(--black) !important;
 }
 
-/* CONTACTO */
-[data-theme="neubrutalism"] .contact-section {
+/* ============================================
+   CONTACTO
+   ============================================ */
+[data-theme="neubrutalism"] [class*="contact"] {
   padding: 100px 40px !important;
   background: var(--white) !important;
 }
 
-/* FORMULARIO */
-[data-theme="neubrutalism"] form { 
-  background: transparent !important; 
-  border: none !important; 
-  box-shadow: none !important;
+/* ============================================
+   FORMULARIO
+   ============================================ */
+[data-theme="neubrutalism"] form {
   display: flex !important;
   flex-direction: column !important;
   gap: 20px !important;
   max-width: 600px !important;
+  margin: 0 auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  transform: none !important;
 }
 
-[data-theme="neubrutalism"] form::before { content: none !important; }
+[data-theme="neubrutalism"] form::before {
+  content: none !important;
+}
 
-[data-theme="neubrutalism"] input, 
+[data-theme="neubrutalism"] input,
 [data-theme="neubrutalism"] textarea {
   padding: 20px !important;
   font-family: 'Space Grotesk', sans-serif !important;
@@ -249,19 +342,16 @@
   color: var(--black) !important;
 }
 
-[data-theme="neubrutalism"] input:focus, 
+[data-theme="neubrutalism"] input:focus,
 [data-theme="neubrutalism"] textarea:focus {
   outline: none !important;
   box-shadow: 2px 2px 0 var(--black) !important;
   transform: translate(2px, 2px) !important;
 }
 
-[data-theme="neubrutalism"] input::placeholder,
-[data-theme="neubrutalism"] textarea::placeholder {
-  color: #666 !important;
-}
-
-/* FOOTER */
+/* ============================================
+   FOOTER
+   ============================================ */
 [data-theme="neubrutalism"] footer {
   padding: 40px !important;
   background: var(--blue) !important;
@@ -272,22 +362,67 @@
   align-items: center !important;
 }
 
+[data-theme="neubrutalism"] footer * {
+  color: var(--white) !important;
+}
+
 [data-theme="neubrutalism"] footer .logo,
 [data-theme="neubrutalism"] footer [class*="logo"] {
   font-family: 'Darker Grotesque', sans-serif !important;
   font-size: 2rem !important;
   font-weight: 900 !important;
-  color: var(--white) !important;
 }
 
-[data-theme="neubrutalism"] footer * {
-  color: var(--white) !important;
-  font-weight: 700 !important;
-}
-
-/* Responsive */
+/* ============================================
+   RESPONSIVE MÓVIL
+   ============================================ */
 @media (max-width: 968px) {
-  [data-theme="neubrutalism"] .services-grid { 
-    grid-template-columns: repeat(2, 1fr) !important; 
+  [data-theme="neubrutalism"] nav {
+    top: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    padding: 10px 15px !important;
+  }
+
+  [data-theme="neubrutalism"] nav .logo {
+    font-size: 1.3rem !important;
+  }
+
+  [data-theme="neubrutalism"] section:first-of-type,
+  [data-theme="neubrutalism"] [class*="hero"] {
+    padding: 100px 20px 60px !important;
+  }
+
+  [data-theme="neubrutalism"] h1 {
+    font-size: clamp(2.5rem, 10vw, 5rem) !important;
+  }
+
+  [data-theme="neubrutalism"] h2 {
+    font-size: 2.5rem !important;
+  }
+
+  [data-theme="neubrutalism"] .grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  [data-theme="neubrutalism"] [class*="stats"] .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  [data-theme="neubrutalism"] .stat-number {
+    font-size: 2.5rem !important;
+  }
+
+  [data-theme="neubrutalism"] button,
+  [data-theme="neubrutalism"] .theme-switcher {
+    padding: 15px 30px !important;
+    font-size: 0.9rem !important;
+  }
+
+  [data-theme="neubrutalism"] footer {
+    flex-direction: column !important;
+    gap: 15px !important;
+    text-align: center !important;
   }
 }
