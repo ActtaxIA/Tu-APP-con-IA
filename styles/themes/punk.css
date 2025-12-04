@@ -270,20 +270,21 @@
 
 [data-theme="punk"] .grid > div {
   background: white !important;
-  border: 3px solid var(--black) !important;
+  border: 3px solid #1a1a1a !important;
   padding: 30px 20px !important;
   text-align: center !important;
-  box-shadow: 5px 5px 0 var(--black) !important;
+  box-shadow: 5px 5px 0 #1a1a1a !important;
   transition: all 0.1s !important;
   border-radius: 0 !important;
+  color: #1a1a1a !important; /* Texto siempre negro para contraste */
 }
 
 [data-theme="punk"] .grid > div::before { content: none !important; }
 
 [data-theme="punk"] .grid > div:nth-child(1) { transform: rotate(-2deg) !important; }
-[data-theme="punk"] .grid > div:nth-child(2) { transform: rotate(1deg) !important; background: var(--yellow) !important; }
+[data-theme="punk"] .grid > div:nth-child(2) { transform: rotate(1deg) !important; background: var(--yellow) !important; color: #1a1a1a !important; }
 [data-theme="punk"] .grid > div:nth-child(3) { transform: rotate(-1deg) !important; }
-[data-theme="punk"] .grid > div:nth-child(4) { transform: rotate(2deg) !important; background: var(--blue) !important; color: white !important; }
+[data-theme="punk"] .grid > div:nth-child(4) { transform: rotate(2deg) !important; background: var(--blue) !important; color: #1a1a1a !important; }
 
 [data-theme="punk"] .grid > div:hover {
   transform: rotate(0deg) scale(1.05) !important;
@@ -297,7 +298,7 @@
   margin-bottom: 15px !important;
   text-decoration: underline !important;
   text-decoration-style: wavy !important;
-  color: inherit !important;
+  color: #1a1a1a !important; /* Siempre negro para contraste */
   background: none !important;
   border: none !important;
   padding: 0 !important;
@@ -310,7 +311,7 @@
   font-family: 'Special Elite', monospace !important;
   font-size: 0.9rem !important;
   line-height: 1.6 !important;
-  color: inherit !important;
+  color: #1a1a1a !important; /* Siempre negro para contraste */
   background: none !important;
   border: none !important;
   padding: 0 !important;
@@ -435,8 +436,40 @@
   background-size: 20px 20px !important;
 }
 
-[data-theme="punk"] footer * {
+[data-theme="punk"] footer > p,
+[data-theme="punk"] footer > div > p {
   color: white !important;
+}
+
+/* Footer grid - asegurar contraste en todas las columnas */
+[data-theme="punk"] footer .grid > div {
+  background: var(--red) !important;
+  border: 3px solid white !important;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.3) !important;
+  color: white !important;
+}
+
+[data-theme="punk"] footer .grid > div:nth-child(2) {
+  background: var(--yellow) !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+}
+
+[data-theme="punk"] footer .grid > div:nth-child(4) {
+  background: var(--blue) !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+}
+
+[data-theme="punk"] footer .grid > div h3,
+[data-theme="punk"] footer .grid > div h4 {
+  color: inherit !important;
+}
+
+[data-theme="punk"] footer .grid > div p,
+[data-theme="punk"] footer .grid > div a,
+[data-theme="punk"] footer .grid > div span {
+  color: inherit !important;
 }
 
 /* ============================================
