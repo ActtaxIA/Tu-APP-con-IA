@@ -49,9 +49,9 @@
 }
 
 /* ============================================
-   NAVIGATION - Chrome pill style
+   NAVIGATION - Chrome pill style (solo header principal)
    ============================================ */
-[data-theme="y2k"] nav {
+[data-theme="y2k"] .main-header {
   position: fixed !important;
   top: 20px !important;
   left: 50% !important;
@@ -63,20 +63,20 @@
   border-radius: 30px !important;
   padding: 12px 40px !important;
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  gap: 40px !important;
   box-shadow: 
     inset 0 2px 0 rgba(255,255,255,0.8),
     inset 0 -2px 0 rgba(0,0,0,0.2),
     0 5px 15px rgba(0,0,0,0.5) !important;
 }
 
-[data-theme="y2k"] nav::before,
-[data-theme="y2k"] nav::after {
+[data-theme="y2k"] .main-header::before,
+[data-theme="y2k"] .main-header::after {
   display: none !important;
 }
 
-[data-theme="y2k"] nav a { 
+[data-theme="y2k"] .main-header a { 
   color: #333 !important;
   text-decoration: none !important;
   font-size: 0.8rem !important;
@@ -84,7 +84,7 @@
   text-transform: uppercase !important;
 }
 
-[data-theme="y2k"] nav a:hover { 
+[data-theme="y2k"] .main-header a:hover { 
   color: var(--hot-pink) !important; 
 }
 
@@ -92,12 +92,24 @@
 @media (min-width: 768px) {
   [data-theme="y2k"] .md\:hidden { display: none !important; }
   [data-theme="y2k"] .mobile-menu-btn { display: none !important; }
-  [data-theme="y2k"] nav .hidden.md\:flex { display: flex !important; }
+  [data-theme="y2k"] .main-header .hidden.md\:flex { display: flex !important; gap: 40px !important; }
 }
 
 @media (max-width: 767px) {
-  [data-theme="y2k"] nav .hidden.md\:flex { display: none !important; }
+  [data-theme="y2k"] .main-header .hidden.md\:flex { display: none !important; }
   [data-theme="y2k"] .mobile-menu-btn { display: block !important; }
+}
+
+/* Breadcrumb */
+[data-theme="y2k"] .breadcrumb {
+  font-family: 'Orbitron', sans-serif !important;
+  color: var(--hot-pink) !important;
+}
+[data-theme="y2k"] .breadcrumb a {
+  color: var(--electric-blue) !important;
+}
+[data-theme="y2k"] .breadcrumb a:hover {
+  color: var(--hot-pink) !important;
 }
 
 /* ============================================
@@ -227,7 +239,7 @@
   box-shadow: inset 0 2px 0 rgba(255,255,255,0.8) !important;
 }
 
-[data-theme="y2k"] nav button {
+[data-theme="y2k"] .main-header button {
   padding: 8px 20px !important;
   background: linear-gradient(180deg, var(--hot-pink), #c71585) !important;
   border: 2px solid #fff !important;
@@ -441,9 +453,8 @@
   [data-theme="y2k"] .grid { 
     grid-template-columns: repeat(2, 1fr) !important; 
   }
-  [data-theme="y2k"] nav { 
+  [data-theme="y2k"] .main-header { 
     padding: 12px 20px !important;
-    gap: 20px !important;
   }
   [data-theme="y2k"] .hero-section {
     padding: 120px 20px 60px !important;

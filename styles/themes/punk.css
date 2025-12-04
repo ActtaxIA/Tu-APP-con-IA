@@ -36,8 +36,9 @@
 
 /* ============================================
    NAVIGATION - Taped Note Style
+   Solo aplica al header principal (.main-header)
    ============================================ */
-[data-theme="punk"] nav {
+[data-theme="punk"] .main-header {
   position: fixed !important;
   top: 20px !important;
   left: 20px !important;
@@ -47,15 +48,14 @@
   border: 3px solid var(--black) !important;
   padding: 15px 30px !important;
   display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
+  flex-direction: column !important;
   transform: rotate(-0.5deg) !important;
   box-shadow: 5px 5px 0 var(--black) !important;
   border-radius: 0 !important;
 }
 
-[data-theme="punk"] nav::before,
-[data-theme="punk"] nav::after {
+[data-theme="punk"] .main-header::before,
+[data-theme="punk"] .main-header::after {
   content: '';
   position: absolute;
   top: -15px;
@@ -65,10 +65,10 @@
   border: 1px solid #999;
 }
 
-[data-theme="punk"] nav::before { left: 30px; transform: rotate(-3deg); }
-[data-theme="punk"] nav::after { right: 30px; transform: rotate(2deg); }
+[data-theme="punk"] .main-header::before { left: 30px; transform: rotate(-3deg); }
+[data-theme="punk"] .main-header::after { right: 30px; transform: rotate(2deg); }
 
-[data-theme="punk"] nav a { 
+[data-theme="punk"] .main-header a { 
   font-family: 'Special Elite', monospace !important;
   color: var(--black) !important;
   text-decoration: none !important;
@@ -76,7 +76,7 @@
   text-transform: uppercase !important;
 }
 
-[data-theme="punk"] nav a:hover { 
+[data-theme="punk"] .main-header a:hover { 
   text-decoration: line-through !important; 
   color: var(--red) !important; 
 }
@@ -85,12 +85,24 @@
 @media (min-width: 768px) {
   [data-theme="punk"] .md\:hidden { display: none !important; }
   [data-theme="punk"] .mobile-menu-btn { display: none !important; }
-  [data-theme="punk"] nav .hidden.md\:flex { display: flex !important; }
+  [data-theme="punk"] .main-header .hidden.md\:flex { display: flex !important; }
 }
 
 @media (max-width: 767px) {
-  [data-theme="punk"] nav .hidden.md\:flex { display: none !important; }
+  [data-theme="punk"] .main-header .hidden.md\:flex { display: none !important; }
   [data-theme="punk"] .mobile-menu-btn { display: block !important; }
+}
+
+/* Breadcrumb styles */
+[data-theme="punk"] .breadcrumb {
+  font-family: 'Special Elite', monospace !important;
+  color: var(--black) !important;
+}
+[data-theme="punk"] .breadcrumb a {
+  color: var(--black) !important;
+}
+[data-theme="punk"] .breadcrumb a:hover {
+  color: var(--red) !important;
 }
 
 /* ============================================
@@ -527,7 +539,7 @@
    ============================================ */
 @media (max-width: 968px) {
   [data-theme="punk"] .grid { grid-template-columns: repeat(2, 1fr) !important; }
-  [data-theme="punk"] nav::before,
-  [data-theme="punk"] nav::after { display: none !important; }
+  [data-theme="punk"] .main-header::before,
+  [data-theme="punk"] .main-header::after { display: none !important; }
   [data-theme="punk"] .sticker-primary { display: none !important; }
 }

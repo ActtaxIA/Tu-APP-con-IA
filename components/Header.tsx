@@ -32,7 +32,7 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="fixed top-2 left-2 right-2 md:top-4 md:left-4 md:right-20 z-50"
+      className="main-header fixed top-2 left-2 right-2 md:top-4 md:left-4 md:right-20 z-50"
       style={{
         background: 'var(--color-secondary)',
         border: 'var(--border-width) solid var(--color-text)',

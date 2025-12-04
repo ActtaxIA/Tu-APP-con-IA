@@ -8,13 +8,13 @@ export default function DisenoWebPage() {
     <div className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-20 px-4 sm:px-6 md:px-10">
       <div className="max-w-4xl mx-auto">
         {/* Breadcrumb */}
-        <nav className="mb-8 text-sm">
+        <div className="breadcrumb mb-8 text-sm" style={{ fontFamily: 'var(--font-body)' }}>
           <Link href="/" className="hover:underline">Inicio</Link>
-          {' > '}
+          {' → '}
           <Link href="/servicios" className="hover:underline">Servicios</Link>
-          {' > '}
-          <span>Diseño Web</span>
-        </nav>
+          {' → '}
+          <span style={{ opacity: 0.7 }}>Diseño Web</span>
+        </div>
 
         {/* Hero del servicio */}
         <motion.div

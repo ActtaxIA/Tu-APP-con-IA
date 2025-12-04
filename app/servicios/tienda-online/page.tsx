@@ -7,13 +7,13 @@ export default function TiendaOnlinePage() {
   return (
     <div className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-20 px-4 sm:px-6 md:px-10">
       <div className="max-w-4xl mx-auto">
-        <nav className="mb-8 text-sm">
+        <div className="breadcrumb mb-8 text-sm" style={{ fontFamily: 'var(--font-body)' }}>
           <Link href="/" className="hover:underline">Inicio</Link>
-          {' > '}
+          {' → '}
           <Link href="/servicios" className="hover:underline">Servicios</Link>
-          {' > '}
-          <span>Tienda Online</span>
-        </nav>
+          {' → '}
+          <span style={{ opacity: 0.7 }}>Tienda Online</span>
+        </div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
           <span className="text-6xl mb-4 block">🛒</span>

@@ -49,9 +49,9 @@
 }
 
 /* ============================================
-   NAVIGATION - Estilo Windows 95
+   NAVIGATION - Estilo Windows 95 (solo header principal)
    ============================================ */
-[data-theme="retro90s"] nav {
+[data-theme="retro90s"] .main-header {
   position: static !important;
   top: auto !important;
   left: auto !important;
@@ -62,22 +62,27 @@
   box-shadow: none !important;
   padding: 10px !important;
   display: flex !important;
-  justify-content: center !important;
-  gap: 10px !important;
-  flex-wrap: wrap !important;
+  flex-direction: column !important;
   transform: none !important;
   z-index: 50 !important;
 }
 
-[data-theme="retro90s"] nav::before,
-[data-theme="retro90s"] nav::after {
+[data-theme="retro90s"] .main-header > div:first-child {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+[data-theme="retro90s"] .main-header::before,
+[data-theme="retro90s"] .main-header::after {
   display: none !important;
 }
 
 /* Links y botones del nav */
-[data-theme="retro90s"] nav a,
-[data-theme="retro90s"] nav > div > a,
-[data-theme="retro90s"] nav span {
+[data-theme="retro90s"] .main-header a,
+[data-theme="retro90s"] .main-header > div > a,
+[data-theme="retro90s"] .main-header span {
   font-family: 'VT323', monospace !important;
   font-size: 1.3rem !important;
   padding: 10px 25px !important;
@@ -92,21 +97,41 @@
   display: inline-block !important;
 }
 
-[data-theme="retro90s"] nav a:hover,
-[data-theme="retro90s"] nav span:hover {
+[data-theme="retro90s"] .main-header a:hover,
+[data-theme="retro90s"] .main-header span:hover {
   background: var(--magenta) !important;
   color: #fff !important;
   text-decoration: none !important;
 }
 
 /* Logo en nav */
-[data-theme="retro90s"] nav > div:first-child a {
+[data-theme="retro90s"] .main-header > div:first-child > a:first-child {
   font-family: 'Silkscreen', 'VT323', monospace !important;
   font-size: 1.5rem !important;
   color: var(--magenta) !important;
   text-shadow: 2px 2px 0 var(--cyan) !important;
   background: linear-gradient(180deg, #c0c0c0, #808080) !important;
   border: 4px outset #c0c0c0 !important;
+}
+
+/* Breadcrumb */
+[data-theme="retro90s"] .breadcrumb {
+  font-family: 'VT323', monospace !important;
+  font-size: 1.2rem !important;
+  color: #000 !important;
+  background: #c0c0c0 !important;
+  padding: 5px 15px !important;
+  border: 2px inset #c0c0c0 !important;
+}
+[data-theme="retro90s"] .breadcrumb a {
+  color: #000080 !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+[data-theme="retro90s"] .breadcrumb a:hover {
+  color: var(--magenta) !important;
+  background: transparent !important;
 }
 
 /* ============================================
@@ -554,13 +579,12 @@
     padding: 15px 20px !important;
   }
   
-  [data-theme="retro90s"] nav {
+  [data-theme="retro90s"] .main-header {
     padding: 5px !important;
-    gap: 5px !important;
   }
   
-  [data-theme="retro90s"] nav a,
-  [data-theme="retro90s"] nav span {
+  [data-theme="retro90s"] .main-header a,
+  [data-theme="retro90s"] .main-header span {
     font-size: 1rem !important;
     padding: 8px 15px !important;
   }
