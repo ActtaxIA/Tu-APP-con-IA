@@ -38,12 +38,13 @@ export default function Stats() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, type: 'spring' }}
               whileHover={{ scale: 1.1, rotate: 0 }}
-              className="text-center p-6"
+              className="text-center p-6 stat"
               style={{
                 border: '3px dashed var(--color-background)',
               }}
             >
               <motion.div
+                className="stat-number"
                 style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: 'clamp(2rem, 5vw, 3rem)',
@@ -56,6 +57,7 @@ export default function Stats() {
                 {stat.number}
               </motion.div>
               <div
+                className="stat-label"
                 style={{
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.85rem',

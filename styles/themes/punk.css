@@ -1,21 +1,23 @@
 /* ============================================
    TEMA: PUNK ZINE
-   Estilos EXACTOS de la referencia 20-punk-zine.html
+   100% basado en referencias/20-punk-zine.html
    ============================================ */
 
 [data-theme="punk"] {
-  --paper: #f5f0e1;
-  --black: #1a1a1a;
-  --red: #e41e31;
-  --yellow: #ffd93d;
-  --blue: #4169e1;
+  /* Variables base del tema - pueden ser sobrescritas por variantes */
+  --paper: var(--theme-background, #f5f0e1);
+  --black: var(--theme-text, #1a1a1a);
+  --red: var(--theme-primary, #e41e31);
+  --yellow: var(--theme-secondary, #ffd93d);
+  --blue: var(--theme-accent, #4169e1);
   --pink: #ff69b4;
+  --surface: var(--theme-surface, #ffffff);
 }
 
 /* BODY - Paper texture */
 [data-theme="punk"] body {
   font-family: 'Special Elite', monospace !important;
-  background: var(--paper) !important;
+  background-color: var(--paper) !important;
   color: var(--black) !important;
   overflow-x: hidden !important;
 }
@@ -24,17 +26,17 @@
 [data-theme="punk"] body::before {
   content: '';
   position: fixed;
-  top: 0; 
-  left: 0;
-  width: 100%; 
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.04;
   pointer-events: none;
   z-index: 1000;
 }
 
-/* NAVIGATION - Taped Note Style */
+/* ============================================
+   NAVIGATION - Taped Note Style
+   ============================================ */
 [data-theme="punk"] nav {
   position: fixed !important;
   top: 20px !important;
@@ -52,7 +54,6 @@
   border-radius: 0 !important;
 }
 
-/* Tape effect */
 [data-theme="punk"] nav::before,
 [data-theme="punk"] nav::after {
   content: '';
@@ -64,22 +65,8 @@
   border: 1px solid #999;
 }
 
-[data-theme="punk"] nav::before { 
-  left: 30px; 
-  transform: rotate(-3deg); 
-}
-[data-theme="punk"] nav::after { 
-  right: 30px; 
-  transform: rotate(2deg); 
-}
-
-[data-theme="punk"] nav .logo,
-[data-theme="punk"] nav [class*="logo"] {
-  font-family: 'Permanent Marker', cursive !important;
-  font-size: 2rem !important;
-  transform: rotate(-2deg) !important;
-  color: var(--black) !important;
-}
+[data-theme="punk"] nav::before { left: 30px; transform: rotate(-3deg); }
+[data-theme="punk"] nav::after { right: 30px; transform: rotate(2deg); }
 
 [data-theme="punk"] nav a { 
   font-family: 'Special Elite', monospace !important;
@@ -94,33 +81,15 @@
   color: var(--red) !important; 
 }
 
-/* BOTONES - Punk sticker style */
-[data-theme="punk"] button,
-[data-theme="punk"] .theme-switcher {
-  display: inline-block !important;
-  font-family: 'Bebas Neue', sans-serif !important;
-  font-size: 1.5rem !important;
-  letter-spacing: 0.1em !important;
-  padding: 20px 50px !important;
-  background: var(--red) !important;
-  color: white !important;
-  border: 4px solid var(--black) !important;
-  box-shadow: 6px 6px 0 var(--black) !important;
-  cursor: pointer !important;
-  transform: rotate(1deg) !important;
-  transition: all 0.1s !important;
-  border-radius: 0 !important;
+/* Mobile menu - solo móvil */
+@media (min-width: 768px) {
+  [data-theme="punk"] .md\:hidden { display: none !important; }
 }
 
-[data-theme="punk"] button:hover,
-[data-theme="punk"] .theme-switcher:hover {
-  transform: rotate(-1deg) translate(3px, 3px) !important;
-  box-shadow: 3px 3px 0 var(--black) !important;
-}
-
-/* HERO - Collage Style */
-[data-theme="punk"] [class*="hero"],
-[data-theme="punk"] header {
+/* ============================================
+   HERO - Collage Style (min-height: 100vh)
+   ============================================ */
+[data-theme="punk"] .hero-section {
   min-height: 100vh !important;
   padding: 150px 40px 80px !important;
   position: relative !important;
@@ -130,9 +99,8 @@
   background: var(--paper) !important;
 }
 
-/* Sticker badge */
-[data-theme="punk"] [class*="sticker"],
-[data-theme="punk"] [class*="badge"] {
+/* Sticker ¡MURCIA! */
+[data-theme="punk"] .sticker-primary {
   position: absolute !important;
   background: var(--red) !important;
   color: white !important;
@@ -146,9 +114,8 @@
   box-shadow: 3px 3px 0 var(--black) !important;
 }
 
-/* Cut-out label */
-[data-theme="punk"] [class*="cut"],
-[data-theme="punk"] [class*="label"] {
+/* Cut-out label AGENCIA DIGITAL */
+[data-theme="punk"] .hero-label {
   display: inline-block !important;
   background: var(--black) !important;
   color: var(--paper) !important;
@@ -168,33 +135,43 @@
   max-width: 800px !important;
   transform: rotate(-1deg) !important;
   color: var(--black) !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  text-shadow: none !important;
 }
 
-[data-theme="punk"] h1 span:first-child,
-[data-theme="punk"] h1 [class*="word-1"] {
+[data-theme="punk"] h1 span {
   display: inline-block !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+[data-theme="punk"] h1 span:first-child {
   transform: rotate(-2deg) !important;
+  color: var(--black) !important;
 }
 
-[data-theme="punk"] h1 span:nth-child(2),
-[data-theme="punk"] h1 [class*="word-2"],
-[data-theme="punk"] h1 [class*="highlight"] {
-  display: inline-block !important;
+[data-theme="punk"] .hero-webs {
   background: var(--yellow) !important;
   padding: 0 20px !important;
   border: 3px solid var(--black) !important;
   transform: rotate(1deg) !important;
   box-shadow: 5px 5px 0 var(--black) !important;
+  color: var(--black) !important;
 }
 
-[data-theme="punk"] h1 span:last-child,
-[data-theme="punk"] h1 [class*="word-3"] {
-  display: inline-block !important;
+[data-theme="punk"] .hero-conia {
   color: var(--red) !important;
   transform: rotate(-1deg) !important;
+  display: block !important;
 }
 
-[data-theme="punk"] [class*="subtitle"] {
+/* Subtítulo */
+[data-theme="punk"] [class*="subtitle"],
+[data-theme="punk"] .hero-section p {
   font-family: 'Covered By Your Grace', cursive !important;
   font-size: 1.8rem !important;
   max-width: 500px !important;
@@ -204,7 +181,7 @@
   color: var(--black) !important;
 }
 
-/* Note style */
+/* Note */
 [data-theme="punk"] [class*="note"] {
   display: inline-block !important;
   background: white !important;
@@ -217,7 +194,39 @@
   margin-bottom: 30px !important;
 }
 
-/* SECCIONES - Lined paper background */
+/* BOTONES */
+[data-theme="punk"] button,
+[data-theme="punk"] .btn-primary,
+[data-theme="punk"] .btn-surface {
+  display: inline-block !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.1em !important;
+  padding: 20px 50px !important;
+  background: var(--red) !important;
+  color: white !important;
+  border: 4px solid var(--black) !important;
+  box-shadow: 6px 6px 0 var(--black) !important;
+  cursor: pointer !important;
+  transform: rotate(1deg) !important;
+  transition: all 0.1s !important;
+  border-radius: 0 !important;
+}
+
+[data-theme="punk"] button:hover,
+[data-theme="punk"] .btn-primary:hover {
+  transform: rotate(-1deg) translate(3px, 3px) !important;
+  box-shadow: 3px 3px 0 var(--black) !important;
+}
+
+[data-theme="punk"] .btn-surface {
+  background: white !important;
+  color: var(--black) !important;
+}
+
+/* ============================================
+   SECCIONES - Lined paper
+   ============================================ */
 [data-theme="punk"] section {
   padding: 100px 40px !important;
   background: repeating-linear-gradient(
@@ -248,9 +257,10 @@
   border: 3px solid var(--black) !important;
 }
 
-/* GRID DE SERVICIOS */
-[data-theme="punk"] .grid,
-[data-theme="punk"] [class*="grid"] {
+/* ============================================
+   GRID SERVICIOS
+   ============================================ */
+[data-theme="punk"] .grid {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 25px !important;
@@ -258,10 +268,7 @@
   margin: 0 auto !important;
 }
 
-/* TARJETAS - Cut & Paste style */
-[data-theme="punk"] .grid > div,
-[data-theme="punk"] [class*="card"],
-[data-theme="punk"] [class*="service"] {
+[data-theme="punk"] .grid > div {
   background: white !important;
   border: 3px solid var(--black) !important;
   padding: 30px 20px !important;
@@ -273,41 +280,17 @@
 
 [data-theme="punk"] .grid > div::before { content: none !important; }
 
-[data-theme="punk"] .grid > div:nth-child(1),
-[data-theme="punk"] [class*="card"]:nth-child(1) { 
-  transform: rotate(-2deg) !important; 
-}
-[data-theme="punk"] .grid > div:nth-child(2),
-[data-theme="punk"] [class*="card"]:nth-child(2) { 
-  transform: rotate(1deg) !important; 
-  background: var(--yellow) !important; 
-}
-[data-theme="punk"] .grid > div:nth-child(3),
-[data-theme="punk"] [class*="card"]:nth-child(3) { 
-  transform: rotate(-1deg) !important; 
-}
-[data-theme="punk"] .grid > div:nth-child(4),
-[data-theme="punk"] [class*="card"]:nth-child(4) { 
-  transform: rotate(2deg) !important; 
-  background: var(--blue) !important; 
-  color: white !important; 
-}
+[data-theme="punk"] .grid > div:nth-child(1) { transform: rotate(-2deg) !important; }
+[data-theme="punk"] .grid > div:nth-child(2) { transform: rotate(1deg) !important; background: var(--yellow) !important; }
+[data-theme="punk"] .grid > div:nth-child(3) { transform: rotate(-1deg) !important; }
+[data-theme="punk"] .grid > div:nth-child(4) { transform: rotate(2deg) !important; background: var(--blue) !important; color: white !important; }
 
-[data-theme="punk"] .grid > div:hover,
-[data-theme="punk"] [class*="card"]:hover {
+[data-theme="punk"] .grid > div:hover {
   transform: rotate(0deg) scale(1.05) !important;
   z-index: 10 !important;
 }
 
-/* Icono de servicio */
-[data-theme="punk"] [class*="icon"] {
-  font-size: 3rem !important;
-  margin-bottom: 15px !important;
-}
-
-/* Título de tarjeta */
-[data-theme="punk"] .grid > div h3,
-[data-theme="punk"] [class*="card"] h3 {
+[data-theme="punk"] .grid > div h3 {
   font-family: 'Bebas Neue', sans-serif !important;
   font-size: 1.5rem !important;
   letter-spacing: 0.1em !important;
@@ -315,46 +298,41 @@
   text-decoration: underline !important;
   text-decoration-style: wavy !important;
   color: inherit !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 [data-theme="punk"] .grid > div h3::before,
 [data-theme="punk"] .grid > div h3::after { content: none !important; }
 
-[data-theme="punk"] .grid > div p,
-[data-theme="punk"] [class*="card"] p {
+[data-theme="punk"] .grid > div p {
   font-family: 'Special Elite', monospace !important;
   font-size: 0.9rem !important;
   line-height: 1.6 !important;
   color: inherit !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
-/* STATS - Stamps on black */
-[data-theme="punk"] [class*="stats"] {
+[data-theme="punk"] [class*="icon"] {
+  font-size: 3rem !important;
+  margin-bottom: 15px !important;
+}
+
+/* ============================================
+   STATS - Stamps on black
+   ============================================ */
+[data-theme="punk"] [class*="stats"],
+[data-theme="punk"] .section-inverted {
   padding: 80px 40px !important;
   background: var(--black) !important;
   color: var(--paper) !important;
   position: relative !important;
 }
 
-[data-theme="punk"] [class*="stats"]::before {
-  content: '★ ★ ★ STATS ★ ★ ★' !important;
-  position: absolute !important;
-  top: 30px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  font-family: 'Bebas Neue', sans-serif !important;
-  font-size: 1rem !important;
-  letter-spacing: 0.3em !important;
-  color: var(--red) !important;
-}
-
-[data-theme="punk"] [class*="stats"] .grid,
-[data-theme="punk"] [class*="stats-grid"] {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 30px !important;
-  max-width: 900px !important;
-  margin: 0 auto !important;
+[data-theme="punk"] [class*="stats"] .grid {
   padding-top: 30px !important;
 }
 
@@ -364,6 +342,7 @@
   border: 3px dashed var(--paper) !important;
   transform: rotate(1deg) !important;
   background: transparent !important;
+  box-shadow: none !important;
 }
 
 [data-theme="punk"] .stat:nth-child(2) { transform: rotate(-2deg) !important; }
@@ -384,13 +363,9 @@
   color: var(--paper) !important;
 }
 
-/* CONTACTO - Note Paper */
-[data-theme="punk"] [class*="contact"] {
-  padding: 100px 40px !important;
-  background: var(--paper) !important;
-}
-
-/* FORMULARIO - Taped note style */
+/* ============================================
+   FORMULARIO - Taped note style
+   ============================================ */
 [data-theme="punk"] form {
   max-width: 500px !important;
   margin: 0 auto !important;
@@ -406,7 +381,6 @@
   gap: 20px !important;
 }
 
-/* Tape on form */
 [data-theme="punk"] form::before {
   content: '' !important;
   position: absolute !important;
@@ -418,21 +392,6 @@
   background: rgba(200, 200, 200, 0.8) !important;
   border: 1px solid #999 !important;
 }
-
-[data-theme="punk"] [class*="contact-title"],
-[data-theme="punk"] form h2 {
-  font-family: 'Permanent Marker', cursive !important;
-  font-size: 2.5rem !important;
-  text-align: center !important;
-  margin-bottom: 30px !important;
-  transform: rotate(1deg) !important;
-  color: var(--black) !important;
-}
-
-[data-theme="punk"] [class*="contact-title"]::before,
-[data-theme="punk"] [class*="contact-title"]::after,
-[data-theme="punk"] form h2::before,
-[data-theme="punk"] form h2::after { content: none !important; }
 
 [data-theme="punk"] input, 
 [data-theme="punk"] textarea {
@@ -453,12 +412,9 @@
   box-shadow: 3px 3px 0 var(--red) !important;
 }
 
-[data-theme="punk"] input::placeholder,
-[data-theme="punk"] textarea::placeholder {
-  color: #888 !important;
-}
-
-/* FOOTER - Ripped Paper */
+/* ============================================
+   FOOTER - Ripped Paper
+   ============================================ */
 [data-theme="punk"] footer {
   padding: 60px 40px !important;
   background: var(--red) !important;
@@ -467,7 +423,6 @@
   position: relative !important;
 }
 
-/* Ripped paper effect */
 [data-theme="punk"] footer::before {
   content: '' !important;
   position: absolute !important;
@@ -480,49 +435,16 @@
   background-size: 20px 20px !important;
 }
 
-[data-theme="punk"] footer .logo,
-[data-theme="punk"] footer [class*="logo"] {
-  font-family: 'Permanent Marker', cursive !important;
-  font-size: 2rem !important;
-  margin-bottom: 10px !important;
-  color: white !important;
-}
-
 [data-theme="punk"] footer * {
   color: white !important;
 }
 
-[data-theme="punk"] footer p {
-  font-family: 'Special Elite', monospace !important;
-  font-size: 0.9rem !important;
-}
-
-[data-theme="punk"] footer [class*="diy"] {
-  font-family: 'Covered By Your Grace', cursive !important;
-  font-size: 1.5rem !important;
-  margin-top: 20px !important;
-}
-
-/* Random Decorations */
-[data-theme="punk"] [class*="deco"] {
-  position: fixed !important;
-  font-family: 'Permanent Marker', cursive !important;
-  font-size: 4rem !important;
-  opacity: 0.05 !important;
-  z-index: 0 !important;
-}
-
-/* Responsive */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 968px) {
-  [data-theme="punk"] .grid,
-  [data-theme="punk"] [class*="grid"] { 
-    grid-template-columns: repeat(2, 1fr) !important; 
-  }
-  [data-theme="punk"] [class*="stats"] .grid,
-  [data-theme="punk"] [class*="stats-grid"] { 
-    grid-template-columns: repeat(2, 1fr) !important; 
-  }
+  [data-theme="punk"] .grid { grid-template-columns: repeat(2, 1fr) !important; }
   [data-theme="punk"] nav::before,
   [data-theme="punk"] nav::after { display: none !important; }
-  [data-theme="punk"] [class*="sticker"] { display: none !important; }
+  [data-theme="punk"] .sticker-primary { display: none !important; }
 }

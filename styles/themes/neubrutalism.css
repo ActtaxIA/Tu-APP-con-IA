@@ -1,20 +1,20 @@
 /* ============================================
    TEMA: NEUBRUTALISM
-   IDÉNTICO a la referencia 16-neubrutalism.html
+   100% basado en referencias/16-neubrutalism.html
    ============================================ */
 
 [data-theme="neubrutalism"] {
-  --black: #000;
-  --white: #fff;
-  --yellow: #fff500;
+  /* Variables base del tema - pueden ser sobrescritas por variantes */
+  --black: var(--theme-text, #000);
+  --white: var(--theme-background, #fff);
+  --yellow: var(--theme-secondary, #fff500);
   --blue: #0057ff;
-  --pink: #ff4d8d;
-  --green: #00ff85;
+  --pink: var(--theme-primary, #ff4d8d);
+  --green: var(--theme-accent, #00ff85);
+  --surface: var(--theme-surface, #ffffff);
 }
 
-/* ============================================
-   BODY
-   ============================================ */
+/* BODY */
 [data-theme="neubrutalism"] body {
   font-family: 'Space Grotesk', sans-serif !important;
   background: var(--white) !important;
@@ -22,7 +22,7 @@
 }
 
 /* ============================================
-   NAVIGATION - Fijo arriba con sombra
+   NAVIGATION
    ============================================ */
 [data-theme="neubrutalism"] nav {
   position: fixed !important;
@@ -46,14 +46,6 @@
   display: none !important;
 }
 
-[data-theme="neubrutalism"] nav .logo,
-[data-theme="neubrutalism"] nav [class*="logo"] {
-  font-family: 'Darker Grotesque', sans-serif !important;
-  font-size: 2rem !important;
-  font-weight: 900 !important;
-  color: var(--black) !important;
-}
-
 [data-theme="neubrutalism"] nav a {
   color: var(--black) !important;
   text-decoration: none !important;
@@ -67,47 +59,15 @@
   text-decoration-thickness: 3px !important;
 }
 
-/* ============================================
-   BOTONES
-   ============================================ */
-[data-theme="neubrutalism"] button,
-[data-theme="neubrutalism"] .theme-switcher {
-  padding: 20px 45px !important;
-  font-family: 'Space Grotesk', sans-serif !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  border: 3px solid var(--black) !important;
-  cursor: pointer !important;
-  transition: all 0.1s !important;
-  background: var(--green) !important;
-  color: var(--black) !important;
-  box-shadow: 6px 6px 0 var(--black) !important;
-  border-radius: 0 !important;
-}
-
-[data-theme="neubrutalism"] button:hover,
-[data-theme="neubrutalism"] .theme-switcher:hover {
-  box-shadow: 2px 2px 0 var(--black) !important;
-  transform: translate(4px, 4px) !important;
-}
-
-[data-theme="neubrutalism"] nav button {
-  padding: 12px 25px !important;
-  background: var(--black) !important;
-  color: var(--white) !important;
-}
-
-[data-theme="neubrutalism"] nav button:hover {
-  background: var(--white) !important;
-  color: var(--black) !important;
+/* Mobile menu - solo móvil */
+@media (min-width: 768px) {
+  [data-theme="neubrutalism"] .md\:hidden { display: none !important; }
 }
 
 /* ============================================
-   HERO
+   HERO - min-height: 100vh
    ============================================ */
-[data-theme="neubrutalism"] section:first-of-type,
-[data-theme="neubrutalism"] [class*="hero"] {
+[data-theme="neubrutalism"] .hero-section {
   min-height: 100vh !important;
   padding: 150px 40px 80px !important;
   display: flex !important;
@@ -116,9 +76,8 @@
   background: var(--white) !important;
 }
 
-/* Label azul */
-[data-theme="neubrutalism"] [class*="label"],
-[data-theme="neubrutalism"] [class*="badge"]:not(footer *) {
+/* Label azul "📍 Murcia, España" */
+[data-theme="neubrutalism"] .hero-label {
   display: inline-block !important;
   padding: 10px 20px !important;
   background: var(--blue) !important;
@@ -131,9 +90,7 @@
   margin-bottom: 30px !important;
 }
 
-/* ============================================
-   TÍTULO PRINCIPAL
-   ============================================ */
+/* TÍTULO PRINCIPAL */
 [data-theme="neubrutalism"] h1 {
   font-family: 'Darker Grotesque', sans-serif !important;
   font-size: clamp(4rem, 12vw, 12rem) !important;
@@ -151,6 +108,17 @@
 
 [data-theme="neubrutalism"] h1 span {
   display: inline-block !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--black) !important;
+  transform: none !important;
+}
+
+/* WEBS highlight rosa */
+[data-theme="neubrutalism"] .hero-webs {
+  display: inline-block !important;
   background: var(--pink) !important;
   padding: 0 20px !important;
   border: 3px solid var(--black) !important;
@@ -159,13 +127,64 @@
   transform: none !important;
 }
 
-[data-theme="neubrutalism"] [class*="subtitle"] {
+[data-theme="neubrutalism"] .hero-conia {
+  display: block !important;
+  color: var(--black) !important;
+}
+
+/* Subtítulo */
+[data-theme="neubrutalism"] [class*="subtitle"],
+[data-theme="neubrutalism"] .hero-section p {
   font-size: 1.3rem !important;
   max-width: 600px !important;
   line-height: 1.7 !important;
   margin-bottom: 40px !important;
   color: var(--black) !important;
   font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* BOTONES */
+[data-theme="neubrutalism"] button,
+[data-theme="neubrutalism"] .btn-primary {
+  padding: 20px 45px !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  border: 3px solid var(--black) !important;
+  cursor: pointer !important;
+  transition: all 0.1s !important;
+  background: var(--green) !important;
+  color: var(--black) !important;
+  box-shadow: 6px 6px 0 var(--black) !important;
+  border-radius: 0 !important;
+}
+
+[data-theme="neubrutalism"] button:hover,
+[data-theme="neubrutalism"] .btn-primary:hover {
+  box-shadow: 2px 2px 0 var(--black) !important;
+  transform: translate(4px, 4px) !important;
+}
+
+[data-theme="neubrutalism"] .btn-surface {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  box-shadow: 6px 6px 0 var(--black) !important;
+}
+
+[data-theme="neubrutalism"] .btn-surface:hover {
+  background: var(--yellow) !important;
+}
+
+[data-theme="neubrutalism"] nav button {
+  padding: 12px 25px !important;
+  background: var(--black) !important;
+  color: var(--white) !important;
+}
+
+[data-theme="neubrutalism"] nav button:hover {
+  background: var(--white) !important;
+  color: var(--black) !important;
 }
 
 /* ============================================
@@ -178,9 +197,7 @@
   color: var(--white) !important;
 }
 
-/* ============================================
-   TÍTULOS DE SECCIÓN
-   ============================================ */
+/* TÍTULOS DE SECCIÓN */
 [data-theme="neubrutalism"] h2 {
   font-family: 'Darker Grotesque', sans-serif !important;
   font-size: 5rem !important;
@@ -273,7 +290,8 @@
 /* ============================================
    STATS - Fondo amarillo
    ============================================ */
-[data-theme="neubrutalism"] [class*="stats"] {
+[data-theme="neubrutalism"] [class*="stats"],
+[data-theme="neubrutalism"] .section-inverted {
   padding: 80px 40px !important;
   background: var(--yellow) !important;
   border-top: 3px solid var(--black) !important;
@@ -300,14 +318,6 @@
   font-weight: 700 !important;
   text-transform: uppercase !important;
   color: var(--black) !important;
-}
-
-/* ============================================
-   CONTACTO
-   ============================================ */
-[data-theme="neubrutalism"] [class*="contact"] {
-  padding: 100px 40px !important;
-  background: var(--white) !important;
 }
 
 /* ============================================
@@ -366,15 +376,8 @@
   color: var(--white) !important;
 }
 
-[data-theme="neubrutalism"] footer .logo,
-[data-theme="neubrutalism"] footer [class*="logo"] {
-  font-family: 'Darker Grotesque', sans-serif !important;
-  font-size: 2rem !important;
-  font-weight: 900 !important;
-}
-
 /* ============================================
-   RESPONSIVE MÓVIL
+   RESPONSIVE
    ============================================ */
 @media (max-width: 968px) {
   [data-theme="neubrutalism"] nav {
@@ -384,12 +387,7 @@
     padding: 10px 15px !important;
   }
 
-  [data-theme="neubrutalism"] nav .logo {
-    font-size: 1.3rem !important;
-  }
-
-  [data-theme="neubrutalism"] section:first-of-type,
-  [data-theme="neubrutalism"] [class*="hero"] {
+  [data-theme="neubrutalism"] .hero-section {
     padding: 100px 20px 60px !important;
   }
 
@@ -406,16 +404,11 @@
     gap: 15px !important;
   }
 
-  [data-theme="neubrutalism"] [class*="stats"] .grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
   [data-theme="neubrutalism"] .stat-number {
     font-size: 2.5rem !important;
   }
 
-  [data-theme="neubrutalism"] button,
-  [data-theme="neubrutalism"] .theme-switcher {
+  [data-theme="neubrutalism"] button {
     padding: 15px 30px !important;
     font-size: 0.9rem !important;
   }

@@ -1,23 +1,26 @@
 /* ============================================
    TEMA: Y2K FUTURISM
-   Estilos EXACTOS de la referencia 18-y2k-futurism.html
+   100% basado en referencias/18-y2k-futurism.html
    ============================================ */
 
 [data-theme="y2k"] {
+  /* Variables base del tema - pueden ser sobrescritas por variantes */
   --chrome: linear-gradient(180deg, #e8e8e8 0%, #b8b8b8 25%, #e8e8e8 50%, #a0a0a0 75%, #d0d0d0 100%);
-  --silver: #c0c0c0;
-  --cyber-blue: #00d4ff;
-  --hot-pink: #ff1493;
+  --silver: var(--theme-primary, #c0c0c0);
+  --cyber-blue: var(--theme-secondary, #00d4ff);
+  --hot-pink: var(--theme-accent, #ff1493);
   --lime: #32cd32;
   --purple: #9400d3;
-  --dark: #1a1a2e;
+  --dark: var(--theme-background, #1a1a2e);
+  --surface: var(--theme-surface, #1a1a2e);
+  --text-color: var(--theme-text, #ffffff);
 }
 
-/* BODY - Fondo espacial con estrellas */
+/* BODY - Fondo espacial */
 [data-theme="y2k"] body {
   font-family: 'Exo 2', sans-serif !important;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
-  color: #fff !important;
+  background: linear-gradient(135deg, var(--dark) 0%, color-mix(in srgb, var(--dark), #0f3460 50%) 50%, color-mix(in srgb, var(--dark), #0f3460 80%) 100%) !important;
+  color: var(--text-color) !important;
   min-height: 100vh !important;
 }
 
@@ -25,10 +28,8 @@
 [data-theme="y2k"] body::before {
   content: '';
   position: fixed;
-  top: 0; 
-  left: 0;
-  width: 100%; 
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background-image: 
     radial-gradient(2px 2px at 20px 30px, white, transparent),
     radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
@@ -47,17 +48,15 @@
   50% { opacity: 0.5; } 
 }
 
-@keyframes y2kFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-30px); }
-}
-
-/* NAVIGATION - Chrome pill style */
+/* ============================================
+   NAVIGATION - Chrome pill style
+   ============================================ */
 [data-theme="y2k"] nav {
   position: fixed !important;
   top: 20px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
+  right: auto !important;
   z-index: 100 !important;
   background: var(--chrome) !important;
   border: 3px solid #888 !important;
@@ -72,16 +71,9 @@
     0 5px 15px rgba(0,0,0,0.5) !important;
 }
 
-[data-theme="y2k"] nav .logo,
-[data-theme="y2k"] nav [class*="logo"] {
-  font-family: 'Orbitron', monospace !important;
-  font-size: 1.3rem !important;
-  font-weight: 900 !important;
-  background: linear-gradient(180deg, var(--cyber-blue), var(--hot-pink)) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-  text-shadow: none !important;
+[data-theme="y2k"] nav::before,
+[data-theme="y2k"] nav::after {
+  display: none !important;
 }
 
 [data-theme="y2k"] nav a { 
@@ -96,58 +88,15 @@
   color: var(--hot-pink) !important; 
 }
 
-/* BOTONES - Cyber glow style */
-[data-theme="y2k"] button,
-[data-theme="y2k"] .theme-switcher {
-  font-family: 'Orbitron', monospace !important;
-  font-size: 0.9rem !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  padding: 18px 45px !important;
-  background: linear-gradient(180deg, var(--cyber-blue), #0099cc) !important;
-  color: #fff !important;
-  border: 3px solid #fff !important;
-  border-radius: 30px !important;
-  cursor: pointer !important;
-  transition: all 0.3s !important;
-  box-shadow: 
-    0 0 20px rgba(0, 212, 255, 0.5),
-    inset 0 2px 0 rgba(255,255,255,0.3) !important;
+/* Mobile menu - solo móvil */
+@media (min-width: 768px) {
+  [data-theme="y2k"] .md\:hidden { display: none !important; }
 }
 
-[data-theme="y2k"] button:hover,
-[data-theme="y2k"] .theme-switcher:hover {
-  box-shadow: 
-    0 0 40px rgba(0, 212, 255, 0.8),
-    inset 0 2px 0 rgba(255,255,255,0.3) !important;
-  transform: scale(1.05) !important;
-}
-
-[data-theme="y2k"] nav button,
-[data-theme="y2k"] nav .theme-switcher {
-  padding: 8px 20px !important;
-  background: linear-gradient(180deg, var(--hot-pink), #c71585) !important;
-  border: 2px solid #fff !important;
-  border-radius: 20px !important;
-  font-size: 0.7rem !important;
-  box-shadow: 0 0 15px rgba(255, 20, 147, 0.5) !important;
-}
-
-/* Botón secundario chrome */
-[data-theme="y2k"] [class*="secondary"] {
-  background: var(--chrome) !important;
-  color: #333 !important;
-  border: 3px solid #888 !important;
-  box-shadow: inset 0 2px 0 rgba(255,255,255,0.8) !important;
-}
-
-[data-theme="y2k"] [class*="secondary"]:hover {
-  background: linear-gradient(180deg, #fff, #ddd) !important;
-}
-
-/* HERO */
-[data-theme="y2k"] [class*="hero"],
-[data-theme="y2k"] header {
+/* ============================================
+   HERO - Centrado, min-height: 100vh
+   ============================================ */
+[data-theme="y2k"] .hero-section {
   min-height: 100vh !important;
   display: flex !important;
   flex-direction: column !important;
@@ -157,11 +106,11 @@
   padding: 150px 40px 100px !important;
   position: relative !important;
   z-index: 1 !important;
+  background: transparent !important;
 }
 
-/* Badge chrome */
-[data-theme="y2k"] [class*="badge"],
-[data-theme="y2k"] [class*="label"] {
+/* Badge chrome "⚡ MURCIA DIGITAL AGENCY ⚡" */
+[data-theme="y2k"] .hero-label {
   display: inline-block !important;
   padding: 10px 30px !important;
   background: var(--chrome) !important;
@@ -182,10 +131,22 @@
   line-height: 1 !important;
   margin-bottom: 20px !important;
   text-transform: uppercase !important;
+  color: #fff !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  text-shadow: none !important;
+  text-align: center !important;
 }
 
-[data-theme="y2k"] h1 span:first-child,
-[data-theme="y2k"] h1 [class*="chrome"] {
+[data-theme="y2k"] h1 span {
+  display: inline-block !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+[data-theme="y2k"] h1 span:first-child {
   background: var(--chrome) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
@@ -193,25 +154,84 @@
   filter: drop-shadow(0 4px 0 rgba(0,0,0,0.3)) !important;
 }
 
-[data-theme="y2k"] h1 span:last-child,
-[data-theme="y2k"] h1 [class*="glow"] {
+[data-theme="y2k"] .hero-webs {
+  color: var(--hot-pink) !important;
+  text-shadow: 
+    0 0 10px var(--hot-pink),
+    0 0 20px var(--hot-pink) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+[data-theme="y2k"] .hero-conia {
   color: var(--cyber-blue) !important;
   text-shadow: 
     0 0 10px var(--cyber-blue),
     0 0 20px var(--cyber-blue),
     0 0 40px var(--cyber-blue) !important;
+  display: block !important;
 }
 
-[data-theme="y2k"] [class*="subtitle"] {
+/* Subtítulo */
+[data-theme="y2k"] [class*="subtitle"],
+[data-theme="y2k"] .hero-section p {
   font-size: 1.1rem !important;
   font-weight: 300 !important;
   max-width: 500px !important;
   line-height: 1.8 !important;
   margin-bottom: 40px !important;
   color: rgba(255,255,255,0.8) !important;
+  text-align: center !important;
 }
 
-/* SECCIONES */
+/* BOTONES - Cyber glow style */
+[data-theme="y2k"] button,
+[data-theme="y2k"] .btn-primary {
+  font-family: 'Orbitron', monospace !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  padding: 18px 45px !important;
+  background: linear-gradient(180deg, var(--cyber-blue), #0099cc) !important;
+  color: #fff !important;
+  border: 3px solid #fff !important;
+  border-radius: 30px !important;
+  cursor: pointer !important;
+  transition: all 0.3s !important;
+  box-shadow: 
+    0 0 20px rgba(0, 212, 255, 0.5),
+    inset 0 2px 0 rgba(255,255,255,0.3) !important;
+}
+
+[data-theme="y2k"] button:hover,
+[data-theme="y2k"] .btn-primary:hover {
+  box-shadow: 
+    0 0 40px rgba(0, 212, 255, 0.8),
+    inset 0 2px 0 rgba(255,255,255,0.3) !important;
+  transform: scale(1.05) !important;
+}
+
+[data-theme="y2k"] .btn-surface {
+  background: var(--chrome) !important;
+  color: #333 !important;
+  border: 3px solid #888 !important;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.8) !important;
+}
+
+[data-theme="y2k"] nav button {
+  padding: 8px 20px !important;
+  background: linear-gradient(180deg, var(--hot-pink), #c71585) !important;
+  border: 2px solid #fff !important;
+  border-radius: 20px !important;
+  font-size: 0.7rem !important;
+  box-shadow: 0 0 15px rgba(255, 20, 147, 0.5) !important;
+}
+
+/* ============================================
+   SECCIONES
+   ============================================ */
 [data-theme="y2k"] section {
   padding: 100px 40px !important;
   position: relative !important;
@@ -235,9 +255,10 @@
 [data-theme="y2k"] h2::before,
 [data-theme="y2k"] h2::after { content: none !important; }
 
-/* GRID DE SERVICIOS */
-[data-theme="y2k"] .grid,
-[data-theme="y2k"] [class*="grid"] {
+/* ============================================
+   GRID DE SERVICIOS
+   ============================================ */
+[data-theme="y2k"] .grid {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 25px !important;
@@ -246,9 +267,7 @@
 }
 
 /* TARJETAS - Glass morphism */
-[data-theme="y2k"] .grid > div,
-[data-theme="y2k"] [class*="card"],
-[data-theme="y2k"] [class*="service"] {
+[data-theme="y2k"] .grid > div {
   background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)) !important;
   border: 2px solid rgba(255,255,255,0.2) !important;
   border-radius: 25px !important;
@@ -257,12 +276,12 @@
   backdrop-filter: blur(10px) !important;
   box-shadow: none !important;
   transition: all 0.3s !important;
+  transform: none !important;
 }
 
 [data-theme="y2k"] .grid > div::before { content: none !important; }
 
-[data-theme="y2k"] .grid > div:hover,
-[data-theme="y2k"] [class*="card"]:hover {
+[data-theme="y2k"] .grid > div:hover {
   border-color: var(--cyber-blue) !important;
   box-shadow: 0 0 30px rgba(0, 212, 255, 0.3) !important;
   transform: translateY(-10px) !important;
@@ -282,41 +301,38 @@
   box-shadow: inset 0 2px 0 rgba(255,255,255,0.8) !important;
 }
 
-/* Título de tarjeta */
-[data-theme="y2k"] .grid > div h3,
-[data-theme="y2k"] [class*="card"] h3 {
+[data-theme="y2k"] .grid > div h3 {
   font-family: 'Orbitron', monospace !important;
   font-size: 1.1rem !important;
   font-weight: 700 !important;
   margin-bottom: 15px !important;
   color: var(--cyber-blue) !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 [data-theme="y2k"] .grid > div h3::before,
 [data-theme="y2k"] .grid > div h3::after { content: none !important; }
 
-[data-theme="y2k"] .grid > div p,
-[data-theme="y2k"] [class*="card"] p {
+[data-theme="y2k"] .grid > div p {
   font-size: 0.9rem !important;
   line-height: 1.7 !important;
   color: rgba(255,255,255,0.7) !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
-/* STATS - Chrome background */
-[data-theme="y2k"] [class*="stats"] {
+/* ============================================
+   STATS - Chrome background
+   ============================================ */
+[data-theme="y2k"] [class*="stats"],
+[data-theme="y2k"] .section-inverted {
   padding: 80px 40px !important;
   background: var(--chrome) !important;
   position: relative !important;
   z-index: 1 !important;
-}
-
-[data-theme="y2k"] [class*="stats"] .grid,
-[data-theme="y2k"] [class*="stats-grid"] {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 30px !important;
-  max-width: 900px !important;
-  margin: 0 auto !important;
 }
 
 [data-theme="y2k"] .stat {
@@ -347,14 +363,9 @@
   text-transform: uppercase !important;
 }
 
-/* CONTACTO */
-[data-theme="y2k"] [class*="contact"] {
-  padding: 100px 40px !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-/* FORMULARIO - Glass container */
+/* ============================================
+   FORMULARIO - Glass container
+   ============================================ */
 [data-theme="y2k"] form {
   max-width: 500px !important;
   margin: 0 auto !important;
@@ -367,20 +378,10 @@
   display: flex !important;
   flex-direction: column !important;
   gap: 20px !important;
+  transform: none !important;
 }
 
 [data-theme="y2k"] form::before { content: none !important; }
-
-[data-theme="y2k"] [class*="contact-title"],
-[data-theme="y2k"] form h2 {
-  font-family: 'Orbitron', monospace !important;
-  font-size: 2rem !important;
-  font-weight: 900 !important;
-  text-align: center !important;
-  margin-bottom: 30px !important;
-  color: var(--cyber-blue) !important;
-  background: none !important;
-}
 
 [data-theme="y2k"] input, 
 [data-theme="y2k"] textarea {
@@ -405,7 +406,9 @@
   color: rgba(255,255,255,0.5) !important; 
 }
 
-/* FOOTER */
+/* ============================================
+   FOOTER
+   ============================================ */
 [data-theme="y2k"] footer {
   padding: 40px !important;
   text-align: center !important;
@@ -413,15 +416,6 @@
   z-index: 1 !important;
   border-top: 1px solid rgba(255,255,255,0.1) !important;
   background: transparent !important;
-}
-
-[data-theme="y2k"] footer .logo,
-[data-theme="y2k"] footer [class*="logo"] {
-  font-family: 'Orbitron', monospace !important;
-  font-size: 1.5rem !important;
-  font-weight: 900 !important;
-  color: var(--cyber-blue) !important;
-  margin-bottom: 10px !important;
 }
 
 [data-theme="y2k"] footer * { 
@@ -433,18 +427,21 @@
   color: rgba(255,255,255,0.5) !important;
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 968px) {
-  [data-theme="y2k"] .grid,
-  [data-theme="y2k"] [class*="grid"] { 
-    grid-template-columns: repeat(2, 1fr) !important; 
-  }
-  [data-theme="y2k"] [class*="stats"] .grid,
-  [data-theme="y2k"] [class*="stats-grid"] { 
+  [data-theme="y2k"] .grid { 
     grid-template-columns: repeat(2, 1fr) !important; 
   }
   [data-theme="y2k"] nav { 
     padding: 12px 20px !important;
     gap: 20px !important;
+  }
+  [data-theme="y2k"] .hero-section {
+    padding: 120px 20px 60px !important;
+  }
+  [data-theme="y2k"] h1 {
+    font-size: clamp(2rem, 8vw, 4rem) !important;
   }
 }
