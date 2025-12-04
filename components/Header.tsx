@@ -88,9 +88,9 @@ export default function Header() {
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - SOLO visible en móvil */}
         <button
-          className="md:hidden p-2"
+          className="block md:hidden p-2 mobile-menu-btn"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           style={{
             background: 'var(--color-primary)',

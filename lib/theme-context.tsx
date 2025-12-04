@@ -378,6 +378,25 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         color: inherit !important;
       }
       
+      /* MENÚ MÓVIL - Solo visible en móvil */
+      @media (min-width: 768px) {
+        .mobile-menu-btn {
+          display: none !important;
+        }
+        nav ul {
+          display: flex !important;
+        }
+      }
+      
+      @media (max-width: 767px) {
+        .mobile-menu-btn {
+          display: block !important;
+        }
+        nav > div > ul {
+          display: none !important;
+        }
+      }
+      
       /* CAJA DE NOTA "no somos como los demás" */
       div[style*="var(--color-surface)"] {
         background-color: ${scheme.surface} !important;

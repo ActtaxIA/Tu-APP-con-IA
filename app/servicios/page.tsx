@@ -50,7 +50,7 @@ const services = [
 
 export default function ServiciosPage() {
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6 md:px-10">
+    <div className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-20 px-4 sm:px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
         {/* Cabecera */}
         <motion.div
