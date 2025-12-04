@@ -86,10 +86,8 @@ export default function BlogPage() {
           className="text-center mb-16"
         >
           <span
-            className="inline-block mb-4"
+            className="inline-block mb-4 hero-label"
             style={{
-              background: 'var(--color-primary)',
-              color: 'white',
               fontFamily: 'var(--font-heading)',
               padding: '5px 20px',
               fontSize: '1rem',

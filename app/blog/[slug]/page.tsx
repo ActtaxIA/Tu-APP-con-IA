@@ -78,11 +78,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </h1>
         <Link href="/blog">
           <motion.button
-            className="mt-8 px-8 py-4"
+            className="mt-8 px-8 py-4 btn-primary"
             style={{
               fontFamily: 'var(--font-heading)',
-              background: 'var(--color-primary)',
-              color: 'white',
               border: '3px solid var(--color-text)',
               boxShadow: '5px 5px 0 var(--color-text)',
             }}
@@ -218,12 +216,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </p>
           <Link href="/contacto">
             <motion.button
-              className="px-10 py-4 uppercase"
+              className="px-10 py-4 uppercase btn-primary"
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: '1.3rem',
-                background: 'var(--color-primary)',
-                color: 'white',
                 border: '3px solid var(--color-text)',
                 boxShadow: '4px 4px 0 var(--color-text)',
               }}

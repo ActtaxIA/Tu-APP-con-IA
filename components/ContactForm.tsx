@@ -123,13 +123,11 @@ export default function ContactForm() {
         <motion.button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-5 uppercase"
+          className="w-full py-5 uppercase btn-primary"
           style={{
             fontFamily: 'var(--font-heading)',
             fontSize: '1.5rem',
             letterSpacing: '0.1em',
-            background: 'var(--color-primary)',
-            color: 'white',
             border: '4px solid var(--color-text)',
             boxShadow: '6px 6px 0 var(--color-text)',
             cursor: isSubmitting ? 'wait' : 'pointer',

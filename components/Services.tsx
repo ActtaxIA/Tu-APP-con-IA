@@ -56,8 +56,9 @@ export default function Services() {
         >
           QUÉ{' '}
           <span
+            className="highlight-primary"
             style={{
-              background: 'var(--color-accent)',
+              background: 'var(--color-primary)',
               padding: '0 15px',
               border: '3px solid var(--color-text)',
             }}
@@ -76,12 +77,10 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ rotate: 0, scale: 1.05, zIndex: 10 }}
-              className="p-8 text-center"
+              className={`p-8 text-center ${service.accent ? 'card-secondary' : 'card-surface'}`}
               style={{
-                background: service.accent ? 'var(--color-secondary)' : 'var(--color-surface)',
                 border: '3px solid var(--color-text)',
                 boxShadow: '5px 5px 0 var(--color-text)',
-                color: 'var(--color-text)',
               }}
             >
               <motion.div

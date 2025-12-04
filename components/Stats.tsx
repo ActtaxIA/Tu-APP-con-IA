@@ -12,11 +12,7 @@ const stats = [
 export default function Stats() {
   return (
     <section
-      className="py-20 px-6 md:px-10 relative"
-      style={{
-        background: 'var(--color-text)',
-        color: 'var(--color-background)',
-      }}
+      className="py-20 px-6 md:px-10 relative section-inverted"
     >
       {/* Decoración superior */}
       <div className="absolute top-0 left-0 right-0 text-center py-4">

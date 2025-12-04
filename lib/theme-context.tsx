@@ -240,11 +240,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       }
       
       /* FOOTER - fondo primary, texto según ese fondo */
-      footer {
+      footer, .footer-primary {
         background-color: ${scheme.primary} !important;
+        color: ${textOnPrimary} !important;
       }
       
-      footer *, footer a, footer p, footer span, footer div {
+      footer *, footer a, footer p, footer span, footer div, footer h2,
+      .footer-primary *, .footer-primary a, .footer-primary p, .footer-primary span, .footer-primary div, .footer-primary h2 {
         color: ${textOnPrimary} !important;
         -webkit-text-fill-color: ${textOnPrimary} !important;
       }
@@ -274,6 +276,81 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         background-color: ${scheme.primary} !important;
         color: ${textOnPrimary} !important;
         -webkit-text-fill-color: ${textOnPrimary} !important;
+      }
+      
+      /* HERO WEBS - fondo secondary, texto según ese fondo */
+      .hero-webs {
+        background-color: ${scheme.secondary} !important;
+        color: ${textOnSecondary} !important;
+        -webkit-text-fill-color: ${textOnSecondary} !important;
+      }
+      
+      /* HERO CON IA - color primary (debe contrastar con background) */
+      .hero-conia {
+        color: ${scheme.primary} !important;
+        -webkit-text-fill-color: ${scheme.primary} !important;
+      }
+      
+      /* STICKER PRIMARY - fondo primary, texto según ese fondo */
+      .sticker-primary {
+        background-color: ${scheme.primary} !important;
+        color: ${textOnPrimary} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
+      }
+      
+      /* BOTÓN PRIMARY - fondo primary, texto según ese fondo */
+      .btn-primary {
+        background-color: ${scheme.primary} !important;
+        color: ${textOnPrimary} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
+      }
+      
+      /* BOTÓN SURFACE - fondo surface, texto según ese fondo */
+      .btn-surface {
+        background-color: ${scheme.surface} !important;
+        color: ${textOnSurface} !important;
+        -webkit-text-fill-color: ${textOnSurface} !important;
+      }
+      
+      /* HIGHLIGHT PRIMARY - fondo primary, texto según ese fondo */
+      .highlight-primary {
+        background-color: ${scheme.primary} !important;
+        color: ${textOnPrimary} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
+      }
+      
+      /* CARD SURFACE - fondo surface, texto según ese fondo */
+      .card-surface, .card-surface * {
+        background-color: ${scheme.surface} !important;
+        color: ${textOnSurface} !important;
+        -webkit-text-fill-color: ${textOnSurface} !important;
+      }
+      .card-surface h3, .card-surface p {
+        background-color: transparent !important;
+      }
+      
+      /* CARD SECONDARY - fondo secondary, texto según ese fondo */
+      .card-secondary, .card-secondary * {
+        background-color: ${scheme.secondary} !important;
+        color: ${textOnSecondary} !important;
+        -webkit-text-fill-color: ${textOnSecondary} !important;
+      }
+      .card-secondary h3, .card-secondary p {
+        background-color: transparent !important;
+      }
+      
+      /* SECCIÓN INVERTIDA (Stats) - fondo primary, texto blanco/negro según primary */
+      .section-inverted {
+        background-color: ${scheme.primary} !important;
+        color: ${textOnPrimary} !important;
+      }
+      .section-inverted *, .section-inverted span, .section-inverted div {
+        color: ${textOnPrimary} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
+      }
+      .section-inverted [style*="secondary"] {
+        color: ${scheme.secondary} !important;
+        -webkit-text-fill-color: ${scheme.secondary} !important;
       }
       
       /* BOTONES - fondo primary, texto según ese fondo */

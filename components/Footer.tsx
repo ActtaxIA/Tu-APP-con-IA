@@ -6,10 +6,9 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer
-      className="py-16 px-6 md:px-10 text-center relative"
+      className="py-16 px-6 md:px-10 text-center relative footer-primary"
       style={{
         background: 'var(--color-primary)',
-        color: 'white',
       }}
     >
       {/* Borde decorativo superior (efecto papel rasgado) */}

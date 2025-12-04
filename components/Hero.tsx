@@ -29,10 +29,9 @@ export default function Hero() {
         initial={{ opacity: 0, rotate: 20, scale: 0 }}
         animate={{ opacity: 1, rotate: 12, scale: 1 }}
         transition={{ delay: 0.5, type: 'spring' }}
-        className="absolute top-36 right-10 md:right-32 hidden md:block"
+        className="absolute top-36 right-10 md:right-32 hidden md:block sticker-primary"
         style={{
           background: 'var(--color-primary)',
-          color: 'white',
           fontFamily: 'var(--font-heading)',
           padding: '10px 25px',
           fontSize: '1.2rem',
@@ -51,13 +50,10 @@ export default function Hero() {
           transition={{ delay: 0.2 }}
           className="inline-block mb-6 hero-label"
           style={{
-            background: 'var(--color-primary)',
-            color: '#ffffff',
             fontFamily: 'var(--font-heading)',
             padding: '5px 20px',
             fontSize: '1.2rem',
             transform: 'rotate(-1deg)',
-            WebkitTextFillColor: '#ffffff',
           }}
         >
           AGENCIA DIGITAL
@@ -89,10 +85,9 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, type: 'spring' }}
-            className="inline-block px-6 my-2"
+            className="inline-block px-6 my-2 hero-webs"
             style={{
               background: 'var(--color-secondary)',
-              color: 'var(--color-text)',
               border: '3px solid var(--color-text)',
               boxShadow: '5px 5px 0 var(--color-text)',
               transform: 'rotate(1deg)',
@@ -104,9 +99,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="block"
+            className="block hero-conia"
             style={{
-              color: 'var(--color-primary)',
               transform: 'rotate(-1deg)',
             }}
           >
@@ -157,13 +151,11 @@ export default function Hero() {
         >
           <Link href="/contacto">
             <motion.button
-              className="px-12 py-5 text-lg uppercase tracking-wide"
+              className="px-12 py-5 text-lg uppercase tracking-wide btn-primary"
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: '1.5rem',
                 letterSpacing: '0.1em',
-                background: 'var(--color-primary)',
-                color: 'white',
                 border: '4px solid var(--color-text)',
                 boxShadow: '6px 6px 0 var(--color-text)',
                 transform: 'rotate(1deg)',
@@ -181,13 +173,12 @@ export default function Hero() {
           
           <Link href="/servicios">
             <motion.button
-              className="px-12 py-5 text-lg uppercase tracking-wide"
+              className="px-12 py-5 text-lg uppercase tracking-wide btn-surface"
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: '1.5rem',
                 letterSpacing: '0.1em',
                 background: 'var(--color-surface)',
-                color: 'var(--color-text)',
                 border: '4px solid var(--color-text)',
                 boxShadow: '6px 6px 0 var(--color-text)',
                 transform: 'rotate(-1deg)',

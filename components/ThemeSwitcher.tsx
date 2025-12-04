@@ -17,12 +17,10 @@ export default function ThemeSwitcher() {
       <div className="fixed bottom-4 left-2 md:bottom-6 md:left-4 z-50">
         <motion.button
           onClick={cycleColor}
-          className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-3"
+          className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-3 btn-primary"
           style={{
-            background: 'var(--color-primary)',
             border: '3px solid var(--color-text)',
             boxShadow: '4px 4px 0 var(--color-text)',
-            color: 'white',
             fontFamily: 'var(--font-heading)',
             fontSize: '0.9rem',
           }}

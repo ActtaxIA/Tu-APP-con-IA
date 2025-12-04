@@ -65,11 +65,7 @@ export default function ContactoPage() {
               }}
             >
               <div
-                className="p-3"
-                style={{
-                  background: 'var(--color-primary)',
-                  color: 'white',
-                }}
+                className="p-3 btn-primary"
               >
                 <Mail size={24} />
               </div>

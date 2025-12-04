@@ -79,10 +79,9 @@ export default function ServiciosPage() {
           >
             NUESTROS{' '}
             <span
+              className="highlight-primary"
               style={{
-                background: 'var(--color-primary)',
                 padding: '0 15px',
-                color: 'white',
               }}
             >
               SERVICIOS
@@ -177,13 +176,11 @@ export default function ServiciosPage() {
           </p>
           <Link href="/contacto">
             <motion.button
-              className="px-12 py-5 uppercase"
+              className="px-12 py-5 uppercase btn-primary"
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: '1.5rem',
                 letterSpacing: '0.1em',
-                background: 'var(--color-primary)',
-                color: 'white',
                 border: '4px solid var(--color-text)',
                 boxShadow: '6px 6px 0 var(--color-text)',
                 cursor: 'pointer',
