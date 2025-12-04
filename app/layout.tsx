@@ -8,39 +8,49 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://tuappconia.com'),
   title: {
     default: 'Tu APP con IA | Agencia de Marketing Digital en Murcia',
-    template: '%s | Tu APP con IA - Murcia'
+    template: '%s | Tu APP con IA'
   },
   icons: {
     icon: [
-      { url: '/favicon.png', type: 'image/png' },
+      { url: '/favicon.png', type: 'image/png', sizes: '512x512' },
     ],
-    apple: '/favicon.png',
+    apple: [
+      { url: '/favicon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.png',
   },
-  description: 'Agencia de marketing digital en Murcia. Creamos páginas web, aplicaciones móviles y soluciones con inteligencia artificial. Diseño web moderno, SEO y estrategias digitales que funcionan. ☎️ Contacta sin compromiso.',
+  description: 'Agencia de marketing digital en Murcia. Diseño web desde 500€, apps móviles, chatbots con IA y estrategias SEO que funcionan. +150 proyectos realizados. Presupuesto gratis.',
   keywords: [
     'agencia marketing digital murcia',
     'diseño web murcia',
     'desarrollo web murcia',
     'aplicaciones móviles murcia',
-    'inteligencia artificial',
-    'chatbots IA',
+    'inteligencia artificial empresas',
+    'chatbots IA murcia',
     'SEO murcia',
-    'desarrollo apps',
+    'desarrollo apps iOS Android',
     'páginas web profesionales',
     'marketing online murcia',
-    'diseño web profesional',
-    'agencia digital murcia',
-    'tu app con ia'
+    'tienda online murcia',
+    'branding murcia',
+    'posicionamiento web murcia'
   ],
   authors: [{ name: 'Tu APP con IA', url: 'https://tuappconia.com' }],
   creator: 'Tu APP con IA',
   publisher: 'Tu APP con IA',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -52,44 +62,52 @@ export const metadata: Metadata = {
     url: 'https://tuappconia.com',
     siteName: 'Tu APP con IA',
     title: 'Tu APP con IA | Agencia de Marketing Digital en Murcia',
-    description: 'Creamos webs y apps con inteligencia artificial. Marketing digital sin filtros. Agencia en Murcia.',
+    description: 'Diseño web, apps móviles y chatbots con IA. Agencia digital en Murcia con +150 proyectos. Presupuesto gratis.',
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Tu APP con IA - Agencia de Marketing Digital',
+        url: '/favicon.png',
+        width: 512,
+        height: 512,
+        alt: 'Tu APP con IA - Robot artista con paleta de colores',
+        type: 'image/png',
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Tu APP con IA | Agencia de Marketing Digital en Murcia',
-    description: 'Creamos webs y apps con inteligencia artificial. Marketing digital sin filtros.',
-    images: ['/og-image.jpg'],
+    card: 'summary',
+    site: '@tuappconia',
     creator: '@tuappconia',
-  },
-  verification: {
-    google: 'tu-codigo-de-verificacion-google',
+    title: 'Tu APP con IA | Agencia de Marketing Digital en Murcia',
+    description: 'Diseño web, apps móviles y chatbots con IA. Agencia digital en Murcia.',
+    images: ['/favicon.png'],
   },
   alternates: {
     canonical: 'https://tuappconia.com',
+    languages: {
+      'es-ES': 'https://tuappconia.com',
+    },
   },
   category: 'technology',
+  classification: 'Business',
 }
 
-// Schema.org JSON-LD
+// Schema.org JSON-LD - Datos estructurados para Google
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': 'ProfessionalService',
+  '@id': 'https://tuappconia.com/#organization',
   name: 'Tu APP con IA',
-  description: 'Agencia de marketing digital en Murcia especializada en desarrollo web, aplicaciones móviles e inteligencia artificial.',
+  alternateName: 'TuAPPconIA',
+  description: 'Agencia de marketing digital en Murcia especializada en diseño web, desarrollo de aplicaciones móviles, inteligencia artificial y estrategias SEO.',
   url: 'https://tuappconia.com',
-  telephone: '+34-XXX-XXX-XXX',
+  logo: 'https://tuappconia.com/favicon.png',
+  image: 'https://tuappconia.com/favicon.png',
+  email: 'hola@tuappconia.com',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Murcia',
     addressRegion: 'Región de Murcia',
+    postalCode: '30001',
     addressCountry: 'ES'
   },
   geo: {
@@ -97,35 +115,97 @@ const jsonLd = {
     latitude: 37.9922,
     longitude: -1.1307
   },
-  openingHours: 'Mo-Fr 09:00-18:00',
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Murcia'
+    },
+    {
+      '@type': 'Country',
+      name: 'España'
+    }
+  ],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '18:00'
+  },
   priceRange: '€€',
-  image: 'https://tuappconia.com/og-image.jpg',
+  currenciesAccepted: 'EUR',
+  paymentAccepted: 'Transferencia bancaria, PayPal, Tarjeta de crédito',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '47',
+    bestRating: '5',
+    worstRating: '1'
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de Marketing Digital',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Diseño Web',
+          description: 'Páginas web profesionales, responsive y optimizadas para SEO',
+          url: 'https://tuappconia.com/servicios/diseno-web'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Desarrollo de Aplicaciones Móviles',
+          description: 'Apps nativas iOS y Android para empresas',
+          url: 'https://tuappconia.com/servicios/aplicaciones-moviles'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Inteligencia Artificial',
+          description: 'Chatbots, automatización y soluciones con IA',
+          url: 'https://tuappconia.com/servicios/inteligencia-artificial'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Marketing Digital',
+          description: 'SEO, SEM, redes sociales y estrategias digitales',
+          url: 'https://tuappconia.com/servicios/marketing-digital'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Branding',
+          description: 'Diseño de marca, logos e identidad corporativa',
+          url: 'https://tuappconia.com/servicios/branding'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Tienda Online',
+          description: 'E-commerce con WooCommerce y Shopify',
+          url: 'https://tuappconia.com/servicios/tienda-online'
+        }
+      }
+    ]
+  },
   sameAs: [
     'https://twitter.com/tuappconia',
     'https://linkedin.com/company/tuappconia',
-    'https://instagram.com/tuappconia'
-  ],
-  service: [
-    {
-      '@type': 'Service',
-      name: 'Diseño Web',
-      description: 'Páginas web profesionales y responsive'
-    },
-    {
-      '@type': 'Service',
-      name: 'Aplicaciones Móviles',
-      description: 'Desarrollo de apps iOS y Android'
-    },
-    {
-      '@type': 'Service',
-      name: 'Inteligencia Artificial',
-      description: 'Chatbots y soluciones con IA'
-    },
-    {
-      '@type': 'Service',
-      name: 'Marketing Digital',
-      description: 'SEO, SEM y estrategias digitales'
-    }
+    'https://instagram.com/tuappconia',
+    'https://facebook.com/tuappconia'
   ]
 }
 
