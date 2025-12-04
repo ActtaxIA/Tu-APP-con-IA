@@ -240,7 +240,7 @@
 
 [data-theme="punk"] .btn-surface {
   background: white !important;
-  color: var(--black) !important;
+  color: #000000 !important; /* Siempre negro para contraste */
 }
 
 /* ============================================
@@ -270,10 +270,15 @@
 [data-theme="punk"] h2::before,
 [data-theme="punk"] h2::after { content: none !important; }
 
-[data-theme="punk"] h2 span {
-  background: var(--pink) !important;
-  padding: 0 15px !important;
+[data-theme="punk"] h2 span,
+[data-theme="punk"] .highlight-primary {
+  background: var(--red) !important;
+  color: white !important;
+  padding: 5px 20px !important;
   border: 3px solid var(--black) !important;
+  display: inline-block !important;
+  transform: rotate(-1deg) !important;
+  box-shadow: 4px 4px 0 var(--black) !important;
 }
 
 /* ============================================
