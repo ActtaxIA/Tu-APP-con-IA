@@ -1,15 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
-
-const stats = [
-  { number: '150+', label: 'Proyectos', rotation: 1 },
-  { number: '98%', label: 'Contentos', rotation: -2 },
-  { number: '50+', label: 'Clientes', rotation: 1.5 },
-  { number: '5', label: 'Años', rotation: -1 },
-]
+import { useTheme } from '@/lib/theme-context'
+import { getThemeContent } from '@/lib/content-by-theme'
 
 export default function Stats() {
+  const { theme } = useTheme()
+  const content = getThemeContent(theme)
+
+  // Rotaciones fijas para cada stat
+  const rotations = [1, -2, 1.5, -1]
+
   return (
     <section
       className="py-20 px-6 md:px-10 relative section-inverted"
@@ -24,17 +25,17 @@ export default function Stats() {
             color: 'var(--color-primary)',
           }}
         >
-          ★ ★ ★ STATS ★ ★ ★
+          {content.stats.decoration}
         </span>
       </div>
 
       <div className="max-w-4xl mx-auto pt-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((stat, index) => (
+          {content.stats.items.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: stat.rotation }}
+              whileInView={{ opacity: 1, scale: 1, rotate: rotations[index] }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, type: 'spring' }}
               whileHover={{ scale: 1.1, rotate: 0 }}

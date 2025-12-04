@@ -1,39 +1,17 @@
 'use client'
 
 import { motion } from 'framer-motion'
-
-const services = [
-  {
-    icon: '🌐',
-    title: 'WEBS',
-    description: 'Páginas web que no aburren. Diseño con actitud.',
-    rotation: -2,
-    accent: false,
-  },
-  {
-    icon: '📱',
-    title: 'APPS',
-    description: 'Aplicaciones que la gente quiere usar.',
-    rotation: 1,
-    accent: true,
-  },
-  {
-    icon: '🤖',
-    title: 'IA',
-    description: 'Inteligencia artificial sin el hype vacío.',
-    rotation: -1,
-    accent: false,
-  },
-  {
-    icon: '📢',
-    title: 'MARKETING',
-    description: 'Estrategia que funciona, no solo bonitas palabras.',
-    rotation: 2,
-    accent: true,
-  },
-]
+import { useTheme } from '@/lib/theme-context'
+import { getThemeContent } from '@/lib/content-by-theme'
 
 export default function Services() {
+  const { theme } = useTheme()
+  const content = getThemeContent(theme)
+
+  // Rotaciones fijas para cada tarjeta
+  const rotations = [-2, 1, -1, 2]
+  const accents = [false, true, false, true]
+
   return (
     <section 
       className="py-24 px-6 md:px-10"
@@ -54,7 +32,7 @@ export default function Services() {
             transform: 'rotate(-1deg)',
           }}
         >
-          QUÉ{' '}
+          {content.services.title}{' '}
           <span
             className="highlight-primary"
             style={{
@@ -63,28 +41,28 @@ export default function Services() {
               border: '3px solid var(--color-text)',
             }}
           >
-            HACEMOS
+            {content.services.titleHighlight}
           </span>
         </motion.h2>
 
         {/* Grid de servicios */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
+          {content.services.items.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 50, rotate: service.rotation }}
-              whileInView={{ opacity: 1, y: 0, rotate: service.rotation }}
+              initial={{ opacity: 0, y: 50, rotate: rotations[index] }}
+              whileInView={{ opacity: 1, y: 0, rotate: rotations[index] }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ rotate: 0, scale: 1.05, zIndex: 10 }}
-              className={`p-8 text-center ${service.accent ? 'card-secondary' : 'card-surface'}`}
+              className={`p-8 text-center ${accents[index] ? 'card-secondary' : 'card-surface'}`}
               style={{
                 border: '3px solid var(--color-text)',
                 boxShadow: '5px 5px 0 var(--color-text)',
               }}
             >
               <motion.div
-                className="text-5xl mb-4"
+                className="text-5xl mb-4 service-icon"
                 whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }}
               >
                 {service.icon}

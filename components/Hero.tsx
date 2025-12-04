@@ -2,8 +2,13 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useTheme } from '@/lib/theme-context'
+import { getThemeContent } from '@/lib/content-by-theme'
 
 export default function Hero() {
+  const { theme } = useTheme()
+  const content = getThemeContent(theme)
+
   return (
     <section className="min-h-screen pt-20 sm:pt-24 md:pt-32 pb-10 md:pb-20 px-4 md:px-10 relative overflow-hidden hero-section">
       {/* Decoraciones de fondo */}
@@ -56,7 +61,7 @@ export default function Hero() {
             transform: 'rotate(-1deg)',
           }}
         >
-          AGENCIA DIGITAL
+          {content.hero.badge}
         </motion.span>
 
         {/* Título principal */}
@@ -79,7 +84,7 @@ export default function Hero() {
               color: 'var(--color-text)',
             }}
           >
-            HACEMOS
+            {content.hero.title.line1}
           </motion.span>
           <motion.span
             initial={{ opacity: 0, scale: 0.8 }}
@@ -93,7 +98,7 @@ export default function Hero() {
               transform: 'rotate(1deg)',
             }}
           >
-            WEBS
+            {content.hero.title.line2}
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 50 }}
@@ -104,7 +109,7 @@ export default function Hero() {
               transform: 'rotate(-1deg)',
             }}
           >
-            CON IA
+            {content.hero.title.line3}
           </motion.span>
         </motion.h1>
 
@@ -120,8 +125,7 @@ export default function Hero() {
             transform: 'rotate(0.5deg)',
           }}
         >
-          Marketing digital sin filtros. Páginas web y apps que rompen moldes. 
-          Inteligencia artificial de verdad.
+          {content.hero.subtitle}
         </motion.p>
 
         {/* Nota */}
@@ -129,7 +133,7 @@ export default function Hero() {
           initial={{ opacity: 0, rotate: -5 }}
           animate={{ opacity: 1, rotate: -2 }}
           transition={{ delay: 0.7 }}
-          className="inline-block mb-8"
+          className="inline-block mb-8 hero-note"
           style={{
             background: 'var(--color-surface)',
             border: '2px solid var(--color-text)',
@@ -139,7 +143,7 @@ export default function Hero() {
             boxShadow: '4px 4px 0 var(--color-text)',
           }}
         >
-          * no somos como los demás *
+          {content.hero.note}
         </motion.div>
 
         {/* CTA */}
@@ -167,7 +171,7 @@ export default function Hero() {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              HABLEMOS →
+              {content.hero.ctaPrimary}
             </motion.button>
           </Link>
           
@@ -190,7 +194,7 @@ export default function Hero() {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              SERVICIOS
+              {content.hero.ctaSecondary}
             </motion.button>
           </Link>
         </motion.div>
