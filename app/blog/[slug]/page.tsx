@@ -819,9 +819,21 @@ function renderContent(content: string) {
     }
   }
 
+  // Procesa texto con **negrita**
+  const processText = (text: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*)/g)
+    return parts.map((part, idx) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={idx}>{part.slice(2, -2)}</strong>
+      }
+      return part
+    })
+  }
+
   lines.forEach((line, i) => {
     const trimmed = line.trim()
     
+    // H2: ## Título
     if (trimmed.startsWith('## ')) {
       flushList()
       elements.push(
@@ -836,9 +848,30 @@ function renderContent(content: string) {
           {trimmed.replace('## ', '')}
         </h2>
       )
-    } else if (trimmed.startsWith('- ')) {
+    } 
+    // H3: ### Subtítulo
+    else if (trimmed.startsWith('### ')) {
+      flushList()
+      elements.push(
+        <h3
+          key={i}
+          className="mt-8 mb-3"
+          style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: '1.4rem',
+            fontWeight: 700,
+          }}
+        >
+          {trimmed.replace('### ', '')}
+        </h3>
+      )
+    }
+    // Lista con -
+    else if (trimmed.startsWith('- ')) {
       listItems.push(trimmed.replace('- ', ''))
-    } else if (trimmed) {
+    } 
+    // Párrafo normal
+    else if (trimmed) {
       flushList()
       elements.push(
         <p
@@ -846,7 +879,7 @@ function renderContent(content: string) {
           className="mb-4 leading-relaxed"
           style={{ fontSize: '1.1rem' }}
         >
-          {trimmed}
+          {processText(trimmed)}
         </p>
       )
     }
