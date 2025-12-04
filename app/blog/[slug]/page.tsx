@@ -200,9 +200,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 p-8 text-center"
+          className="mt-16 p-8 text-center card-secondary"
           style={{
-            background: 'var(--color-secondary)',
             border: '3px solid var(--color-text)',
             boxShadow: '6px 6px 0 var(--color-text)',
             transform: 'rotate(1deg)',

@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section className="min-h-screen pt-28 sm:pt-32 md:pt-36 pb-10 md:pb-20 px-4 md:px-10 relative overflow-hidden">
+    <section className="min-h-screen pt-20 sm:pt-24 md:pt-32 pb-10 md:pb-20 px-4 md:px-10 relative overflow-hidden">
       {/* Decoraciones de fondo */}
       <motion.div
         className="absolute top-40 right-20 text-6xl opacity-5 hidden lg:block"

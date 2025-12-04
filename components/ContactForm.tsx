@@ -41,9 +41,8 @@ export default function ContactForm() {
       initial={{ opacity: 0, rotate: -1 }}
       whileInView={{ opacity: 1, rotate: -1 }}
       viewport={{ once: true }}
-      className="max-w-lg mx-auto p-10 relative"
+      className="max-w-lg mx-auto p-10 relative card-surface"
       style={{
-        background: 'var(--color-surface)',
         border: '3px solid var(--color-text)',
         boxShadow: '8px 8px 0 var(--color-text)',
       }}
@@ -79,7 +78,6 @@ export default function ContactForm() {
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: '1rem',
-            background: 'var(--color-background)',
             border: '2px solid var(--color-text)',
             boxShadow: '3px 3px 0 var(--color-text)',
             outline: 'none',
@@ -96,7 +94,6 @@ export default function ContactForm() {
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: '1rem',
-            background: 'var(--color-background)',
             border: '2px solid var(--color-text)',
             boxShadow: '3px 3px 0 var(--color-text)',
             outline: 'none',
@@ -113,7 +110,6 @@ export default function ContactForm() {
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: '1rem',
-            background: 'var(--color-background)',
             border: '2px solid var(--color-text)',
             boxShadow: '3px 3px 0 var(--color-text)',
             outline: 'none',

@@ -77,7 +77,7 @@ export default function BlogPage() {
   const posts = demoPost
 
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-20 px-4 sm:px-6 md:px-10">
+    <div className="min-h-screen pt-20 sm:pt-24 md:pt-28 pb-20 px-4 sm:px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
         {/* Cabecera */}
         <motion.div
@@ -106,8 +106,8 @@ export default function BlogPage() {
           >
             IDEAS &{' '}
             <span
+              className="card-secondary"
               style={{
-                background: 'var(--color-secondary)',
                 padding: '0 15px',
                 border: '3px solid var(--color-text)',
               }}

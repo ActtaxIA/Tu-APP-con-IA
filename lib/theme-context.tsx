@@ -364,26 +364,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         -webkit-text-fill-color: ${textOnPrimary} !important;
       }
       
-      /* TARJETAS - fondo surface, texto según ese fondo */
-      .grid > div, 
-      [class*="card"], 
-      [class*="service"],
-      div[class*="p-8"],
-      motion > div {
-        background-color: ${scheme.surface} !important;
-        color: ${textOnSurface} !important;
-        border-color: ${scheme.primary} !important;
-      }
-      
-      .grid > div *, 
-      [class*="card"] *,
-      .grid > div h3, 
-      .grid > div p,
-      .grid > div span:not(.text-5xl) {
-        color: ${textOnSurface} !important;
-        -webkit-text-fill-color: ${textOnSurface} !important;
-        background-color: transparent !important;
-      }
+      /* TARJETAS - Solo elementos con clases específicas */
+      /* Eliminado selectores genéricos que rompían otros layouts */
       
       /* STATS - fondo surface, texto según ese fondo */
       .stat, [class*="stat"]:not(.stat-number):not(.stat-label) {

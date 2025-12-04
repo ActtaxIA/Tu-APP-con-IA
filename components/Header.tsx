@@ -80,34 +80,32 @@ export default function Header() {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-full left-0 mt-2 py-2 min-w-[220px]"
+                        className="absolute top-full left-0 mt-2 py-2 min-w-[220px] dropdown-menu card-surface"
                         style={{
-                          background: 'var(--color-surface)',
                           border: '3px solid var(--color-text)',
                           boxShadow: '4px 4px 0 var(--color-text)',
+                          zIndex: 100,
                         }}
                       >
                         {serviciosLinks.map((servicio) => (
                           <Link key={servicio.href} href={servicio.href}>
-                            <motion.div
-                              className="px-4 py-2 flex items-center gap-2"
+                            <div
+                              className="px-4 py-2 flex items-center gap-2 dropdown-item"
                               style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem' }}
-                              whileHover={{ background: 'var(--color-primary)', x: 5 }}
                             >
                               <span>{servicio.icon}</span>
                               <span>{servicio.label}</span>
-                            </motion.div>
+                            </div>
                           </Link>
                         ))}
                         <div style={{ borderTop: '2px solid var(--color-text)', margin: '8px 0' }} />
                         <Link href="/servicios">
-                          <motion.div
-                            className="px-4 py-2 font-bold"
+                          <div
+                            className="px-4 py-2 font-bold dropdown-item"
                             style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem' }}
-                            whileHover={{ background: 'var(--color-primary)', x: 5 }}
                           >
                             Ver todos →
-                          </motion.div>
+                          </div>
                         </Link>
                       </motion.div>
                     )}

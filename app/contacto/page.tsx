@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin } from 'lucide-react'
 
 export default function ContactoPage() {
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-20 px-4 sm:px-6 md:px-10">
+    <div className="min-h-screen pt-20 sm:pt-24 md:pt-28 pb-20 px-4 sm:px-6 md:px-10">
       <div className="max-w-5xl mx-auto">
         {/* Cabecera */}
         <motion.div
@@ -15,10 +15,8 @@ export default function ContactoPage() {
           className="text-center mb-16"
         >
           <span
-            className="inline-block mb-4"
+            className="inline-block mb-4 hero-label"
             style={{
-              background: 'var(--color-text)',
-              color: 'var(--color-background)',
               fontFamily: 'var(--font-heading)',
               padding: '5px 20px',
               fontSize: '1rem',
@@ -56,17 +54,14 @@ export default function ContactoPage() {
           >
             {/* Email */}
             <div
-              className="p-6 flex items-start gap-4"
+              className="p-6 flex items-start gap-4 card-surface"
               style={{
-                background: 'var(--color-surface)',
                 border: '3px solid var(--color-text)',
                 boxShadow: '5px 5px 0 var(--color-text)',
                 transform: 'rotate(-1deg)',
               }}
             >
-              <div
-                className="p-3 btn-primary"
-              >
+              <div className="p-3 btn-primary">
                 <Mail size={24} />
               </div>
               <div>
@@ -91,21 +86,14 @@ export default function ContactoPage() {
 
             {/* Teléfono */}
             <div
-              className="p-6 flex items-start gap-4"
+              className="p-6 flex items-start gap-4 card-secondary"
               style={{
-                background: 'var(--color-secondary)',
                 border: '3px solid var(--color-text)',
                 boxShadow: '5px 5px 0 var(--color-text)',
                 transform: 'rotate(1deg)',
               }}
             >
-              <div
-                className="p-3"
-                style={{
-                  background: 'var(--color-text)',
-                  color: 'var(--color-background)',
-                }}
-              >
+              <div className="p-3 btn-primary">
                 <Phone size={24} />
               </div>
               <div>
@@ -130,21 +118,14 @@ export default function ContactoPage() {
 
             {/* Ubicación */}
             <div
-              className="p-6 flex items-start gap-4"
+              className="p-6 flex items-start gap-4 card-surface"
               style={{
-                background: 'var(--color-surface)',
                 border: '3px solid var(--color-text)',
                 boxShadow: '5px 5px 0 var(--color-text)',
                 transform: 'rotate(-0.5deg)',
               }}
             >
-              <div
-                className="p-3"
-                style={{
-                  background: 'var(--color-accent)',
-                  color: 'var(--color-text)',
-                }}
-              >
+              <div className="p-3 btn-primary">
                 <MapPin size={24} />
               </div>
               <div>
@@ -171,10 +152,8 @@ export default function ContactoPage() {
 
             {/* Horario */}
             <div
-              className="p-6"
+              className="p-6 section-inverted"
               style={{
-                background: 'var(--color-text)',
-                color: 'var(--color-background)',
                 border: '3px solid var(--color-text)',
                 transform: 'rotate(0.5deg)',
               }}
