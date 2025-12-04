@@ -218,9 +218,16 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         -webkit-text-fill-color: ${textOnPrimary} !important;
       }
       
-      /* TEXTO NORMAL - según fondo principal */
-      p, li, span:not(.text-xl):not(.text-5xl):not([class*="icon"]) {
+      /* TEXTO NORMAL - según fondo principal (excepto labels especiales) */
+      p, li, span:not(.text-xl):not(.text-5xl):not([class*="icon"]):not(.hero-label) {
         color: ${textOnBackground} !important;
+      }
+      
+      /* HERO LABEL - fondo primary, texto siempre blanco */
+      .hero-label {
+        background-color: ${scheme.primary} !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
       }
       
       /* BOTONES - fondo primary, texto según ese fondo */

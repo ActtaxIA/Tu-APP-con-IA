@@ -44,19 +44,20 @@ export default function Hero() {
       </motion.div>
 
       <div className="max-w-5xl mx-auto">
-        {/* Etiqueta superior */}
+        {/* Etiqueta superior - clase especial para evitar override */}
         <motion.span
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
-          className="inline-block mb-6"
+          className="inline-block mb-6 hero-label"
           style={{
-            background: 'var(--color-text)',
-            color: 'var(--color-background)',
+            background: 'var(--color-primary)',
+            color: '#ffffff',
             fontFamily: 'var(--font-heading)',
             padding: '5px 20px',
             fontSize: '1.2rem',
             transform: 'rotate(-1deg)',
+            WebkitTextFillColor: '#ffffff',
           }}
         >
           AGENCIA DIGITAL
