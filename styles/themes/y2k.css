@@ -91,6 +91,13 @@
 /* Mobile menu - solo móvil */
 @media (min-width: 768px) {
   [data-theme="y2k"] .md\:hidden { display: none !important; }
+  [data-theme="y2k"] .mobile-menu-btn { display: none !important; }
+  [data-theme="y2k"] nav .hidden.md\:flex { display: flex !important; }
+}
+
+@media (max-width: 767px) {
+  [data-theme="y2k"] nav .hidden.md\:flex { display: none !important; }
+  [data-theme="y2k"] .mobile-menu-btn { display: block !important; }
 }
 
 /* ============================================

@@ -62,6 +62,13 @@
 /* Mobile menu - solo móvil */
 @media (min-width: 768px) {
   [data-theme="neubrutalism"] .md\:hidden { display: none !important; }
+  [data-theme="neubrutalism"] .mobile-menu-btn { display: none !important; }
+  [data-theme="neubrutalism"] nav .hidden.md\:flex { display: flex !important; }
+}
+
+@media (max-width: 767px) {
+  [data-theme="neubrutalism"] nav .hidden.md\:flex { display: none !important; }
+  [data-theme="neubrutalism"] .mobile-menu-btn { display: block !important; }
 }
 
 /* ============================================
