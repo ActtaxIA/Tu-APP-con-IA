@@ -10,6 +10,12 @@ export const metadata: Metadata = {
     default: 'Tu APP con IA | Agencia de Marketing Digital en Murcia',
     template: '%s | Tu APP con IA - Murcia'
   },
+  icons: {
+    icon: [
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    apple: '/favicon.png',
+  },
   description: 'Agencia de marketing digital en Murcia. Creamos páginas web, aplicaciones móviles y soluciones con inteligencia artificial. Diseño web moderno, SEO y estrategias digitales que funcionan. ☎️ Contacta sin compromiso.',
   keywords: [
     'agencia marketing digital murcia',
@@ -131,9 +137,8 @@ export default function RootLayout({
   return (
     <html lang="es" data-theme="punk">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#e41e31" />
         <meta name="geo.region" content="ES-MU" />

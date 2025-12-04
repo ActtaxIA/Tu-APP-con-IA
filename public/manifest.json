@@ -1,0 +1,18 @@
+{
+  "name": "Tu APP con IA",
+  "short_name": "TuAPPconIA",
+  "description": "Agencia de marketing digital en Murcia. Creamos webs y apps con inteligencia artificial.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f0e1",
+  "theme_color": "#e41e31",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
