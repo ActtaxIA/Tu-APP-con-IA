@@ -133,24 +133,37 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [theme, mounted])
 
-  // Función para determinar si un color es oscuro
-  const isColorDark = (hex: string): boolean => {
+  // Función para determinar si usar texto blanco o negro sobre un color
+  // Retorna true si el color necesita texto BLANCO, false si necesita texto NEGRO
+  const needsWhiteText = (hex: string): boolean => {
     const r = parseInt(hex.slice(1, 3), 16)
     const g = parseInt(hex.slice(3, 5), 16)
     const b = parseInt(hex.slice(5, 7), 16)
-    // Fórmula de luminosidad
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-    return luminance < 0.5
+    
+    // Calcular luminosidad relativa (WCAG)
+    const rsRGB = r / 255
+    const gsRGB = g / 255
+    const bsRGB = b / 255
+    
+    const rL = rsRGB <= 0.03928 ? rsRGB / 12.92 : Math.pow((rsRGB + 0.055) / 1.055, 2.4)
+    const gL = gsRGB <= 0.03928 ? gsRGB / 12.92 : Math.pow((gsRGB + 0.055) / 1.055, 2.4)
+    const bL = bsRGB <= 0.03928 ? bsRGB / 12.92 : Math.pow((bsRGB + 0.055) / 1.055, 2.4)
+    
+    const luminance = 0.2126 * rL + 0.7152 * gL + 0.0722 * bL
+    
+    // Si la luminosidad es menor a 0.179, necesita texto blanco
+    // Este umbral está basado en WCAG para ratio de contraste 4.5:1
+    return luminance < 0.179
   }
 
   const applyColorScheme = (index: number) => {
     const scheme = colorSchemes[index]
     
     // REGLA SIMPLE: Fondo oscuro = texto blanco, Fondo claro = texto negro
-    const textOnBackground = isColorDark(scheme.background) ? '#ffffff' : '#000000'
-    const textOnSurface = isColorDark(scheme.surface) ? '#ffffff' : '#000000'
-    const textOnPrimary = isColorDark(scheme.primary) ? '#ffffff' : '#000000'
-    const textOnSecondary = isColorDark(scheme.secondary) ? '#ffffff' : '#000000'
+    const textOnBackground = needsWhiteText(scheme.background) ? '#ffffff' : '#000000'
+    const textOnSurface = needsWhiteText(scheme.surface) ? '#ffffff' : '#000000'
+    const textOnPrimary = needsWhiteText(scheme.primary) ? '#ffffff' : '#000000'
+    const textOnSecondary = needsWhiteText(scheme.secondary) ? '#ffffff' : '#000000'
     
     // Aplicar variables CSS con !important usando style tag
     let styleTag = document.getElementById('color-scheme-override')
@@ -223,11 +236,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         color: ${textOnBackground} !important;
       }
       
-      /* HERO LABEL - fondo primary, texto siempre blanco */
+      /* HERO LABEL - fondo primary, texto según ese fondo */
       .hero-label {
         background-color: ${scheme.primary} !important;
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
+        color: ${textOnPrimary} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
       }
       
       /* BOTONES - fondo primary, texto según ese fondo */
@@ -290,7 +303,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       }
       
       input::placeholder, textarea::placeholder {
-        color: ${isColorDark(scheme.surface) ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} !important;
+        color: ${needsWhiteText(scheme.surface) ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} !important;
       }
       
       form {
@@ -324,6 +337,56 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         background-color: ${scheme.primary} !important;
         color: ${textOnPrimary} !important;
         -webkit-text-fill-color: ${textOnPrimary} !important;
+      }
+      
+      /* NOTA/CAJA ESPECIAL - fondo surface, texto según ese fondo */
+      div[style*="surface"], div[style*="border"] {
+        color: ${textOnSurface} !important;
+        -webkit-text-fill-color: ${textOnSurface} !important;
+      }
+      
+      /* TODOS LOS TEXTOS EN FONDO PRINCIPAL */
+      body > *, section > *, main > *, [class*="hero"] > * {
+        color: ${textOnBackground} !important;
+      }
+      
+      /* OVERRIDE PARA ELEMENTOS CON FONDO PRIMARY */
+      [style*="primary"], [style*="${scheme.primary}"] {
+        color: ${textOnPrimary} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
+      }
+      
+      /* OVERRIDE PARA ELEMENTOS CON FONDO SECONDARY */
+      [style*="secondary"], [style*="${scheme.secondary}"] {
+        color: ${textOnSecondary} !important;
+        -webkit-text-fill-color: ${textOnSecondary} !important;
+      }
+      
+      /* OVERRIDE PARA ELEMENTOS CON FONDO SURFACE */
+      [style*="surface"], [style*="${scheme.surface}"] {
+        color: ${textOnSurface} !important;
+        -webkit-text-fill-color: ${textOnSurface} !important;
+      }
+      
+      /* FORZAR CONTRASTE EN TODOS LOS ELEMENTOS DE TEXTO */
+      * {
+        --contrast-text: ${textOnBackground};
+      }
+      
+      /* ASEGURAR QUE MOTION DIVS HEREDEN CORRECTAMENTE */
+      [class*="motion"], motion, [data-framer] {
+        color: inherit !important;
+      }
+      
+      /* CAJA DE NOTA "no somos como los demás" */
+      div[style*="var(--color-surface)"] {
+        background-color: ${scheme.surface} !important;
+        color: ${textOnSurface} !important;
+      }
+      
+      div[style*="var(--color-surface)"] * {
+        color: ${textOnSurface} !important;
+        -webkit-text-fill-color: ${textOnSurface} !important;
       }
     `
   }
