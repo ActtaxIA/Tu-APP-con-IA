@@ -133,15 +133,24 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [theme, mounted])
 
+  // Función para determinar si un color es oscuro
+  const isColorDark = (hex: string): boolean => {
+    const r = parseInt(hex.slice(1, 3), 16)
+    const g = parseInt(hex.slice(3, 5), 16)
+    const b = parseInt(hex.slice(5, 7), 16)
+    // Fórmula de luminosidad
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+    return luminance < 0.5
+  }
+
   const applyColorScheme = (index: number) => {
     const scheme = colorSchemes[index]
     
-    // Determinar colores de texto según el fondo - SIEMPRE BUEN CONTRASTE
-    const textOnPrimary = '#ffffff' // Blanco siempre funciona en colores primarios vivos
-    const textOnSecondary = '#000000' // Negro para secundarios que suelen ser claros
-    const highlightText = '#ffffff' // Blanco puro para highlights
-    const cardText = scheme.isDark ? '#ffffff' : '#1a1a1a'
-    const cardBg = scheme.isDark ? scheme.surface : '#ffffff'
+    // REGLA SIMPLE: Fondo oscuro = texto blanco, Fondo claro = texto negro
+    const textOnBackground = isColorDark(scheme.background) ? '#ffffff' : '#000000'
+    const textOnSurface = isColorDark(scheme.surface) ? '#ffffff' : '#000000'
+    const textOnPrimary = isColorDark(scheme.primary) ? '#ffffff' : '#000000'
+    const textOnSecondary = isColorDark(scheme.secondary) ? '#ffffff' : '#000000'
     
     // Aplicar variables CSS con !important usando style tag
     let styleTag = document.getElementById('color-scheme-override')
@@ -151,86 +160,89 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       document.head.appendChild(styleTag)
     }
     
-    // CSS muy agresivo que sobrescribe TODO con contraste garantizado
+    // CSS muy agresivo - REGLA SIMPLE: fondo oscuro=texto blanco, fondo claro=texto negro
     styleTag.textContent = `
       :root {
         --color-background: ${scheme.background} !important;
         --color-surface: ${scheme.surface} !important;
-        --color-text: ${scheme.text} !important;
+        --color-text: ${textOnBackground} !important;
         --color-primary: ${scheme.primary} !important;
         --color-secondary: ${scheme.secondary} !important;
         --color-accent: ${scheme.accent} !important;
       }
       
-      /* FONDO PRINCIPAL */
+      /* FONDO PRINCIPAL - texto según fondo */
       body {
         background-color: ${scheme.background} !important;
-        color: ${scheme.text} !important;
+        color: ${textOnBackground} !important;
       }
       
-      /* SECCIONES */
+      /* SECCIONES - heredan del fondo principal */
       section, main, [class*="hero"], header, div[class*="min-h"] {
         background-color: ${scheme.background} !important;
-        color: ${scheme.text} !important;
+        color: ${textOnBackground} !important;
       }
       
-      /* NAVEGACIÓN - Fondo secondary con texto que contraste */
+      /* NAVEGACIÓN - fondo secondary, texto según ese fondo */
       nav {
         background-color: ${scheme.secondary} !important;
       }
       
       nav *, nav a, nav button, nav span, nav div {
         color: ${textOnSecondary} !important;
+        -webkit-text-fill-color: ${textOnSecondary} !important;
       }
       
-      /* FOOTER - Fondo primary */
+      /* FOOTER - fondo primary, texto según ese fondo */
       footer {
         background-color: ${scheme.primary} !important;
       }
       
       footer *, footer a, footer p, footer span, footer div {
         color: ${textOnPrimary} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
       }
       
-      /* TÍTULOS - Siempre contrastan con fondo principal */
+      /* TÍTULOS - texto según fondo principal */
       h1, h2, h3, h4, h5, h6 {
-        color: ${scheme.text} !important;
+        color: ${textOnBackground} !important;
         text-shadow: none !important;
+        -webkit-text-fill-color: ${textOnBackground} !important;
       }
       
-      /* HIGHLIGHT EN TÍTULOS - Fondo primary con texto blanco siempre */
+      /* HIGHLIGHT EN TÍTULOS - fondo primary, texto según ese fondo */
       h1 span, .highlight, [class*="highlight"] {
         background-color: ${scheme.primary} !important;
-        color: ${highlightText} !important;
+        color: ${textOnPrimary} !important;
         text-shadow: none !important;
-        -webkit-text-fill-color: ${highlightText} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
       }
       
-      /* TEXTO NORMAL */
+      /* TEXTO NORMAL - según fondo principal */
       p, li, span:not(.text-xl):not(.text-5xl):not([class*="icon"]) {
-        color: ${scheme.text} !important;
+        color: ${textOnBackground} !important;
       }
       
-      /* BOTONES - Primary con texto blanco siempre */
+      /* BOTONES - fondo primary, texto según ese fondo */
       button:not(.theme-switcher), 
       [type="submit"],
       a[class*="btn"],
       div[class*="btn"] {
         background-color: ${scheme.primary} !important;
-        color: #ffffff !important;
-        border-color: ${scheme.text} !important;
-        -webkit-text-fill-color: #ffffff !important;
+        color: ${textOnPrimary} !important;
+        border-color: ${textOnBackground} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
       }
       
-      /* TARJETAS - Surface con texto que contraste */
+      /* TARJETAS - fondo surface, texto según ese fondo */
       .grid > div, 
       [class*="card"], 
       [class*="service"],
       div[class*="p-8"],
       motion > div {
-        background-color: ${cardBg} !important;
-        color: ${cardText} !important;
-        border-color: ${scheme.isDark ? scheme.primary : scheme.text} !important;
+        background-color: ${scheme.surface} !important;
+        color: ${textOnSurface} !important;
+        border-color: ${scheme.primary} !important;
       }
       
       .grid > div *, 
@@ -238,51 +250,51 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       .grid > div h3, 
       .grid > div p,
       .grid > div span:not(.text-5xl) {
-        color: ${cardText} !important;
+        color: ${textOnSurface} !important;
+        -webkit-text-fill-color: ${textOnSurface} !important;
         background-color: transparent !important;
       }
       
-      /* STATS */
+      /* STATS - fondo surface, texto según ese fondo */
       .stat, [class*="stat"]:not(.stat-number):not(.stat-label) {
-        background-color: ${cardBg} !important;
-        border-color: ${scheme.isDark ? scheme.primary : scheme.text} !important;
+        background-color: ${scheme.surface} !important;
+        border-color: ${scheme.primary} !important;
       }
       
       .stat-number {
         color: ${scheme.primary} !important;
+        -webkit-text-fill-color: ${scheme.primary} !important;
         background: none !important;
         -webkit-background-clip: unset !important;
         background-clip: unset !important;
       }
       
       .stat-label {
-        color: ${cardText} !important;
+        color: ${textOnSurface} !important;
+        -webkit-text-fill-color: ${textOnSurface} !important;
       }
       
-      /* FORMULARIOS */
+      /* FORMULARIOS - fondo según tema */
       input, textarea {
-        background-color: ${scheme.isDark ? scheme.background : '#ffffff'} !important;
-        color: ${scheme.text} !important;
-        border-color: ${scheme.text} !important;
+        background-color: ${scheme.surface} !important;
+        color: ${textOnSurface} !important;
+        border-color: ${textOnBackground} !important;
+        -webkit-text-fill-color: ${textOnSurface} !important;
       }
       
       input::placeholder, textarea::placeholder {
-        color: ${scheme.isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} !important;
+        color: ${isColorDark(scheme.surface) ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)'} !important;
       }
       
       form {
-        background-color: ${cardBg} !important;
-      }
-      
-      form::before {
-        color: ${cardText} !important;
+        background-color: ${scheme.surface} !important;
       }
       
       label {
-        color: ${cardText} !important;
+        color: ${textOnSurface} !important;
       }
       
-      /* LINKS */
+      /* LINKS - color primary */
       a:not(nav a):not(footer a) {
         color: ${scheme.primary} !important;
       }
@@ -298,13 +310,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       }
       ::-webkit-scrollbar-thumb {
         background: ${scheme.primary} !important;
-        border-color: ${scheme.text} !important;
       }
       
-      /* DECORACIONES */
+      /* DECORACIONES - fondo primary, texto según ese fondo */
       [class*="sticker"], [class*="badge"]:not(footer *) {
         background-color: ${scheme.primary} !important;
         color: ${textOnPrimary} !important;
+        -webkit-text-fill-color: ${textOnPrimary} !important;
       }
     `
   }
