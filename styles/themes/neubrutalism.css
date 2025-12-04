@@ -381,17 +381,91 @@
    FOOTER
    ============================================ */
 [data-theme="neubrutalism"] footer {
-  padding: 40px !important;
+  padding: 60px 40px !important;
   background: var(--blue) !important;
   color: var(--white) !important;
   border-top: 3px solid var(--black) !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
 }
 
-[data-theme="neubrutalism"] footer * {
+/* Footer grid - columnas con fondo de color */
+[data-theme="neubrutalism"] footer .grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+}
+
+[data-theme="neubrutalism"] footer .grid > div {
+  background: var(--yellow) !important;
+  color: var(--black) !important;
+  border: 3px solid var(--black) !important;
+  padding: 30px !important;
+  box-shadow: 6px 6px 0 var(--black) !important;
+}
+
+[data-theme="neubrutalism"] footer .grid > div:nth-child(2) {
+  background: var(--pink) !important;
+}
+
+[data-theme="neubrutalism"] footer .grid > div:nth-child(3) {
+  background: var(--green) !important;
+}
+
+[data-theme="neubrutalism"] footer .grid > div:nth-child(4) {
+  background: var(--white) !important;
+}
+
+/* Títulos del footer */
+[data-theme="neubrutalism"] footer h2,
+[data-theme="neubrutalism"] footer h3 {
+  font-family: 'Darker Grotesque', sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 900 !important;
+  color: var(--black) !important;
+  background: var(--red) !important;
+  padding: 5px 15px !important;
+  display: inline-block !important;
+  margin-bottom: 20px !important;
+  border: 2px solid var(--black) !important;
+}
+
+/* Texto y links del footer */
+[data-theme="neubrutalism"] footer p,
+[data-theme="neubrutalism"] footer span {
+  color: var(--black) !important;
+}
+
+[data-theme="neubrutalism"] footer a {
+  color: var(--black) !important;
+  background: var(--white) !important;
+  padding: 3px 8px !important;
+  border: 2px solid var(--black) !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  margin: 3px 0 !important;
+  transition: all 0.1s !important;
+}
+
+[data-theme="neubrutalism"] footer a:hover {
+  background: var(--black) !important;
   color: var(--white) !important;
+}
+
+/* Lista del footer */
+[data-theme="neubrutalism"] footer ul {
+  list-style: none !important;
+  padding: 0 !important;
+}
+
+[data-theme="neubrutalism"] footer ul li {
+  margin-bottom: 8px !important;
+}
+
+/* Copyright */
+[data-theme="neubrutalism"] footer > p {
+  text-align: center !important;
+  margin-top: 40px !important;
+  color: var(--white) !important;
+  background: transparent !important;
 }
 
 /* ============================================
