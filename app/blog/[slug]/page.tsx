@@ -60,6 +60,227 @@ Scroll-triggered animations, parallax, y micro-interacciones que hacen que naveg
 Webs optimizadas que consumen menos energía. Dark modes, imágenes comprimidas, y código eficiente.
     `,
   },
+  'por-que-necesitas-app-movil': {
+    title: 'Por qué tu negocio necesita una app móvil',
+    date: '2024-03-05T10:00:00Z',
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200',
+    content: `
+El 80% del tráfico web ya viene de dispositivos móviles. Pero tener una web responsive no siempre es suficiente. A veces, tu negocio necesita dar el salto a una aplicación nativa.
+
+## ¿Web móvil o app nativa?
+
+No todas las empresas necesitan una app. Pero hay señales claras de que podría ser el momento:
+
+- Tus usuarios acceden frecuentemente (varias veces por semana)
+- Necesitas funcionalidades offline
+- Quieres enviar notificaciones push
+- La experiencia requiere acceso a hardware del dispositivo (cámara, GPS, etc.)
+
+## Ventajas de una app nativa
+
+### Rendimiento superior
+
+Las apps nativas aprovechan al máximo el hardware del dispositivo. Animaciones fluidas, carga instantánea y una experiencia que una web simplemente no puede igualar.
+
+### Notificaciones push
+
+El arma secreta del engagement. Las notificaciones push tienen tasas de apertura del 90%, comparado con el 20% del email marketing.
+
+### Acceso offline
+
+Tus usuarios pueden seguir usando la app sin conexión. Fundamental para ciertas industrias como logística, ventas de campo o turismo.
+
+### Presencia en App Store
+
+Estar en la App Store o Google Play da credibilidad y facilita que nuevos usuarios te descubran.
+
+## El coste ya no es prohibitivo
+
+Gracias a tecnologías como React Native y Flutter, desarrollar para iOS y Android simultáneamente es más económico que nunca. En Tu APP con IA, creamos apps desde 5.000€.
+
+## ¿Es el momento para tu negocio?
+
+Si tus clientes usan tu servicio regularmente desde el móvil, si necesitas fidelización a largo plazo, o si tu competencia ya tiene app... probablemente sí.
+
+Contáctanos para una consulta gratuita donde analizamos si una app tiene sentido para tu caso específico.
+    `,
+  },
+  'seo-2024-que-funciona': {
+    title: 'SEO en 2024: Lo que realmente funciona',
+    date: '2024-02-28T10:00:00Z',
+    image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1200',
+    content: `
+Olvídate de los trucos baratos. El SEO en 2024 se basa en principios sólidos que no van a cambiar con el próximo update de Google.
+
+## Lo que ya NO funciona
+
+Antes de hablar de estrategias, enterremos mitos:
+
+- **Keyword stuffing**: Google lo detecta y penaliza
+- **Comprar enlaces**: Alto riesgo de penalización manual
+- **Contenido generado por IA sin supervisión**: Google lo identifica
+- **Textos ocultos**: Técnica de los 90 que ya no engaña a nadie
+
+## Lo que SÍ funciona en 2024
+
+### 1. Contenido de calidad real
+
+No contenido "optimizado para SEO". Contenido que realmente ayuda al usuario. Google mide el tiempo de permanencia, el porcentaje de rebote y si los usuarios vuelven a buscar lo mismo después de visitarte.
+
+### 2. E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
+
+Google quiere saber que quien escribe tiene experiencia real. Firma tus artículos, muestra credenciales, enlaza a fuentes autorizadas.
+
+### 3. SEO técnico impecable
+
+- Core Web Vitals optimizados (LCP < 2.5s, FID < 100ms, CLS < 0.1)
+- Mobile-first indexing
+- Estructura de datos Schema.org
+- Sitemap XML actualizado
+- HTTPS obligatorio
+
+### 4. SEO local para negocios físicos
+
+Si tienes ubicación física:
+- Google Business Profile optimizado
+- NAP (Nombre, Dirección, Teléfono) consistente en toda la web
+- Reviews auténticas de clientes
+- Contenido localizado
+
+### 5. Link building orgánico
+
+No compres enlaces. Créalos:
+- Contenido que la gente quiera compartir
+- Estudios y datos originales
+- Colaboraciones con otros sites
+- Digital PR
+
+## Nuestra estrategia en Tu APP con IA
+
+Combinamos SEO técnico con contenido de valor. No prometemos "primera página en 30 días" porque eso no existe. Pero sí garantizamos mejoras medibles en 3-6 meses.
+    `,
+  },
+  'chatbots-ia-guia-completa': {
+    title: 'Chatbots con IA: Guía completa para tu negocio',
+    date: '2024-02-20T10:00:00Z',
+    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200',
+    content: `
+Los chatbots con inteligencia artificial han evolucionado drásticamente. Ya no son esos bots frustrantes que solo entienden palabras clave exactas. Los chatbots modernos mantienen conversaciones naturales y resuelven problemas reales.
+
+## Tipos de chatbots
+
+### Chatbots basados en reglas
+
+Los más simples. Siguen flujos predefinidos tipo "si el usuario dice X, responde Y". Limitados pero predecibles.
+
+### Chatbots con NLP (Procesamiento de Lenguaje Natural)
+
+Entienden la intención detrás del mensaje, no solo palabras clave. Pueden manejar variaciones en cómo el usuario formula una pregunta.
+
+### Chatbots con IA generativa (GPT, Claude, etc.)
+
+El estado del arte. Mantienen conversaciones fluidas, entienden contexto, y pueden responder a preguntas no previstas.
+
+## Casos de uso probados
+
+### Atención al cliente 24/7
+
+El 67% de los consumidores prefieren resolver problemas sin hablar con un humano. Un chatbot bien implementado puede resolver el 80% de las consultas frecuentes.
+
+### Cualificación de leads
+
+El chatbot hace las preguntas iniciales, recoge información del potencial cliente, y solo pasa a un comercial los leads cualificados.
+
+### Reservas y citas
+
+Perfecto para clínicas, restaurantes, peluquerías... El usuario reserva sin intervención humana.
+
+### Soporte post-venta
+
+Estado de pedidos, seguimiento de envíos, gestión de devoluciones automatizada.
+
+## Cómo implementar un chatbot en tu web
+
+### Paso 1: Define el objetivo
+
+¿Reducir tickets de soporte? ¿Generar más leads? ¿Automatizar reservas? Un objetivo claro guía todo el desarrollo.
+
+### Paso 2: Mapea las conversaciones
+
+Identifica las preguntas más frecuentes. Diseña flujos de conversación. Prepara respuestas para casos límite.
+
+### Paso 3: Elige la tecnología
+
+Para chatbots simples, herramientas no-code como Tidio o Intercom. Para chatbots con IA avanzada, desarrollo a medida con OpenAI o Claude.
+
+### Paso 4: Entrena y mejora
+
+Un chatbot nunca está "terminado". Analiza las conversaciones, identifica fallos, y mejora continuamente.
+
+## Nuestros chatbots en Tu APP con IA
+
+Desarrollamos chatbots a medida integrados con tu CRM, tu sistema de reservas, o lo que necesites. Desde 2.000€ para implementaciones básicas.
+    `,
+  },
+  'futuro-ecommerce': {
+    title: 'El futuro del e-commerce: Tendencias que ya están aquí',
+    date: '2024-02-15T10:00:00Z',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200',
+    content: `
+El comercio electrónico evoluciona a velocidad de vértigo. Lo que era innovador hace dos años ahora es estándar. Te contamos las tendencias que están definiendo el e-commerce en 2024.
+
+## 1. Comercio conversacional
+
+Los clientes ya no quieren buscar en catálogos infinitos. Quieren preguntar "necesito un regalo para mi madre que le gusta la jardinería" y recibir recomendaciones personalizadas.
+
+Los chatbots con IA y los asistentes de voz están transformando cómo compramos online.
+
+## 2. Realidad aumentada
+
+¿Cómo queda este sofá en mi salón? ¿Me quedará bien esta camiseta? La realidad aumentada elimina la incertidumbre de comprar sin ver/tocar el producto.
+
+IKEA, Zara y Amazon ya lo implementan. Pronto será el estándar.
+
+## 3. Social commerce
+
+TikTok Shop, Instagram Shopping, Pinterest... Las redes sociales se están convirtiendo en canales de venta directa. El 30% de los usuarios de redes han comprado algo que descubrieron en su feed.
+
+## 4. Personalización extrema
+
+Netflix te recomienda series. Spotify, música. Tu tienda online debería recomendar productos igual de bien. La IA permite personalizar:
+
+- Productos mostrados en portada
+- Orden de resultados de búsqueda
+- Emails de recuperación de carrito
+- Descuentos personalizados
+
+## 5. Checkout sin fricción
+
+Cada paso adicional en el checkout = más abandonos. Las tendencias:
+
+- One-click checkout (Apple Pay, Google Pay, Shop Pay)
+- Compra como invitado siempre disponible
+- Autocompletado inteligente de direcciones
+- Múltiples opciones de pago (BNPL como Klarna gana fuerza)
+
+## 6. Sostenibilidad como diferenciador
+
+El 73% de los consumidores están dispuestos a cambiar sus hábitos de compra por el medio ambiente. Las tiendas que destacan:
+
+- Packaging sostenible
+- Compensación de huella de carbono
+- Productos de origen ético
+- Opciones de envío "lento" con menos emisiones
+
+## 7. Headless commerce
+
+Separar el frontend del backend permite crear experiencias de compra en cualquier canal: web, app, smartwatch, realidad virtual... El mismo catálogo y sistema de pedidos, infinitas interfaces.
+
+## ¿Tu tienda online está preparada?
+
+En Tu APP con IA desarrollamos tiendas online modernas con las últimas tecnologías. WooCommerce, Shopify, o desarrollo a medida. Consulta sin compromiso.
+    `,
+  },
 }
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {

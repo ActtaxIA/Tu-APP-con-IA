@@ -454,3 +454,106 @@
     font-size: 0.8rem !important;
   }
 }
+
+/* ============================================
+   CONTRASTE - Garantizar legibilidad en todas las variantes
+   (especialmente CRT Blue y otras con fondo oscuro)
+   ============================================ */
+
+/* Texto principal siempre claro */
+[data-theme="pixel"] p,
+[data-theme="pixel"] li,
+[data-theme="pixel"] span:not(.text-6xl):not(.text-5xl) {
+  color: #00ff00 !important;
+}
+
+/* Títulos y headings con colores brillantes */
+[data-theme="pixel"] h1 {
+  color: #00ff00 !important;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5) !important;
+}
+
+[data-theme="pixel"] h2 {
+  color: #ffff00 !important;
+}
+
+[data-theme="pixel"] h3 {
+  color: #00aaff !important;
+}
+
+/* Páginas de servicios detallados - contenido legible */
+[data-theme="pixel"] .max-w-4xl p,
+[data-theme="pixel"] .max-w-4xl li,
+[data-theme="pixel"] .max-w-4xl span {
+  color: #00ff00 !important;
+}
+
+[data-theme="pixel"] .max-w-4xl strong {
+  color: #00aaff !important;
+}
+
+[data-theme="pixel"] .max-w-4xl h1 {
+  color: #00ff00 !important;
+}
+
+[data-theme="pixel"] .max-w-4xl h2 {
+  color: #ffff00 !important;
+}
+
+/* Cards con fondo más oscuro para mejor contraste */
+[data-theme="pixel"] .card-surface,
+[data-theme="pixel"] [class*="card"] {
+  background: #0a0a0a !important;
+  border: 4px solid #00ff00 !important;
+}
+
+[data-theme="pixel"] .card-surface *,
+[data-theme="pixel"] [class*="card"] p,
+[data-theme="pixel"] [class*="card"] span {
+  color: #ffffff !important;
+}
+
+[data-theme="pixel"] .card-surface h3,
+[data-theme="pixel"] [class*="card"] h3 {
+  color: #00aaff !important;
+}
+
+/* Precios y números destacados */
+[data-theme="pixel"] .text-3xl,
+[data-theme="pixel"] [class*="price"] {
+  color: #ffff00 !important;
+}
+
+/* Links siempre visibles */
+[data-theme="pixel"] a:not(.main-header a) {
+  color: #00aaff !important;
+}
+
+[data-theme="pixel"] a:hover:not(.main-header a) {
+  color: #ffff00 !important;
+}
+
+/* Highlight en textos */
+[data-theme="pixel"] .highlight-primary {
+  background: #00ff00 !important;
+  color: #000000 !important;
+  padding: 5px 15px !important;
+}
+
+/* Botones siempre legibles */
+[data-theme="pixel"] .btn-primary,
+[data-theme="pixel"] button {
+  background: #00ff00 !important;
+  color: #000000 !important;
+}
+
+/* Footer legible */
+[data-theme="pixel"] footer,
+[data-theme="pixel"] footer * {
+  color: #00ff00 !important;
+}
+
+[data-theme="pixel"] footer h3,
+[data-theme="pixel"] footer h4 {
+  color: #00aaff !important;
+}
