@@ -3,15 +3,19 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
+const serviciosLinks = [
+  { href: '/servicios/diseno-web', label: 'Diseño Web' },
+  { href: '/servicios/aplicaciones-moviles', label: 'Apps Móviles' },
+  { href: '/servicios/inteligencia-artificial', label: 'Inteligencia Artificial' },
+  { href: '/servicios/marketing-digital', label: 'Marketing Digital' },
+  { href: '/servicios/branding', label: 'Branding' },
+  { href: '/servicios/tienda-online', label: 'Tienda Online' },
+]
+
 export default function Footer() {
   return (
-    <footer
-      className="py-16 px-6 md:px-10 text-center relative footer-primary"
-      style={{
-        background: 'var(--color-primary)',
-      }}
-    >
-      {/* Borde decorativo superior (efecto papel rasgado) */}
+    <footer className="py-16 px-6 md:px-10 relative footer-primary">
+      {/* Borde decorativo superior */}
       <div
         className="absolute top-0 left-0 right-0 h-5 -translate-y-full"
         style={{
@@ -25,66 +29,73 @@ export default function Footer() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        className="max-w-6xl mx-auto"
       >
-        {/* Logo */}
-        <h2
-          className="mb-4"
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '2rem',
-          }}
-        >
-          Tu APP con IA
-        </h2>
+        <div className="grid md:grid-cols-4 gap-8 mb-12">
+          {/* Logo y descripción */}
+          <div className="md:col-span-1">
+            <h2 className="mb-4" style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem' }}>
+              Tu APP con IA
+            </h2>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+              Agencia de marketing digital en Murcia. Webs, apps e inteligencia artificial.
+            </p>
+          </div>
 
-        {/* Ubicación */}
-        <p
-          className="mb-6"
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.9rem',
-          }}
-        >
-          MURCIA • 2024
-        </p>
+          {/* Servicios */}
+          <div className="md:col-span-1">
+            <h3 className="mb-4 font-bold" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem' }}>
+              SERVICIOS
+            </h3>
+            <ul className="space-y-2" style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem' }}>
+              {serviciosLinks.map((servicio) => (
+                <li key={servicio.href}>
+                  <Link href={servicio.href} className="hover:underline">
+                    {servicio.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Links */}
-        <div className="flex justify-center gap-8 mb-8">
-          <Link href="/servicios">
-            <span
-              className="hover:underline"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Servicios
-            </span>
-          </Link>
-          <Link href="/blog">
-            <span
-              className="hover:underline"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Blog
-            </span>
-          </Link>
-          <Link href="/contacto">
-            <span
-              className="hover:underline"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Contacto
-            </span>
-          </Link>
+          {/* Enlaces */}
+          <div className="md:col-span-1">
+            <h3 className="mb-4 font-bold" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem' }}>
+              ENLACES
+            </h3>
+            <ul className="space-y-2" style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem' }}>
+              <li><Link href="/" className="hover:underline">Inicio</Link></li>
+              <li><Link href="/servicios" className="hover:underline">Todos los servicios</Link></li>
+              <li><Link href="/blog" className="hover:underline">Blog</Link></li>
+              <li><Link href="/contacto" className="hover:underline">Contacto</Link></li>
+            </ul>
+          </div>
+
+          {/* Contacto */}
+          <div className="md:col-span-1">
+            <h3 className="mb-4 font-bold" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem' }}>
+              CONTACTO
+            </h3>
+            <ul className="space-y-2" style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem' }}>
+              <li>📍 Murcia, España</li>
+              <li>📧 hola@tuappconia.com</li>
+              <li>📱 +34 XXX XXX XXX</li>
+            </ul>
+          </div>
         </div>
 
-        {/* Frase */}
-        <p
-          style={{
-            fontFamily: 'var(--font-accent)',
-            fontSize: '1.5rem',
-          }}
-        >
-          hecho con las manos
-        </p>
+        {/* Línea divisoria */}
+        <div style={{ borderTop: '2px solid currentColor', opacity: 0.3, marginBottom: '1.5rem' }} />
+
+        {/* Copyright */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem' }}>
+            © 2024 Tu APP con IA. Todos los derechos reservados.
+          </p>
+          <p style={{ fontFamily: 'var(--font-accent)', fontSize: '1.2rem' }}>
+            hecho con las manos 🖐️
+          </p>
+        </div>
       </motion.div>
     </footer>
   )
