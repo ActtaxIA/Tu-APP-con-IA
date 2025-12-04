@@ -1,26 +1,33 @@
 /* ============================================
    TEMA: Y2K FUTURISM
    100% basado en referencias/18-y2k-futurism.html
+   Colores dinámicos con variantes
    ============================================ */
 
 [data-theme="y2k"] {
-  /* Variables base del tema - pueden ser sobrescritas por variantes */
-  --chrome: linear-gradient(180deg, #e8e8e8 0%, #b8b8b8 25%, #e8e8e8 50%, #a0a0a0 75%, #d0d0d0 100%);
-  --silver: var(--theme-primary, #c0c0c0);
-  --cyber-blue: var(--theme-secondary, #00d4ff);
-  --hot-pink: var(--theme-accent, #ff1493);
-  --lime: #32cd32;
-  --purple: #9400d3;
-  --dark: var(--theme-background, #1a1a2e);
-  --surface: var(--theme-surface, #1a1a2e);
-  --text-color: var(--theme-text, #ffffff);
+  /* Variables dinámicas - cambian con las variantes de color */
+  --y2k-primary: var(--theme-primary, #00d4ff);
+  --y2k-secondary: var(--theme-secondary, #ff1493);
+  --y2k-accent: var(--theme-accent, #32cd32);
+  --y2k-background: var(--theme-background, #1a1a2e);
+  --y2k-surface: var(--theme-surface, #16213e);
+  --y2k-text: var(--theme-text, #ffffff);
+  
+  /* Chrome gradient dinámico basado en color primario */
+  --chrome: linear-gradient(180deg, 
+    color-mix(in srgb, var(--y2k-primary) 20%, #e8e8e8) 0%, 
+    color-mix(in srgb, var(--y2k-primary) 40%, #a0a0a0) 50%, 
+    color-mix(in srgb, var(--y2k-primary) 20%, #d0d0d0) 100%);
 }
 
-/* BODY - Fondo espacial */
+/* BODY - Fondo espacial dinámico */
 [data-theme="y2k"] body {
   font-family: 'Exo 2', sans-serif !important;
-  background: linear-gradient(135deg, var(--dark) 0%, color-mix(in srgb, var(--dark), #0f3460 50%) 50%, color-mix(in srgb, var(--dark), #0f3460 80%) 100%) !important;
-  color: var(--text-color) !important;
+  background: linear-gradient(135deg, 
+    var(--y2k-background) 0%, 
+    color-mix(in srgb, var(--y2k-background), var(--y2k-primary) 15%) 50%, 
+    color-mix(in srgb, var(--y2k-background), var(--y2k-secondary) 10%) 100%) !important;
+  color: var(--y2k-text) !important;
   min-height: 100vh !important;
 }
 
@@ -85,7 +92,7 @@
 }
 
 [data-theme="y2k"] .main-header a:hover { 
-  color: var(--hot-pink) !important; 
+  color: var(--y2k-secondary) !important; 
 }
 
 /* Mobile menu - solo móvil */
@@ -103,13 +110,13 @@
 /* Breadcrumb */
 [data-theme="y2k"] .breadcrumb {
   font-family: 'Orbitron', sans-serif !important;
-  color: var(--hot-pink) !important;
+  color: var(--y2k-secondary) !important;
 }
 [data-theme="y2k"] .breadcrumb a {
-  color: var(--electric-blue) !important;
+  color: var(--y2k-primary) !important;
 }
 [data-theme="y2k"] .breadcrumb a:hover {
-  color: var(--hot-pink) !important;
+  color: var(--y2k-secondary) !important;
 }
 
 /* ============================================
@@ -128,7 +135,7 @@
   background: transparent !important;
 }
 
-/* Badge chrome "⚡ MURCIA DIGITAL AGENCY ⚡" */
+/* Badge chrome */
 [data-theme="y2k"] .hero-label {
   display: inline-block !important;
   padding: 10px 30px !important;
@@ -174,10 +181,10 @@
 }
 
 [data-theme="y2k"] .hero-webs {
-  color: var(--hot-pink) !important;
+  color: var(--y2k-secondary) !important;
   text-shadow: 
-    0 0 10px var(--hot-pink),
-    0 0 20px var(--hot-pink) !important;
+    0 0 10px var(--y2k-secondary),
+    0 0 20px var(--y2k-secondary) !important;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -185,11 +192,11 @@
 }
 
 [data-theme="y2k"] .hero-conia {
-  color: var(--cyber-blue) !important;
+  color: var(--y2k-primary) !important;
   text-shadow: 
-    0 0 10px var(--cyber-blue),
-    0 0 20px var(--cyber-blue),
-    0 0 40px var(--cyber-blue) !important;
+    0 0 10px var(--y2k-primary),
+    0 0 20px var(--y2k-primary),
+    0 0 40px var(--y2k-primary) !important;
   display: block !important;
 }
 
@@ -205,7 +212,7 @@
   text-align: center !important;
 }
 
-/* BOTONES - Cyber glow style */
+/* BOTONES - Cyber glow style con colores dinámicos */
 [data-theme="y2k"] button,
 [data-theme="y2k"] .btn-primary {
   font-family: 'Orbitron', monospace !important;
@@ -213,21 +220,21 @@
   font-weight: 700 !important;
   text-transform: uppercase !important;
   padding: 18px 45px !important;
-  background: linear-gradient(180deg, var(--cyber-blue), #0099cc) !important;
+  background: linear-gradient(180deg, var(--y2k-primary), color-mix(in srgb, var(--y2k-primary), #000 30%)) !important;
   color: #fff !important;
   border: 3px solid #fff !important;
   border-radius: 30px !important;
   cursor: pointer !important;
   transition: all 0.3s !important;
   box-shadow: 
-    0 0 20px rgba(0, 212, 255, 0.5),
+    0 0 20px color-mix(in srgb, var(--y2k-primary), transparent 50%),
     inset 0 2px 0 rgba(255,255,255,0.3) !important;
 }
 
 [data-theme="y2k"] button:hover,
 [data-theme="y2k"] .btn-primary:hover {
   box-shadow: 
-    0 0 40px rgba(0, 212, 255, 0.8),
+    0 0 40px color-mix(in srgb, var(--y2k-primary), transparent 20%),
     inset 0 2px 0 rgba(255,255,255,0.3) !important;
   transform: scale(1.05) !important;
 }
@@ -241,11 +248,11 @@
 
 [data-theme="y2k"] .main-header button {
   padding: 8px 20px !important;
-  background: linear-gradient(180deg, var(--hot-pink), #c71585) !important;
+  background: linear-gradient(180deg, var(--y2k-secondary), color-mix(in srgb, var(--y2k-secondary), #000 30%)) !important;
   border: 2px solid #fff !important;
   border-radius: 20px !important;
   font-size: 0.7rem !important;
-  box-shadow: 0 0 15px rgba(255, 20, 147, 0.5) !important;
+  box-shadow: 0 0 15px color-mix(in srgb, var(--y2k-secondary), transparent 50%) !important;
 }
 
 /* ============================================
@@ -261,34 +268,87 @@
 /* TÍTULOS DE SECCIÓN - Chrome text */
 [data-theme="y2k"] h2 {
   font-family: 'Orbitron', monospace !important;
-  font-size: 3rem !important;
+  font-size: 2rem !important;
   font-weight: 900 !important;
-  text-align: center !important;
-  margin-bottom: 60px !important;
-  background: var(--chrome) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
+  margin-bottom: 30px !important;
+  color: var(--y2k-text) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
 }
 
 [data-theme="y2k"] h2::before,
 [data-theme="y2k"] h2::after { content: none !important; }
+
+/* Highlight del texto "HACEMOS" en títulos */
+[data-theme="y2k"] h2 .highlight-primary,
+[data-theme="y2k"] .highlight-primary {
+  background: linear-gradient(180deg, var(--y2k-secondary), color-mix(in srgb, var(--y2k-secondary), #000 30%)) !important;
+  color: #fff !important;
+  padding: 5px 20px !important;
+  border-radius: 10px !important;
+  display: inline-block !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--y2k-secondary), transparent 50%) !important;
+}
+
+/* ============================================
+   CONTENIDO DE PÁGINAS DE SERVICIO
+   ============================================ */
+[data-theme="y2k"] ul {
+  list-style: none !important;
+  padding: 0 !important;
+}
+
+[data-theme="y2k"] ul li {
+  color: var(--y2k-text) !important;
+  padding: 10px 15px !important;
+  margin-bottom: 8px !important;
+  background: linear-gradient(90deg, 
+    color-mix(in srgb, var(--y2k-primary), transparent 80%), 
+    transparent) !important;
+  border-left: 3px solid var(--y2k-primary) !important;
+  border-radius: 0 10px 10px 0 !important;
+  font-size: 1rem !important;
+}
+
+[data-theme="y2k"] ol {
+  list-style: none !important;
+  padding: 0 !important;
+  counter-reset: step-counter !important;
+}
+
+[data-theme="y2k"] ol li {
+  color: var(--y2k-text) !important;
+  padding: 15px 20px !important;
+  margin-bottom: 10px !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 15px !important;
+  font-size: 1rem !important;
+}
+
+[data-theme="y2k"] ol li strong {
+  color: var(--y2k-primary) !important;
+}
 
 /* ============================================
    GRID DE SERVICIOS
    ============================================ */
 [data-theme="y2k"] .grid {
   display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
   gap: 25px !important;
   max-width: 1100px !important;
   margin: 0 auto !important;
 }
 
-/* TARJETAS - Glass morphism */
+/* TARJETAS - Glass morphism con colores dinámicos */
 [data-theme="y2k"] .grid > div {
-  background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)) !important;
-  border: 2px solid rgba(255,255,255,0.2) !important;
+  background: linear-gradient(180deg, 
+    color-mix(in srgb, var(--y2k-primary), transparent 90%), 
+    color-mix(in srgb, var(--y2k-secondary), transparent 95%)) !important;
+  border: 2px solid color-mix(in srgb, var(--y2k-primary), transparent 70%) !important;
   border-radius: 25px !important;
   padding: 40px 25px !important;
   text-align: center !important;
@@ -301,8 +361,8 @@
 [data-theme="y2k"] .grid > div::before { content: none !important; }
 
 [data-theme="y2k"] .grid > div:hover {
-  border-color: var(--cyber-blue) !important;
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3) !important;
+  border-color: var(--y2k-primary) !important;
+  box-shadow: 0 0 30px color-mix(in srgb, var(--y2k-primary), transparent 70%) !important;
   transform: translateY(-10px) !important;
 }
 
@@ -325,7 +385,7 @@
   font-size: 1.1rem !important;
   font-weight: 700 !important;
   margin-bottom: 15px !important;
-  color: var(--cyber-blue) !important;
+  color: var(--y2k-primary) !important;
   background: none !important;
   border: none !important;
   padding: 0 !important;
@@ -344,7 +404,7 @@
 }
 
 /* ============================================
-   STATS - Chrome background
+   STATS - Chrome background dinámico
    ============================================ */
 [data-theme="y2k"] [class*="stats"],
 [data-theme="y2k"] .section-inverted {
@@ -369,7 +429,7 @@
   font-family: 'Orbitron', monospace !important;
   font-size: 3rem !important;
   font-weight: 900 !important;
-  background: linear-gradient(180deg, var(--hot-pink), var(--purple)) !important;
+  background: linear-gradient(180deg, var(--y2k-secondary), var(--y2k-accent)) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -383,13 +443,26 @@
 }
 
 /* ============================================
+   CARD SURFACE para precios
+   ============================================ */
+[data-theme="y2k"] .card-surface {
+  background: linear-gradient(180deg, 
+    color-mix(in srgb, var(--y2k-surface), var(--y2k-primary) 10%), 
+    var(--y2k-surface)) !important;
+  border: 2px solid color-mix(in srgb, var(--y2k-primary), transparent 50%) !important;
+  border-radius: 25px !important;
+}
+
+/* ============================================
    FORMULARIO - Glass container
    ============================================ */
 [data-theme="y2k"] form {
   max-width: 500px !important;
   margin: 0 auto !important;
-  background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)) !important;
-  border: 2px solid rgba(255,255,255,0.2) !important;
+  background: linear-gradient(180deg, 
+    color-mix(in srgb, var(--y2k-primary), transparent 90%), 
+    color-mix(in srgb, var(--y2k-secondary), transparent 95%)) !important;
+  border: 2px solid color-mix(in srgb, var(--y2k-primary), transparent 70%) !important;
   border-radius: 30px !important;
   padding: 50px 40px !important;
   backdrop-filter: blur(10px) !important;
@@ -408,7 +481,7 @@
   font-family: 'Exo 2', sans-serif !important;
   font-size: 1rem !important;
   background: rgba(255,255,255,0.1) !important;
-  border: 2px solid rgba(255,255,255,0.3) !important;
+  border: 2px solid color-mix(in srgb, var(--y2k-primary), transparent 50%) !important;
   border-radius: 15px !important;
   color: #fff !important;
 }
@@ -416,8 +489,8 @@
 [data-theme="y2k"] input:focus, 
 [data-theme="y2k"] textarea:focus {
   outline: none !important;
-  border-color: var(--cyber-blue) !important;
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3) !important;
+  border-color: var(--y2k-primary) !important;
+  box-shadow: 0 0 15px color-mix(in srgb, var(--y2k-primary), transparent 70%) !important;
 }
 
 [data-theme="y2k"] input::placeholder,
@@ -433,12 +506,17 @@
   text-align: center !important;
   position: relative !important;
   z-index: 1 !important;
-  border-top: 1px solid rgba(255,255,255,0.1) !important;
+  border-top: 1px solid color-mix(in srgb, var(--y2k-primary), transparent 80%) !important;
   background: transparent !important;
 }
 
-[data-theme="y2k"] footer * { 
-  color: var(--cyber-blue) !important; 
+[data-theme="y2k"] footer h2,
+[data-theme="y2k"] footer h3 { 
+  color: var(--y2k-primary) !important; 
+}
+
+[data-theme="y2k"] footer a { 
+  color: var(--y2k-secondary) !important; 
 }
 
 [data-theme="y2k"] footer p {
@@ -446,13 +524,51 @@
   color: rgba(255,255,255,0.5) !important;
 }
 
+/* Footer grid override - no aplicar estilos de tarjeta */
+[data-theme="y2k"] footer .grid > div {
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+[data-theme="y2k"] footer .grid > div:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="y2k"] footer ul li {
+  background: transparent !important;
+  border: none !important;
+  padding: 5px 0 !important;
+}
+
+/* ============================================
+   BLOG
+   ============================================ */
+[data-theme="y2k"] article {
+  color: var(--y2k-text) !important;
+}
+
+[data-theme="y2k"] article p {
+  color: rgba(255,255,255,0.85) !important;
+  line-height: 1.8 !important;
+}
+
+[data-theme="y2k"] article h2 {
+  color: var(--y2k-primary) !important;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--y2k-primary), transparent 70%) !important;
+}
+
+[data-theme="y2k"] article h3 {
+  color: var(--y2k-secondary) !important;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 968px) {
-  [data-theme="y2k"] .grid { 
-    grid-template-columns: repeat(2, 1fr) !important; 
-  }
   [data-theme="y2k"] .main-header { 
     padding: 12px 20px !important;
   }
