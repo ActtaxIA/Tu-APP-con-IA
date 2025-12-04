@@ -323,13 +323,13 @@
 }
 
 /* ============================================
-   STATS - Stamps on black
+   STATS - Cajas estilo punk con contraste fijo
    ============================================ */
 [data-theme="punk"] [class*="stats"],
 [data-theme="punk"] .section-inverted {
   padding: 80px 40px !important;
-  background: var(--black) !important;
-  color: var(--paper) !important;
+  background: #1a1a1a !important; /* Fondo negro fijo */
+  color: #f5f0e1 !important;
   position: relative !important;
 }
 
@@ -337,23 +337,38 @@
   padding-top: 30px !important;
 }
 
+/* Stats con fondos alternados para contraste */
 [data-theme="punk"] .stat {
   text-align: center !important;
   padding: 30px !important;
-  border: 3px dashed var(--paper) !important;
+  border: 3px solid #f5f0e1 !important;
   transform: rotate(1deg) !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  background: #f5f0e1 !important; /* Fondo claro */
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.5) !important;
 }
 
-[data-theme="punk"] .stat:nth-child(2) { transform: rotate(-2deg) !important; }
-[data-theme="punk"] .stat:nth-child(3) { transform: rotate(1.5deg) !important; }
-[data-theme="punk"] .stat:nth-child(4) { transform: rotate(-1deg) !important; }
+[data-theme="punk"] .stat:nth-child(1) { transform: rotate(-2deg) !important; }
+[data-theme="punk"] .stat:nth-child(2) { 
+  transform: rotate(1deg) !important; 
+  background: var(--red) !important;
+  border-color: #1a1a1a !important;
+}
+[data-theme="punk"] .stat:nth-child(3) { transform: rotate(-1.5deg) !important; }
+[data-theme="punk"] .stat:nth-child(4) { 
+  transform: rotate(2deg) !important; 
+  background: var(--yellow) !important;
+  border-color: #1a1a1a !important;
+}
 
+/* Números y labels con colores fijos */
 [data-theme="punk"] .stat-number {
   font-family: 'Permanent Marker', cursive !important;
   font-size: 3rem !important;
-  color: var(--yellow) !important;
+  color: #1a1a1a !important; /* Negro fijo */
+}
+
+[data-theme="punk"] .stat:nth-child(2) .stat-number {
+  color: #ffffff !important; /* Blanco en fondo rojo */
 }
 
 [data-theme="punk"] .stat-label {
@@ -361,7 +376,11 @@
   font-size: 0.8rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
-  color: var(--paper) !important;
+  color: #1a1a1a !important; /* Negro fijo */
+}
+
+[data-theme="punk"] .stat:nth-child(2) .stat-label {
+  color: #ffffff !important; /* Blanco en fondo rojo */
 }
 
 /* ============================================
@@ -414,13 +433,13 @@
 }
 
 /* ============================================
-   FOOTER - Ripped Paper
+   FOOTER - Ripped Paper con colores fijos
    ============================================ */
 [data-theme="punk"] footer {
   padding: 60px 40px !important;
-  background: var(--red) !important;
+  background: #e41e31 !important; /* Rojo fijo */
   color: white !important;
-  text-align: center !important;
+  text-align: left !important;
   position: relative !important;
 }
 
@@ -436,40 +455,64 @@
   background-size: 20px 20px !important;
 }
 
-[data-theme="punk"] footer > p,
-[data-theme="punk"] footer > div > p {
-  color: white !important;
-}
-
-/* Footer grid - asegurar contraste en todas las columnas */
+/* Footer grid - todas las columnas con fondos fijos y buen contraste */
 [data-theme="punk"] footer .grid > div {
-  background: var(--red) !important;
+  background: #e41e31 !important; /* Rojo fijo */
   border: 3px solid white !important;
   box-shadow: 5px 5px 0 rgba(0,0,0,0.3) !important;
-  color: white !important;
+  padding: 20px !important;
+}
+
+[data-theme="punk"] footer .grid > div:nth-child(1) {
+  background: #f5f0e1 !important; /* Beige */
+  border-color: #1a1a1a !important;
 }
 
 [data-theme="punk"] footer .grid > div:nth-child(2) {
-  background: var(--yellow) !important;
-  color: #1a1a1a !important;
+  background: #ffd93d !important; /* Amarillo fijo */
+  border-color: #1a1a1a !important;
+}
+
+[data-theme="punk"] footer .grid > div:nth-child(3) {
+  background: #f5f0e1 !important; /* Beige */
   border-color: #1a1a1a !important;
 }
 
 [data-theme="punk"] footer .grid > div:nth-child(4) {
-  background: var(--blue) !important;
-  color: #1a1a1a !important;
+  background: #4169e1 !important; /* Azul fijo */
   border-color: #1a1a1a !important;
 }
 
+/* Texto en columnas del footer - colores fijos */
+[data-theme="punk"] footer .grid > div h2,
 [data-theme="punk"] footer .grid > div h3,
 [data-theme="punk"] footer .grid > div h4 {
-  color: inherit !important;
+  color: #1a1a1a !important;
+  text-decoration: underline !important;
+  text-decoration-style: wavy !important;
 }
 
 [data-theme="punk"] footer .grid > div p,
 [data-theme="punk"] footer .grid > div a,
-[data-theme="punk"] footer .grid > div span {
-  color: inherit !important;
+[data-theme="punk"] footer .grid > div span,
+[data-theme="punk"] footer .grid > div li {
+  color: #1a1a1a !important;
+}
+
+[data-theme="punk"] footer .grid > div:nth-child(4) h3,
+[data-theme="punk"] footer .grid > div:nth-child(4) p,
+[data-theme="punk"] footer .grid > div:nth-child(4) li {
+  color: white !important; /* Blanco en fondo azul */
+}
+
+/* Copyright y texto inferior */
+[data-theme="punk"] footer > div > div:last-child,
+[data-theme="punk"] footer > div > div:last-child p {
+  color: white !important;
+}
+
+[data-theme="punk"] footer > div > p {
+  color: white !important;
 }
 
 /* ============================================
