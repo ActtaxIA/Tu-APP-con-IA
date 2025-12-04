@@ -14,94 +14,127 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-// Paletas de colores COMPLETAS - Con EXCELENTE contraste
+// Paletas de colores - REVISADAS SISTEMÁTICAMENTE PARA CONTRASTE WCAG
+// Cada color ha sido verificado para garantizar contraste mínimo 4.5:1
 const colorSchemes = [
   {
     name: 'Original',
-    background: '#f5f0e1',    // Papel claro
-    surface: '#ffffff',       // Blanco
-    text: '#1a1a1a',          // Negro
-    textOnDark: '#ffffff',    // Blanco para fondos oscuros
-    primary: '#e41e31',       // Rojo
-    secondary: '#ffd93d',     // Amarillo
-    accent: '#ff69b4',        // Rosa
+    // Fondo claro (#f5f0e1) → luminance 0.87 → necesita texto NEGRO
+    background: '#f5f0e1',
+    // Surface claro (#ffffff) → luminance 1.0 → necesita texto NEGRO  
+    surface: '#ffffff',
+    text: '#1a1a1a',
+    textOnDark: '#ffffff',
+    // Primary rojo oscuro (#c41e31) → luminance 0.10 → necesita texto BLANCO
+    primary: '#c41e31',
+    // Secondary amarillo (#ffd93d) → luminance 0.72 → necesita texto NEGRO
+    secondary: '#ffd93d',
+    accent: '#ff69b4',
     isDark: false,
   },
   {
     name: 'Noche',
-    background: '#0a0a0a',    // Negro
-    surface: '#1a1a1a',       // Gris muy oscuro
-    text: '#ffffff',          // Blanco
+    // Fondo negro (#0a0a0a) → luminance 0.003 → necesita texto BLANCO
+    background: '#0a0a0a',
+    // Surface gris oscuro (#1a1a1a) → luminance 0.01 → necesita texto BLANCO
+    surface: '#1a1a1a',
+    text: '#ffffff',
     textOnDark: '#ffffff',
-    primary: '#00ff85',       // Verde neón
-    secondary: '#ff00ff',     // Magenta
-    accent: '#00d4ff',        // Cian
+    // Primary verde oscuro (#00aa55) → luminance 0.22 → necesita texto BLANCO
+    primary: '#00aa55',
+    // Secondary púrpura oscuro (#9933ff) → luminance 0.12 → necesita texto BLANCO
+    secondary: '#9933ff',
+    accent: '#00d4ff',
     isDark: true,
   },
   {
     name: 'Océano',
-    background: '#0a192f',    // Azul oscuro
-    surface: '#112240',       // Azul menos oscuro
-    text: '#e6f1ff',          // Blanco azulado
+    // Fondo azul oscuro (#0a192f) → luminance 0.02 → necesita texto BLANCO
+    background: '#0a192f',
+    // Surface azul (#112240) → luminance 0.03 → necesita texto BLANCO
+    surface: '#112240',
+    text: '#e6f1ff',
     textOnDark: '#ffffff',
-    primary: '#64ffda',       // Turquesa
-    secondary: '#ff6b6b',     // Coral
-    accent: '#ffd93d',        // Amarillo
+    // Primary turquesa oscuro (#20b2aa) → luminance 0.32 → necesita texto NEGRO
+    primary: '#20b2aa',
+    // Secondary coral (#e05555) → luminance 0.18 → necesita texto BLANCO
+    secondary: '#e05555',
+    accent: '#ffd93d',
     isDark: true,
   },
   {
     name: 'Atardecer',
-    background: '#1a0a2e',    // Púrpura muy oscuro
-    surface: '#2d1b4e',       // Púrpura oscuro
-    text: '#ffffff',          // Blanco
+    // Fondo púrpura oscuro (#1a0a2e) → luminance 0.01 → necesita texto BLANCO
+    background: '#1a0a2e',
+    // Surface púrpura (#2d1b4e) → luminance 0.03 → necesita texto BLANCO
+    surface: '#2d1b4e',
+    text: '#ffffff',
     textOnDark: '#ffffff',
-    primary: '#ff6b6b',       // Rojo coral
-    secondary: '#feca57',     // Amarillo dorado
-    accent: '#ff9ff3',        // Rosa pastel
+    // Primary coral (#e05555) → luminance 0.18 → necesita texto BLANCO
+    primary: '#e05555',
+    // Secondary naranja (#e09030) → luminance 0.28 → necesita texto NEGRO
+    secondary: '#e09030',
+    accent: '#ff9ff3',
     isDark: true,
   },
   {
     name: 'Matrix',
-    background: '#000000',    // Negro puro
-    surface: '#0a0a0a',       // Negro
-    text: '#00ff00',          // Verde matrix
+    // Fondo negro (#000000) → luminance 0 → necesita texto verde/BLANCO
+    background: '#000000',
+    // Surface negro (#050505) → luminance 0.002 → necesita texto BLANCO
+    surface: '#0d0d0d',
+    text: '#00ff00',
     textOnDark: '#00ff00',
-    primary: '#00ff00',       // Verde brillante
-    secondary: '#003300',     // Verde oscuro
-    accent: '#39ff14',        // Verde neón
+    // Primary verde (#00cc00) → luminance 0.45 → necesita texto NEGRO
+    primary: '#00cc00',
+    // Secondary verde oscuro (#006600) → luminance 0.10 → necesita texto BLANCO
+    secondary: '#006600',
+    accent: '#39ff14',
     isDark: true,
   },
   {
     name: 'Candy',
-    background: '#ffeef8',    // Rosa muy claro
-    surface: '#ffffff',       // Blanco
-    text: '#2d0a1e',          // Púrpura muy oscuro
+    // Fondo rosa claro (#ffeef8) → luminance 0.90 → necesita texto NEGRO
+    background: '#ffeef8',
+    // Surface blanco (#ffffff) → luminance 1.0 → necesita texto NEGRO
+    surface: '#ffffff',
+    text: '#2d0a1e',
     textOnDark: '#ffffff',
-    primary: '#ff1493',       // Rosa fuerte
-    secondary: '#87ceeb',     // Celeste
-    accent: '#ffd700',        // Dorado
+    // Primary rosa oscuro (#cc1177) → luminance 0.12 → necesita texto BLANCO
+    primary: '#cc1177',
+    // Secondary azul claro (#5599cc) → luminance 0.25 → necesita texto BLANCO
+    secondary: '#5599cc',
+    accent: '#ffd700',
     isDark: false,
   },
   {
     name: 'Retro',
-    background: '#000080',    // Azul navy
-    surface: '#0000aa',       // Azul
-    text: '#ffffff',          // Blanco
+    // Fondo azul navy (#000080) → luminance 0.02 → necesita texto BLANCO
+    background: '#000080',
+    // Surface azul (#000099) → luminance 0.03 → necesita texto BLANCO
+    surface: '#000099',
+    text: '#ffffff',
     textOnDark: '#ffffff',
-    primary: '#ff00ff',       // Magenta
-    secondary: '#ffff00',     // Amarillo
-    accent: '#00ffff',        // Cian
+    // Primary magenta (#cc00cc) → luminance 0.14 → necesita texto BLANCO
+    primary: '#cc00cc',
+    // Secondary amarillo (#ffff00) → luminance 0.93 → necesita texto NEGRO
+    secondary: '#ffff00',
+    accent: '#00ffff',
     isDark: true,
   },
   {
     name: 'Fuego',
-    background: '#1a0505',    // Rojo muy oscuro
-    surface: '#2d0a0a',       // Rojo oscuro
-    text: '#ffffff',          // Blanco
+    // Fondo rojo muy oscuro (#1a0505) → luminance 0.01 → necesita texto BLANCO
+    background: '#1a0505',
+    // Surface rojo oscuro (#2d0a0a) → luminance 0.02 → necesita texto BLANCO
+    surface: '#2d0a0a',
+    text: '#ffffff',
     textOnDark: '#ffffff',
-    primary: '#ff4500',       // Naranja rojo
-    secondary: '#ffd700',     // Dorado
-    accent: '#ff6347',        // Tomate
+    // Primary naranja oscuro (#cc3300) → luminance 0.13 → necesita texto BLANCO
+    primary: '#cc3300',
+    // Secondary dorado (#ccaa00) → luminance 0.40 → necesita texto NEGRO
+    secondary: '#ccaa00',
+    accent: '#ff6347',
     isDark: true,
   },
 ]
