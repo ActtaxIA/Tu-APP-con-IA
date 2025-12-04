@@ -1,35 +1,25 @@
 'use client'
 
-import { useTheme, colorSchemes } from '@/lib/theme-context'
+import { useTheme } from '@/lib/theme-context'
 import { themes } from '@/types'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
 export default function ThemeSwitcher() {
-  const { theme, setTheme, cycleColor, themeIndex, colorScheme } = useTheme()
+  const { theme, setTheme, cycleColor, themeIndex, currentPaletteName } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
   const currentTheme = themes[themeIndex]
-  const currentColor = colorSchemes[colorScheme]
 
   return (
     <>
-      {/* Botón de COLORES - IZQUIERDA */}
+      {/* Botón de COLORES (3 variantes por tema) - IZQUIERDA */}
       <div className="fixed bottom-4 left-2 md:bottom-6 md:left-4 z-50">
         <motion.button
           onClick={cycleColor}
-          className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-3 btn-primary"
-          style={{
-            border: '3px solid var(--color-text)',
-            boxShadow: '4px 4px 0 var(--color-text)',
-            fontFamily: 'var(--font-heading)',
-            fontSize: '0.9rem',
-          }}
-          whileHover={{ 
-            scale: 1.05,
-            boxShadow: '2px 2px 0 var(--color-text)',
-          }}
+          className="theme-switcher flex items-center gap-2"
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          title={`Paleta: ${currentColor.name}`}
+          title={`Variante: ${currentPaletteName}`}
         >
           <motion.span 
             className="text-xl"
@@ -38,7 +28,7 @@ export default function ThemeSwitcher() {
           >
             🎨
           </motion.span>
-          <span className="text-xs md:text-sm">{currentColor.name}</span>
+          <span className="hidden sm:inline text-sm">{currentPaletteName}</span>
         </motion.button>
       </div>
 
