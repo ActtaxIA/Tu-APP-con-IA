@@ -547,6 +547,58 @@
   color: #000000 !important;
 }
 
+/* ============================================
+   THEME SWITCHER - Botones de cambio de tema/color
+   ============================================ */
+[data-theme="pixel"] .theme-switcher {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 0.7rem !important;
+  padding: 12px 20px !important;
+  background: #00ff00 !important;
+  color: #000000 !important;
+  border: 3px solid #009900 !important;
+  box-shadow: 
+    0 4px 0 #009900,
+    0 6px 0 rgba(0,0,0,0.5) !important;
+}
+
+[data-theme="pixel"] .theme-switcher span {
+  color: #000000 !important;
+}
+
+[data-theme="pixel"] .theme-switcher:hover {
+  background: #00cc00 !important;
+}
+
+/* Dropdown del selector de temas */
+[data-theme="pixel"] .theme-switcher + div,
+[data-theme="pixel"] [class*="absolute"][class*="bottom-full"] {
+  background: #0a0a0a !important;
+  border: 3px solid #00ff00 !important;
+}
+
+[data-theme="pixel"] .theme-switcher + div button,
+[data-theme="pixel"] [class*="absolute"][class*="bottom-full"] button {
+  background: #0a0a0a !important;
+  color: #00ff00 !important;
+  font-family: 'VT323', monospace !important;
+  font-size: 1.1rem !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #003300 !important;
+  box-shadow: none !important;
+}
+
+[data-theme="pixel"] .theme-switcher + div button:hover,
+[data-theme="pixel"] [class*="absolute"][class*="bottom-full"] button:hover {
+  background: #003300 !important;
+  color: #00ff00 !important;
+}
+
+[data-theme="pixel"] .theme-switcher + div button span,
+[data-theme="pixel"] [class*="absolute"][class*="bottom-full"] button span {
+  color: #00ff00 !important;
+}
+
 /* Footer legible */
 [data-theme="pixel"] footer,
 [data-theme="pixel"] footer * {
