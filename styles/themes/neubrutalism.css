@@ -218,10 +218,11 @@
 /* TÍTULOS DE SECCIÓN */
 [data-theme="neubrutalism"] h2 {
   font-family: 'Darker Grotesque', sans-serif !important;
-  font-size: 5rem !important;
+  font-size: 3rem !important;
   font-weight: 900 !important;
+  line-height: 1.2 !important;
   text-transform: uppercase !important;
-  margin-bottom: 60px !important;
+  margin-bottom: 40px !important;
 }
 
 [data-theme="neubrutalism"] h2::before,
