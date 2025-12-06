@@ -65,21 +65,21 @@ export const metadata: Metadata = {
     description: 'Diseño web, apps móviles y chatbots con IA. Agencia digital en Murcia con +150 proyectos. Presupuesto gratis.',
     images: [
       {
-        url: '/favicon.png',
-        width: 512,
-        height: 512,
-        alt: 'Tu APP con IA - Robot artista con paleta de colores',
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Tu APP con IA - Agencia de Marketing Digital en Murcia',
         type: 'image/png',
       },
     ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     site: '@tuappconia',
     creator: '@tuappconia',
     title: 'Tu APP con IA | Agencia de Marketing Digital en Murcia',
     description: 'Diseño web, apps móviles y chatbots con IA. Agencia digital en Murcia.',
-    images: ['/favicon.png'],
+    images: ['/twitter-image'],
   },
   alternates: {
     canonical: 'https://tuappconia.com',

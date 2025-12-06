@@ -22,18 +22,18 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/favicon.png',
-        width: 512,
-        height: 512,
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
         alt: 'Tu APP con IA - Agencia Digital Murcia',
       },
     ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Tu APP con IA | Agencia Marketing Digital Murcia',
     description: 'Diseño web, apps móviles y chatbots con IA. Presupuesto gratis.',
-    images: ['/favicon.png'],
+    images: ['/twitter-image'],
   },
 }
 
