@@ -78,8 +78,10 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2" style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem' }}>
               <li>📍 Murcia, España</li>
-              <li>📧 hola@tuappconia.com</li>
-              <li>📱 +34 XXX XXX XXX</li>
+              <li>
+                📧 <a href="mailto:contacto@eskala.com" className="hover:underline">contacto@eskala.com</a>
+              </li>
+              <li>🌐 <a href="https://www.eskaladigital.com" target="_blank" rel="noopener noreferrer" className="hover:underline">www.eskaladigital.com</a></li>
             </ul>
           </div>
         </div>
@@ -92,9 +94,20 @@ export default function Footer() {
           <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem' }}>
             © 2024 Tu APP con IA. Todos los derechos reservados.
           </p>
-          <p style={{ fontFamily: 'var(--font-accent)', fontSize: '1.2rem' }}>
-            hecho con las manos 🖐️
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <p style={{ fontFamily: 'var(--font-accent)', fontSize: '1rem' }}>
+              Un proyecto de
+            </p>
+            <a 
+              href="https://www.eskaladigital.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:underline"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', fontWeight: 'bold' }}
+            >
+              ESKALA - Marketing Digital
+            </a>
+          </div>
         </div>
       </motion.div>
     </footer>

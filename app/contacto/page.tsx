@@ -75,16 +75,16 @@ export default function ContactoPage() {
                   EMAIL
                 </h3>
                 <a
-                  href="mailto:hola@tuappconia.es"
+                  href="mailto:contacto@eskala.com"
                   className="hover:underline"
                   style={{ fontFamily: 'var(--font-body)' }}
                 >
-                  hola@tuappconia.es
+                  contacto@eskala.com
                 </a>
               </div>
             </div>
 
-            {/* Teléfono */}
+            {/* Web ESKALA */}
             <div
               className="p-6 flex items-start gap-4 card-secondary"
               style={{
@@ -94,7 +94,11 @@ export default function ContactoPage() {
               }}
             >
               <div className="p-3 btn-primary">
-                <Phone size={24} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
               </div>
               <div>
                 <h3
@@ -104,15 +108,23 @@ export default function ContactoPage() {
                     fontSize: '1.3rem',
                   }}
                 >
-                  TELÉFONO
+                  WEB
                 </h3>
                 <a
-                  href="tel:+34600000000"
+                  href="https://www.eskaladigital.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:underline"
                   style={{ fontFamily: 'var(--font-body)' }}
                 >
-                  +34 600 000 000
+                  www.eskaladigital.com
                 </a>
+                <p 
+                  className="text-sm mt-1 opacity-70"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                >
+                  ESKALA - Marketing Digital
+                </p>
               </div>
             </div>
 

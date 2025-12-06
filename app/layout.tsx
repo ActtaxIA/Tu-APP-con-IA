@@ -76,8 +76,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@tuappconia',
-    creator: '@tuappconia',
+    site: '@eskaladigital',
+    creator: '@eskaladigital',
     title: 'Tu APP con IA | Agencia de Marketing Digital en Murcia',
     description: 'Diseño web, apps móviles y chatbots con IA. Agencia digital en Murcia.',
     images: ['/twitter-image'],
@@ -103,7 +103,7 @@ const jsonLd = {
   url: 'https://tuappconia.com',
   logo: 'https://tuappconia.com/favicon.png',
   image: 'https://tuappconia.com/favicon.png',
-  email: 'hola@tuappconia.com',
+  email: 'contacto@eskala.com',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Murcia',
