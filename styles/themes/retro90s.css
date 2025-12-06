@@ -205,6 +205,7 @@
 [data-theme="retro90s"] .sticker-primary,
 [data-theme="retro90s"] .hero-section > div:first-child {
   display: none !important;
+  border: none !important;
 }
 
 /* Ocultar decoraciones X y ★ */
@@ -505,29 +506,144 @@
 }
 
 /* ============================================
-   FOOTER
+   FOOTER - Estilo "GVC Expertos.exe" Window
    ============================================ */
 [data-theme="retro90s"] footer {
-  background: #000 !important;
-  border-top: 5px groove silver !important;
-  text-align: center !important;
-  padding: 30px !important;
+  background: linear-gradient(180deg, #c0c0c0, #808080) !important;
+  border: 4px outset #c0c0c0 !important;
+  border-radius: 0 !important;
+  margin: 40px auto 20px !important;
+  max-width: 1000px !important;
+  padding: 0 !important;
+  position: relative !important;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.5) !important;
+  text-align: left !important;
+  overflow: hidden !important;
 }
 
-[data-theme="retro90s"] footer * {
+/* Barra de título "Window" */
+[data-theme="retro90s"] footer::before {
+  content: 'Footer.exe - Tu APP con IA';
+  display: block;
+  background: var(--navy);
+  color: white;
+  padding: 4px 8px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #808080;
+}
+
+/* Botones de ventana simulados (min, max, close) */
+[data-theme="retro90s"] footer::after {
+  content: '_ □ x';
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  color: black;
+  background: #c0c0c0;
+  padding: 0 5px;
+  font-size: 0.8rem;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  font-family: sans-serif;
+  letter-spacing: 3px;
+}
+
+/* Contenedor interior */
+[data-theme="retro90s"] footer > div {
+  padding: 20px !important;
+}
+
+/* Grid dentro del footer */
+[data-theme="retro90s"] footer .grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 20px !important;
+}
+
+/* Columnas como Fieldsets */
+[data-theme="retro90s"] footer .md\:col-span-1 {
+  border: 2px solid !important;
+  border-color: #fff #808080 #808080 #fff !important; /* Etched border */
+  padding: 15px !important;
+  margin-bottom: 0 !important;
+  background: transparent !important;
+}
+
+/* Títulos de columnas como Legends (simulado) */
+[data-theme="retro90s"] footer h2,
+[data-theme="retro90s"] footer h3 {
   font-family: 'VT323', monospace !important;
-  color: var(--cyan) !important;
+  font-size: 1.3rem !important;
+  color: #000 !important;
+  background: #c0c0c0 !important;
+  display: inline-block !important;
+  padding: 0 5px !important;
+  margin-top: -25px !important; /* Subir para solapar el borde */
+  margin-bottom: 10px !important;
+  border: none !important;
+  width: auto !important;
+  text-transform: uppercase !important;
 }
 
-[data-theme="retro90s"] footer a,
-[data-theme="retro90s"] footer span {
-  padding: 8px 15px !important;
-  font-size: 0.9rem !important;
-  background: #333 !important;
-  border: 2px outset #666 !important;
-  color: var(--cyan) !important;
-  display: inline-block !important;
-  margin: 5px !important;
+/* Links en footer */
+[data-theme="retro90s"] footer ul li {
+  margin-bottom: 8px !important;
+}
+
+[data-theme="retro90s"] footer a {
+  color: #000 !important;
+  text-decoration: none !important;
+  font-family: 'VT323', monospace !important;
+  font-size: 1.1rem !important;
+  padding: 2px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  display: inline !important;
+  margin: 0 !important;
+}
+
+[data-theme="retro90s"] footer a:hover {
+  background: var(--navy) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+/* Texto normal en footer */
+[data-theme="retro90s"] footer p,
+[data-theme="retro90s"] footer li {
+  color: #000 !important;
+  font-family: 'VT323', monospace !important;
+  font-size: 1.1rem !important;
+  line-height: 1.4 !important;
+}
+
+/* Línea divisoria oculta */
+[data-theme="retro90s"] footer > div > div[style*="border-top"] {
+  display: none !important;
+}
+
+/* Copyright section - Status bar style */
+[data-theme="retro90s"] footer .flex {
+  border-top: 2px solid #808080 !important;
+  margin-top: 20px !important;
+  padding-top: 10px !important;
+  justify-content: space-between !important;
+  font-size: 1rem !important;
+}
+
+/* Emoji mano */
+[data-theme="retro90s"] footer p:last-child {
+  font-size: 1rem !important;
+}
+
+/* Ocultar borde decorativo superior */
+[data-theme="retro90s"] footer > div[style*="absolute"] {
+  display: none !important;
 }
 
 /* ============================================

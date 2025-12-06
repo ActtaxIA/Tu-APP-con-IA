@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GVC Expertos - v.1995</title>
+    <style>
+        :root {
+            --win-gray: #c0c0c0;
+            --win-blue: #000080;
+            --win-text: #000000;
+            --win-white: #ffffff;
+            --win-dark: #808080;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: #008080; /* Classic teal desktop */
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .window {
+            background-color: var(--win-gray);
+            width: 100%;
+            max-width: 1000px;
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .title-bar {
+            background: var(--win-blue);
+            padding: 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-text {
+            color: var(--win-white);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .title-controls button {
+            width: 16px;
+            height: 14px;
+            background: var(--win-gray);
+            border-top: 1px solid #fff;
+            border-left: 1px solid #fff;
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
+            font-size: 10px;
+            line-height: 10px;
+            margin-left: 2px;
+        }
+
+        .menu-bar {
+            padding: 4px 8px;
+            border-bottom: 1px solid #808080;
+            margin-bottom: 10px;
+        }
+
+        .menu-bar span {
+            margin-right: 15px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .content-area {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+        }
+
+        .sidebar {
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080; /* Inset */
+            background: #fff;
+            padding: 10px;
+            height: 100%;
+        }
+
+        .main-view {
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080; /* Inset */
+            background: #fff;
+            padding: 20px;
+            height: 500px;
+            overflow-y: scroll;
+        }
+
+        /* UI Elements */
+        .retro-btn {
+            background: var(--win-gray);
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #000;
+            border-bottom: 2px solid #000;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+        }
+
+        .retro-btn:active {
+            border-top: 2px solid #000;
+            border-left: 2px solid #000;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transform: translate(1px, 1px);
+        }
+
+        .tree-view-item {
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: block;
+        }
+        
+        .tree-view-item:hover {
+            background-color: var(--win-blue);
+            color: white;
+        }
+
+        fieldset {
+            border: 2px solid;
+            border-color: #fff #808080 #808080 #fff; /* Etched */
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        legend { padding: 0 5px; }
+
+        h1 { font-size: 24px; margin-top: 0; text-transform: uppercase; }
+        
+        .status-bar {
+            border-top: 2px solid #808080;
+            padding: 4px 8px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Scrollbar simulation */
+        ::-webkit-scrollbar { width: 16px; background: var(--win-gray); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--win-gray);
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #000;
+            border-bottom: 2px solid #000;
+        }
+        ::-webkit-scrollbar-button { background: var(--win-gray); border: 2px outset #fff; height: 16px; }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .pixel-icon {
+            width: 32px;
+            height: 32px;
+            background: #000;
+            margin-bottom: 5px;
+            /* Pixel art simulation via CSS gradients could go here, kept simple block for now */
+            background: linear-gradient(45deg, #000080 25%, transparent 25%), 
+                        linear-gradient(-45deg, #000080 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #000080 75%), 
+                        linear-gradient(-45deg, transparent 75%, #000080 75%);
+            background-size: 8px 8px;
+            background-color: #c0c0c0;
+            border: 1px solid black;
+        }
+
+        @media(max-width: 768px) {
+            .content-area { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-text">GVC_Expertos.exe</div>
+            <div class="title-controls">
+                <button>_</button>
+                <button>□</button>
+                <button>x</button>
+            </div>
+        </div>
+        
+        <div class="menu-bar">
+            <span><u>A</u>rchivo</span>
+            <span><u>E</u>dición</span>
+            <span><u>V</u>er</span>
+            <span><u>A</u>yuda</span>
+        </div>
+
+        <div class="content-area">
+            <div class="sidebar">
+                <div class="tree-view-item">📂 Escritorio</div>
+                <div class="tree-view-item" style="margin-left: 15px;">📂 Mi PC</div>
+                <div class="tree-view-item" style="margin-left: 30px;">💾 (C:)</div>
+                <div class="tree-view-item" style="margin-left: 45px;">📂 GVC_System</div>
+                <div class="tree-view-item" style="margin-left: 60px;">📄 main.html</div>
+                <div class="tree-view-item" style="margin-left: 60px;">📄 services.log</div>
+                <div class="tree-view-item" style="margin-left: 60px;">📄 team.dat</div>
+            </div>
+
+            <div class="main-view">
+                <fieldset>
+                    <legend>Bienvenido</legend>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <div style="font-size: 48px;">⚖️</div>
+                        <div>
+                            <h1>GVC Expertos</h1>
+                            <p>Sistema de Defensa Legal v1.0</p>
+                            <p>Especialistas en Negligencias Médicas.</p>
+                            <a href="#contact" class="retro-btn">Iniciar Consulta...</a>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset id="services">
+                    <legend>Servicios Instalados</legend>
+                    <div class="icon-grid">
+                        <div class="icon-item">
+                            <div class="pixel-icon"></div>
+                            <span>Cirugía.exe</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="pixel-icon"></div>
+                            <span>Parto.exe</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="pixel-icon"></div>
+                            <span>Urgencias.dll</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="pixel-icon"></div>
+                            <span>Diagnos.sys</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="pixel-icon"></div>
+                            <span>Dental.bat</span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Estadísticas del Sistema</legend>
+                    <p>Memoria Disponible: 95% Éxito</p>
+                    <p>Tiempo de Ejecución: +20 Años</p>
+                    <p>Procesos Completados: +2500</p>
+                    <div style="background: #fff; border: 1px solid #808080; height: 20px; width: 100%; position: relative;">
+                        <div style="background: #000080; width: 95%; height: 100%;"></div>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                   <legend>Equipo de Desarrollo</legend>
+                   <table style="width: 100%; text-align: left; border-collapse: collapse;">
+                       <tr style="background: #c0c0c0;">
+                           <th style="border: 1px solid #808080; padding: 5px;">Nombre</th>
+                           <th style="border: 1px solid #808080; padding: 5px;">Rol</th>
+                       </tr>
+                       <tr>
+                           <td style="border: 1px solid #808080; padding: 5px;">Pedro A. GVC</td>
+                           <td style="border: 1px solid #808080; padding: 5px;">ADMIN</td>
+                       </tr>
+                       <tr>
+                           <td style="border: 1px solid #808080; padding: 5px;">Miguel Cáceres</td>
+                           <td style="border: 1px solid #808080; padding: 5px;">SYSOP</td>
+                       </tr>
+                   </table>
+                </fieldset>
+
+                <fieldset id="contact">
+                    <legend>Formulario de Entrada</legend>
+                    <label style="display: block; margin-bottom: 5px;">Nombre de Usuario:</label>
+                    <input type="text" style="width: 100%; margin-bottom: 10px; font-family: 'Courier New';">
+                    
+                    <label style="display: block; margin-bottom: 5px;">Mensaje de Error:</label>
+                    <textarea style="width: 100%; height: 100px; font-family: 'Courier New'; margin-bottom: 10px;"></textarea>
+                    
+                    <button class="retro-btn">Enviar Reporte</button>
+                    <button class="retro-btn">Cancelar</button>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <span>Listo.</span>
+            <span>CAPS LOCK OFF</span>
+        </div>
+    </div>
+
+</body>
+</html>
+
