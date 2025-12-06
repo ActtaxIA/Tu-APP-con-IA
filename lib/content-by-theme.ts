@@ -281,7 +281,7 @@ export const contentByTheme: Record<string, ThemeContent> = {
         },
         {
           icon: '📢',
-          title: 'Marketing.exe',
+          title: 'Marketing\ndigital',
           description: 'Marketing digital y posicionamiento SEO.',
         },
       ],
@@ -302,5 +302,6 @@ export const contentByTheme: Record<string, ThemeContent> = {
 export function getThemeContent(theme: string): ThemeContent {
   return contentByTheme[theme] || contentByTheme.punk
 }
+
 
 

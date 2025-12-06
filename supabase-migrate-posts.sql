@@ -871,3 +871,4 @@ Lee los términos de servicio de cada plataforma. Usa las imágenes como base y 
 SELECT COUNT(*) as total_posts FROM blog_posts;
 
 
+

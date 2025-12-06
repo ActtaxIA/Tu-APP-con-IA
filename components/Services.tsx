@@ -75,6 +75,7 @@ export default function Services() {
                   letterSpacing: '0.1em',
                   textDecoration: 'underline',
                   textDecorationStyle: 'wavy',
+                  whiteSpace: 'pre-line',
                 }}
               >
                 {service.title}

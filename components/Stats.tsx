@@ -64,6 +64,7 @@ export default function Stats() {
                   fontSize: '0.85rem',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
+                  whiteSpace: 'pre-line',
                 }}
               >
                 {stat.label}
