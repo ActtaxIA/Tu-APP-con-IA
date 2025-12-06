@@ -346,9 +346,14 @@
   font-family: 'VT323', monospace !important;
   border: 2px ridge #c0c0c0 !important;
   margin: 0 !important;
-  padding: 15px !important;
+  padding: 20px 15px !important; /* Más padding vertical */
+  min-height: 80px !important; /* Altura mínima garantizada */
   font-size: 1.3rem !important;
   text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important; /* Centrar verticalmente */
+  justify-content: center !important; /* Centrar horizontalmente */
+  line-height: 1.4 !important; /* Espaciado entre líneas */
 }
 
 [data-theme="retro90s"] .grid > div h3::before,
@@ -432,10 +437,14 @@
   background: #222 !important;
   color: var(--lime) !important;
   font-size: 2rem !important;
-  padding: 10px 15px !important;
+  padding: 20px 15px !important; /* Más padding vertical */
+  min-height: 80px !important; /* Igual que las tarjetas */
   border: 2px inset #444 !important;
-  display: inline-block !important;
+  display: flex !important; /* Cambiado a flex */
+  align-items: center !important; /* Centrar verticalmente */
+  justify-content: center !important; /* Centrar horizontalmente */
   font-family: 'VT323', monospace !important;
+  line-height: 1.4 !important; /* Espaciado entre líneas */
 }
 
 [data-theme="retro90s"] .stat-label {
