@@ -75,11 +75,11 @@ export default function ContactoPage() {
                   EMAIL
                 </h3>
                 <a
-                  href="mailto:contacto@eskala.com"
+                  href="mailto:contacto@eskaladigital.com"
                   className="hover:underline"
                   style={{ fontFamily: 'var(--font-body)' }}
                 >
-                  contacto@eskala.com
+                  contacto@eskaladigital.com
                 </a>
               </div>
             </div>

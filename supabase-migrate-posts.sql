@@ -877,3 +877,4 @@ SELECT COUNT(*) as total_posts FROM blog_posts;
 
 
 
+

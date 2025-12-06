@@ -79,7 +79,7 @@ export default function Footer() {
             <ul className="space-y-2" style={{ fontFamily: 'var(--font-body)', fontSize: '0.9rem' }}>
               <li>📍 Murcia, España</li>
               <li>
-                📧 <a href="mailto:contacto@eskala.com" className="hover:underline">contacto@eskala.com</a>
+                📧 <a href="mailto:contacto@eskaladigital.com" className="hover:underline">contacto@eskaladigital.com</a>
               </li>
               <li>🌐 <a href="https://www.eskaladigital.com" target="_blank" rel="noopener noreferrer" className="hover:underline">www.eskaladigital.com</a></li>
             </ul>

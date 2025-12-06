@@ -103,7 +103,7 @@ const jsonLd = {
   url: 'https://tuappconia.com',
   logo: 'https://tuappconia.com/favicon.png',
   image: 'https://tuappconia.com/favicon.png',
-  email: 'contacto@eskala.com',
+  email: 'contacto@eskaladigital.com',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Murcia',
