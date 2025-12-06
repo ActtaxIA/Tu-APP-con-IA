@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import '@/styles/globals.css'
 import { ThemeProvider } from '@/lib/theme-context'
 import { Header, Footer, ThemeSwitcher } from '@/components'
@@ -229,6 +230,20 @@ export default function RootLayout({
         />
       </head>
       <body>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-7TCCTG1ECR"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-7TCCTG1ECR');
+          `}
+        </Script>
+
         <ThemeProvider>
           <Toaster
             position="bottom-right"
